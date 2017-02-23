@@ -23,4 +23,18 @@
 #ifndef _ISHIKO_FILESYSTEM_UTILITIES_H_
 #define _ISHIKO_FILESYSTEM_UTILITIES_H_
 
+namespace Ishiko
+{
+namespace FileSystem
+{
+
+class Utilities
+{
+public:
+    static int readFile(const char* filename, char* buffer, size_t bufferSize);
+};
+
+}
+}
+
 #endif

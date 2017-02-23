@@ -21,3 +21,32 @@
 */
 
 #include "Utilities.h"
+#include <boost/filesystem.hpp>
+
+namespace Ishiko
+{
+namespace FileSystem
+{
+
+int Utilities::readFile(const char* filename, 
+                        char* buffer,
+                        size_t bufferSize)
+{
+    int result = -1;
+
+    size_t filesize = boost::filesystem::file_size(filename);
+    if (filesize <= bufferSize)
+    {
+        FILE* file = fopen(filename, "rb");
+        if (file)
+        {
+            result = fread(buffer, 1, filesize, file);
+            fclose(file);
+        }
+    }
+
+    return result;
+}
+
+}
+}
