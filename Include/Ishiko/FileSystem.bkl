@@ -1,0 +1,20 @@
+setting ISHIKO_FILESYSTEM_ROOT
+{
+    help = "Path to the Ishiko FileSystem installation";
+    default = '$(ISHIKO)/FileSystem';
+}
+
+template IshikoFileSystem
+{
+    includedirs += $(ISHIKO_FILESYSTEM_ROOT)/Include;
+
+    if ($(toolset) == gnu)
+    {
+       libdirs += $(ISHIKO_FILESYSTEM_ROOT)/Lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        libdirs += $(ISHIKO_FILESYSTEM_ROOT)/Lib/$(arch);
+    }
+}
