@@ -153,6 +153,7 @@
     <ClCompile Include="..\..\Source\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\Ishiko\FileSystem\linkoptions.h" />
     <ClInclude Include="..\..\Include\Ishiko\FileSystem\Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

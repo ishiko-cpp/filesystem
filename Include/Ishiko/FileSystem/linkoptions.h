@@ -20,23 +20,13 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _ISHIKO_FILESYSTEM_UTILITIES_H_
-#define _ISHIKO_FILESYSTEM_UTILITIES_H_
+#ifndef _ISHIKO_FILESYSTEM_LINKOPTIONS_H_
+#define _ISHIKO_FILESYSTEM_LINKOPTIONS_H_
 
-namespace Ishiko
-{
-namespace FileSystem
-{
-
-class Utilities
-{
-public:
-    static int readFile(const char* filename, char* buffer, size_t bufferSize);
-};
-
-}
-}
-
-#include "linkoptions.h"
+#ifdef _DEBUG
+#pragma comment(lib, "IshikoFileSystem-d.lib")
+#else
+#pragma comment(lib, "IshikoFileSystem.lib")
+#endif
 
 #endif

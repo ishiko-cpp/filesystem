@@ -31,6 +31,7 @@ library IshikoFileSystem : Boost
 
     headers
     {
+        ../../Include/Ishiko/FileSystem/linkoptions.h
         ../../Include/Ishiko/FileSystem/Utilities.h
     }
 
