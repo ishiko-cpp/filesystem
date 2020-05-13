@@ -72,11 +72,11 @@ BOOST_ROOT ?= $(BOOST)
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a
 
 ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a: $(_builddir)IshikoFileSystem_Utilities.o
-	$(AR) rcu $@ $(_builddir)IshikoFileSystem_Utilities.o
+	$(AR) rc $@ $(_builddir)IshikoFileSystem_Utilities.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoFileSystem_Utilities.o: ../../Source/Utilities.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(BOOST_ROOT) -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Utilities.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Utilities.cpp
 
 clean:
 	rm -f $(_builddir)*.o
