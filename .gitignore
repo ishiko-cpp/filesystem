@@ -1,11 +1,3 @@
-*.dll
-*.opensdf
-*.sdf
-*.suo
-*.opendb
-*.vc.db
-*.o
-*.d
-Debug/
-Release/
 Lib/
+Makefiles/VC15/.vs/
+Makefiles/VC15/x64/
