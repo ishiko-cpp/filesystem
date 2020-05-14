@@ -31,7 +31,7 @@ namespace FileSystem
 class Utilities
 {
 public:
-    static int readFile(const char* filename, char* buffer, size_t bufferSize);
+    static int ReadFile(const char* filename, char* buffer, size_t bufferSize);
 };
 
 }

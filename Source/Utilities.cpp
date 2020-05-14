@@ -28,7 +28,7 @@ namespace Ishiko
 namespace FileSystem
 {
 
-int Utilities::readFile(const char* filename, 
+int Utilities::ReadFile(const char* filename, 
                         char* buffer,
                         size_t bufferSize)
 {
