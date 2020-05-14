@@ -1,23 +1,23 @@
-ishikopath = envvar("ISHIKO");
+ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/Boost.bkl;
 
-setting ISHIKO_FILESYSTEM_ROOT
+setting ISHIKO_CPP_FILESYSTEM_ROOT
 {
     help = "Path to the Ishiko FileSystem installation";
-    default = '$(ISHIKO)/FileSystem';
+    default = '$(ISHIKO_CPP)/FileSystem';
 }
 
 template IshikoFileSystem : Boost
 {
-    includedirs += $(ISHIKO_FILESYSTEM_ROOT)/Include;
+    includedirs += $(ISHIKO_CPP_FILESYSTEM_ROOT)/Include;
 
     if ($(toolset) == gnu)
     {
-       libdirs += $(ISHIKO_FILESYSTEM_ROOT)/Lib;
+       libdirs += $(ISHIKO_CPP_FILESYSTEM_ROOT)/Lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_FILESYSTEM_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_FILESYSTEM_ROOT)/Lib/$(arch);
     }
 }
