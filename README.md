@@ -2,6 +2,20 @@
 
 Utilities to work with the file system.
 
+# Project Status
+
+[![Ishiko-cpp](https://circleci.com/gh/Ishiko-cpp/FileSystem.svg?style=shield)](https://circleci.com/gh/Ishiko-cpp/FileSystem)
+
+This project is intended for use by its author only.
+
+# Usage
+
+No documentation available as of yet.
+
+# Support
+
+None.
+
 # License
 
 Copyright (c) 2017-2020 Xavier Leclercq
