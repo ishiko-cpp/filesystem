@@ -12,3 +12,27 @@ jobs:
       - run:
           name: Build
           command: cd /Ishiko-cpp/FileSystem/Makefiles/GNUmakefile && make
+      - run:
+          name: "Checkout Ishiko-cpp/Errors test dependency"
+          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Errors.git
+      - run:
+          name: "Checkout Ishiko-cpp/Process test dependency"
+          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Process.git
+      - run:
+          name: "Checkout Ishiko-cpp/TestFramework test dependency"
+          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/TestFramework.git
+      - run:
+          name: "Build Ishiko-cpp/Errors test dependency"
+          command: cd /Ishiko-cpp/Errors/Makefiles/GNUmakefile && make
+      - run:
+          name: "Build Ishiko-cpp/Process test dependency"
+          command: cd /Ishiko-cpp/Process/Makefiles/GNUmakefile && make
+      - run:
+          name: "Build Ishiko-cpp/TestFramework test dependency"
+          command: cd /Ishiko-cpp/TestFramework/Core/Makefiles/GNUmakefile && make
+      - run:
+          name: Test build
+          command: cd /Ishiko-cpp/FileSystem/Tests/Makefiles/GNUmakefile && make
+      - run:
+          name: Run the tests
+          command: cd /Ishiko-cpp/FileSystem/Tests/Makefiles/GNUmakefile && ./IshikoFileSystemTests
