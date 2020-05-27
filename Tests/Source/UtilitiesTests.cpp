@@ -21,16 +21,10 @@
 */
 
 #include "UtilitiesTests.h"
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
 
 using namespace Ishiko::Tests;
 
-int main(int argc, char* argv[])
+UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& environment)
+    : TestSequence(number, "Utilities tests", environment)
 {
-    TestHarness theTestHarness("IshikoFileSystem");
-
-    TestSequence& theTests = theTestHarness.tests();
-    theTests.append<UtilitiesTests>();
-
-    return theTestHarness.run();
 }

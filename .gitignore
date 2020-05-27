@@ -1,4 +1,9 @@
-Makefiles/VC15/.vs/
-Makefiles/VC15/x64/
+/Makefiles/VC14/.vs/
+/Makefiles/VC14/x64/
+/Makefiles/VC15/.vs/
+/Makefiles/VC15/x64/
 /Lib/*
 !/Lib/README.md
+/Tests/Makefiles/VC15/.vs/
+/Tests/Makefiles/VC15/x64/
+/Tests/Makefiles/VC15/IshikoFileSystemTests.vcxproj.user

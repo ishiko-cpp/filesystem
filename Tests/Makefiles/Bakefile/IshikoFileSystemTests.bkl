@@ -19,8 +19,15 @@ program IshikoFileSystemTests : IshikoFileSystem, IshikoTestFrameworkCore
         libs += IshikoFileSystem IshikoTestFrameworkCore IshikoProcess IshikoErrors boost_filesystem boost_system;
     }
 
+    headers
+    {
+        ../../Source/UtilitiesTests.h
+    }
+
     sources
     {
         ../../Source/main.cpp
+
+        ../../Source/UtilitiesTests.cpp
     }
 }

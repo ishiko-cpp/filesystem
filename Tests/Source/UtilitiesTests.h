@@ -20,17 +20,15 @@
     IN THE SOFTWARE.
 */
 
-#include "UtilitiesTests.h"
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
+#define _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
 
-using namespace Ishiko::Tests;
+#include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-int main(int argc, char* argv[])
+class UtilitiesTests : public Ishiko::Tests::TestSequence
 {
-    TestHarness theTestHarness("IshikoFileSystem");
+public:
+    UtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+};
 
-    TestSequence& theTests = theTestHarness.tests();
-    theTests.append<UtilitiesTests>();
-
-    return theTestHarness.run();
-}
+#endif
