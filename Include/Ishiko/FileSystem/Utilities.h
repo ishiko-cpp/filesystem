@@ -29,12 +29,8 @@ namespace Ishiko
 {
 namespace FileSystem
 {
-
-class Utilities
-{
-public:
-    static int ReadFile(const char* filename, char* buffer, size_t bufferSize);
-};
+    
+int ReadFile(const char* filename, char* buffer, size_t bufferSize);
 
 }
 }

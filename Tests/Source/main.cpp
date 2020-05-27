@@ -29,6 +29,8 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoFileSystem");
 
+    theTestHarness.environment().setTestDataDirectory("../../TestData");
+
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<UtilitiesTests>();
 

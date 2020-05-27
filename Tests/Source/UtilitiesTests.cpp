@@ -21,10 +21,24 @@
 */
 
 #include "UtilitiesTests.h"
+#include "Ishiko/FileSystem/Utilities.h"
 
 using namespace Ishiko::Tests;
 
 UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "Utilities tests", environment)
 {
+    append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
+}
+
+void UtilitiesTests::ReadFileTest1(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+
+    const int bufferSize = 10;
+    char buffer[bufferSize];
+    int err = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize);
+
+    ISHTF_FAIL_IF_NEQ(err, 5);
+    ISHTF_PASS();
 }
