@@ -16,6 +16,8 @@ public:
 
 private:
     static void ReadFileTest1(Ishiko::Tests::Test& test);
+    static void ReadFileTest2(Ishiko::Tests::Test& test);
+    static void ReadFileTest3(Ishiko::Tests::Test& test);
 };
 
 #endif

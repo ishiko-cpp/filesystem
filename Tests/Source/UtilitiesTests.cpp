@@ -13,6 +13,8 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     : TestSequence(number, "Utilities tests", environment)
 {
     append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
+    append<HeapAllocationErrorsTest>("ReadFile test 2", ReadFileTest2);
+    append<HeapAllocationErrorsTest>("ReadFile test 3", ReadFileTest3);
 }
 
 void UtilitiesTests::ReadFileTest1(Test& test)
@@ -25,6 +27,35 @@ void UtilitiesTests::ReadFileTest1(Test& test)
     size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
     ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NEQ(bytesRead, 5);
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ReadFileTest2(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+
+    Ishiko::Error error(0);
+    const int bufferSize = 10;
+    char buffer[bufferSize];
+    size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(bytesRead, 0);
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ReadFileTest3(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+
+    Ishiko::Error error(0);
+    const int bufferSize = 2;
+    char buffer[bufferSize];
+    size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.code(), -2);
     ISHTF_FAIL_IF_NEQ(bytesRead, 5);
     ISHTF_PASS();
 }

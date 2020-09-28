@@ -16,15 +16,27 @@ size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& er
 {
     size_t result = 0;
 
-    size_t filesize = boost::filesystem::file_size(filename);
-    if (filesize <= bufferSize)
+    try
     {
-        FILE* file = fopen(filename, "rb");
-        if (file)
+        size_t filesize = boost::filesystem::file_size(filename);
+        if (filesize <= bufferSize)
         {
-            result = fread(buffer, 1, filesize, file);
-            fclose(file);
+            FILE* file = fopen(filename, "rb");
+            if (file)
+            {
+                result = fread(buffer, 1, filesize, file);
+                fclose(file);
+            }
         }
+        else
+        {
+            result = filesize;
+            error.fail(-2);
+        }
+    }
+    catch (...)
+    {
+        error.fail(-1);
     }
 
     return result;
