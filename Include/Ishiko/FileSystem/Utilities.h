@@ -15,6 +15,9 @@ namespace Ishiko
 namespace FileSystem
 {
     
+bool Exists(const char* path);
+bool IsDirectory(const char* path, Error& error);
+bool IsEmpty(const char* path, Error& error);
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error);
 
 }

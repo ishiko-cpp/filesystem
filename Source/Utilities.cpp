@@ -5,12 +5,44 @@
 */
 
 #include "Utilities.h"
-#include <boost/filesystem.hpp>
+#include "ErrorCategory.h"
+#include <boost/filesystem/operations.hpp>
 
 namespace Ishiko
 {
 namespace FileSystem
 {
+
+bool Exists(const char* path)
+{
+    return boost::filesystem::exists(path);
+}
+
+bool IsDirectory(const char* path, Error& error)
+{
+    try
+    {
+        return boost::filesystem::is_directory(path);
+    }
+    catch (...)
+    {
+        Fail(error, ErrorCategory::eNotFound);
+        return false;
+    }
+}
+
+bool IsEmpty(const char* path, Error& error)
+{
+    try
+    {
+        return boost::filesystem::is_empty(path);
+    }
+    catch (...)
+    {
+        Fail(error, ErrorCategory::eNotFound);
+        return false;
+    }
+}
 
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error)
 {
@@ -31,12 +63,12 @@ size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& er
         else
         {
             result = filesize;
-            error.fail(-2);
+            Fail(error, ErrorCategory::eBufferOverflow);
         }
     }
     catch (...)
     {
-        error.fail(-1);
+        Fail(error, ErrorCategory::eGeneric);
     }
 
     return result;

@@ -20,7 +20,9 @@ class ErrorCategory : public Ishiko::ErrorCategory
 public:
     enum EErrorValues
     {
-        eGeneric = -1
+        eGeneric = -1,
+        eBufferOverflow = -2,
+        eNotFound = -3
     };
 
     static const ErrorCategory& Get() noexcept;

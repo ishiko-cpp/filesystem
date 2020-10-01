@@ -55,7 +55,7 @@ void UtilitiesTests::ReadFileTest3(Test& test)
     size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.code(), -2);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), -2);
     ISHTF_FAIL_IF_NEQ(bytesRead, 5);
     ISHTF_PASS();
 }
