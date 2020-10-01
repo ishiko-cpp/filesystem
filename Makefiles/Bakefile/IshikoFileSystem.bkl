@@ -33,12 +33,14 @@ library IshikoFileSystem : IshikoErrors, Boost
 
     headers
     {
-        ../../Include/Ishiko/FileSystem/linkoptions.h
+        ../../Include/Ishiko/FileSystem/ErrorCategory.h
         ../../Include/Ishiko/FileSystem/Utilities.h
+        ../../Include/Ishiko/FileSystem/linkoptions.h
     }
 
     sources
     {
+        ../../Source/ErrorCategory.cpp
         ../../Source/Utilities.cpp
     }
 }
