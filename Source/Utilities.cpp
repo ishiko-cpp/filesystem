@@ -22,10 +22,20 @@ bool IsDirectory(const char* path, Error& error)
 {
     try
     {
-        return boost::filesystem::is_directory(path);
+        if (Exists(path))
+        {
+            return boost::filesystem::is_directory(path);
+        }
+        else
+        {
+            Fail(error, ErrorCategory::eNotFound);
+            return false;
+        }
     }
     catch (...)
     {
+        // According to the Boost documentation boost::filesystem::is_directory throws when the path doesn't exist but
+        // it doesn't seem to do that in our tests.
         Fail(error, ErrorCategory::eNotFound);
         return false;
     }

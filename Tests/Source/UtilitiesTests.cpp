@@ -15,6 +15,9 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("Exists test 1", ExistsTest1);
     append<HeapAllocationErrorsTest>("Exists test 2", ExistsTest2);
     append<HeapAllocationErrorsTest>("Exists test 3", ExistsTest3);
+    append<HeapAllocationErrorsTest>("IsDirectory test 1", IsDirectoryTest1);
+    append<HeapAllocationErrorsTest>("IsDirectory test 2", IsDirectoryTest2);
+    append<HeapAllocationErrorsTest>("IsDirectory test 3", IsDirectoryTest3);
     append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
     append<HeapAllocationErrorsTest>("ReadFile test 2", ReadFileTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 3", ReadFileTest3);
@@ -41,6 +44,42 @@ void UtilitiesTests::ExistsTest3(Ishiko::Tests::Test& test)
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
 
     ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::IsDirectoryTest1(Ishiko::Tests::Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
+
+    Ishiko::Error error;
+    bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
+
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NOT(isDir);
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::IsDirectoryTest2(Ishiko::Tests::Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+
+    Ishiko::Error error;
+    bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
+
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF(isDir);
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+
+    Ishiko::Error error;
+    bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF(isDir);
     ISHTF_PASS();
 }
 
