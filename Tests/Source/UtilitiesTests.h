@@ -21,6 +21,11 @@ private:
     static void IsDirectoryTest1(Ishiko::Tests::Test& test);
     static void IsDirectoryTest2(Ishiko::Tests::Test& test);
     static void IsDirectoryTest3(Ishiko::Tests::Test& test);
+    static void IsEmptyTest1(Ishiko::Tests::Test& test);
+    static void IsEmptyTest2(Ishiko::Tests::Test& test);
+    static void IsEmptyTest3(Ishiko::Tests::Test& test);
+    static void IsEmptyTest4(Ishiko::Tests::Test& test);
+    static void IsEmptyTest5(Ishiko::Tests::Test& test);
     static void ReadFileTest1(Ishiko::Tests::Test& test);
     static void ReadFileTest2(Ishiko::Tests::Test& test);
     static void ReadFileTest3(Ishiko::Tests::Test& test);
