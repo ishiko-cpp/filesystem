@@ -1,5 +1,6 @@
-ishikopath = envvar("ISHIKO");
+ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/Boost.bkl;
+import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
@@ -8,7 +9,7 @@ vs2017.solutionfile = ../VC15/IshikoFileSystem.sln;
 vs2015.solutionfile = ../VC14/IshikoFileSystem.sln;
 vs2013.solutionfile = ../VC12/IshikoFileSystem.sln;
 
-library IshikoFileSystem : Boost
+library IshikoFileSystem : IshikoErrors, Boost
 {
     archs = x86 x86_64;
 
@@ -32,12 +33,14 @@ library IshikoFileSystem : Boost
 
     headers
     {
-        ../../Include/Ishiko/FileSystem/linkoptions.h
+        ../../Include/Ishiko/FileSystem/ErrorCategory.h
         ../../Include/Ishiko/FileSystem/Utilities.h
+        ../../Include/Ishiko/FileSystem/linkoptions.h
     }
 
     sources
     {
+        ../../Source/ErrorCategory.cpp
         ../../Source/Utilities.cpp
     }
 }

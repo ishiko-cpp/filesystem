@@ -1,23 +1,7 @@
 /*
     Copyright (c) 2020 Xavier Leclercq
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the "Software"),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-    IN THE SOFTWARE.
+    Released under the MIT License
+    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
 
 #ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
@@ -31,7 +15,20 @@ public:
     UtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
+    static void ExistsTest1(Ishiko::Tests::Test& test);
+    static void ExistsTest2(Ishiko::Tests::Test& test);
+    static void ExistsTest3(Ishiko::Tests::Test& test);
+    static void IsDirectoryTest1(Ishiko::Tests::Test& test);
+    static void IsDirectoryTest2(Ishiko::Tests::Test& test);
+    static void IsDirectoryTest3(Ishiko::Tests::Test& test);
+    static void IsEmptyTest1(Ishiko::Tests::Test& test);
+    static void IsEmptyTest2(Ishiko::Tests::Test& test);
+    static void IsEmptyTest3(Ishiko::Tests::Test& test);
+    static void IsEmptyTest4(Ishiko::Tests::Test& test);
+    static void IsEmptyTest5(Ishiko::Tests::Test& test);
     static void ReadFileTest1(Ishiko::Tests::Test& test);
+    static void ReadFileTest2(Ishiko::Tests::Test& test);
+    static void ReadFileTest3(Ishiko::Tests::Test& test);
 };
 
 #endif
