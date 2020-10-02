@@ -1,46 +1,84 @@
 /*
     Copyright (c) 2017-2020 Xavier Leclercq
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the "Software"),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-    IN THE SOFTWARE.
+    Released under the MIT License
+    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
 
 #include "Utilities.h"
-#include <boost/filesystem.hpp>
+#include "ErrorCategory.h"
+#include <boost/filesystem/operations.hpp>
 
 namespace Ishiko
 {
 namespace FileSystem
 {
 
-int ReadFile(const char* filename, char* buffer, size_t bufferSize)
+bool Exists(const char* path)
 {
-    int result = -1;
+    return boost::filesystem::exists(path);
+}
 
-    size_t filesize = boost::filesystem::file_size(filename);
-    if (filesize <= bufferSize)
+bool IsDirectory(const char* path, Error& error)
+{
+    try
     {
-        FILE* file = fopen(filename, "rb");
-        if (file)
+        if (Exists(path))
         {
-            result = fread(buffer, 1, filesize, file);
-            fclose(file);
+            return boost::filesystem::is_directory(path);
         }
+        else
+        {
+            Fail(error, ErrorCategory::eNotFound);
+            return false;
+        }
+    }
+    catch (...)
+    {
+        // According to the Boost documentation boost::filesystem::is_directory throws when the path doesn't exist but
+        // it doesn't seem to do that in our tests.
+        Fail(error, ErrorCategory::eNotFound);
+        return false;
+    }
+}
+
+bool IsEmpty(const char* path, Error& error)
+{
+    try
+    {
+        return boost::filesystem::is_empty(path);
+    }
+    catch (...)
+    {
+        Fail(error, ErrorCategory::eNotFound);
+        return false;
+    }
+}
+
+size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error)
+{
+    size_t result = 0;
+
+    try
+    {
+        size_t filesize = boost::filesystem::file_size(filename);
+        if (filesize <= bufferSize)
+        {
+            FILE* file = fopen(filename, "rb");
+            if (file)
+            {
+                result = fread(buffer, 1, filesize, file);
+                fclose(file);
+            }
+        }
+        else
+        {
+            result = filesize;
+            Fail(error, ErrorCategory::eBufferOverflow);
+        }
+    }
+    catch (...)
+    {
+        Fail(error, ErrorCategory::eGeneric);
     }
 
     return result;

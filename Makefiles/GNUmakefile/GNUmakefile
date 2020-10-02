@@ -37,7 +37,8 @@ endif
 # Additionally, this makefile is customizable with the following
 # settings:
 #
-#      BOOST_ROOT  Path to the Boost installation
+#      BOOST_ROOT              Path to the Boost installation
+#      ISHIKO_CPP_ERRORS_ROOT  Path to the Ishiko Errors installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -66,17 +67,22 @@ endif
 
 # Path to the Boost installation
 BOOST_ROOT ?= $(BOOST)
+# Path to the Ishiko Errors installation
+ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/Errors
 
 # ------------
 
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a: $(_builddir)IshikoFileSystem_Utilities.o
-	$(AR) rc $@ $(_builddir)IshikoFileSystem_Utilities.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a: $(_builddir)IshikoFileSystem_ErrorCategory.o $(_builddir)IshikoFileSystem_Utilities.o
+	$(AR) rc $@ $(_builddir)IshikoFileSystem_ErrorCategory.o $(_builddir)IshikoFileSystem_Utilities.o
 	$(RANLIB) $@
 
+$(_builddir)IshikoFileSystem_ErrorCategory.o: ../../Source/ErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/ErrorCategory.cpp
+
 $(_builddir)IshikoFileSystem_Utilities.o: ../../Source/Utilities.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Utilities.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Utilities.cpp
 
 clean:
 	rm -f $(_builddir)*.o
