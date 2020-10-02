@@ -15,6 +15,9 @@ public:
     UtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
+    static void ExistsTest1(Ishiko::Tests::Test& test);
+    static void ExistsTest2(Ishiko::Tests::Test& test);
+    static void ExistsTest3(Ishiko::Tests::Test& test);
     static void ReadFileTest1(Ishiko::Tests::Test& test);
     static void ReadFileTest2(Ishiko::Tests::Test& test);
     static void ReadFileTest3(Ishiko::Tests::Test& test);

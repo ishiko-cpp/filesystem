@@ -12,16 +12,43 @@ using namespace Ishiko::Tests;
 UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "Utilities tests", environment)
 {
+    append<HeapAllocationErrorsTest>("Exists test 1", ExistsTest1);
+    append<HeapAllocationErrorsTest>("Exists test 2", ExistsTest2);
+    append<HeapAllocationErrorsTest>("Exists test 3", ExistsTest3);
     append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
     append<HeapAllocationErrorsTest>("ReadFile test 2", ReadFileTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 3", ReadFileTest3);
+}
+
+void UtilitiesTests::ExistsTest1(Ishiko::Tests::Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+
+    ISHTF_FAIL_IF(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ExistsTest2(Ishiko::Tests::Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+
+    ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ExistsTest3(Ishiko::Tests::Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
+
+    ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_PASS();
 }
 
 void UtilitiesTests::ReadFileTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
 
-    Ishiko::Error error(0);
+    Ishiko::Error error;
     const int bufferSize = 10;
     char buffer[bufferSize];
     size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
@@ -35,7 +62,7 @@ void UtilitiesTests::ReadFileTest2(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
 
-    Ishiko::Error error(0);
+    Ishiko::Error error;
     const int bufferSize = 10;
     char buffer[bufferSize];
     size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
@@ -49,7 +76,7 @@ void UtilitiesTests::ReadFileTest3(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
 
-    Ishiko::Error error(0);
+    Ishiko::Error error;
     const int bufferSize = 2;
     char buffer[bufferSize];
     size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
