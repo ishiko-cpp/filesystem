@@ -26,6 +26,8 @@ private:
     static void IsEmptyTest3(Ishiko::Tests::Test& test);
     static void IsEmptyTest4(Ishiko::Tests::Test& test);
     static void IsEmptyTest5(Ishiko::Tests::Test& test);
+    static void ToAbsolutePathTest1(Ishiko::Tests::Test& test);
+    static void ToAbsolutePathTest2(Ishiko::Tests::Test& test);
     static void ReadFileTest1(Ishiko::Tests::Test& test);
     static void ReadFileTest2(Ishiko::Tests::Test& test);
     static void ReadFileTest3(Ishiko::Tests::Test& test);
