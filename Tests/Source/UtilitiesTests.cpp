@@ -158,8 +158,13 @@ void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
 
-    std::string currentPath = boost::filesystem::current_path().string() + "\\";
-
+    std::string currentPath = boost::filesystem::current_path().string();
+#ifdef WIN32
+    currentPath += "\\";
+#else
+    currentPath += "/";
+#endif
+    
     std::string absolutePath;
     Ishiko::FileSystem::ToAbsolutePath(inputPath.string().c_str(), absolutePath);
 
