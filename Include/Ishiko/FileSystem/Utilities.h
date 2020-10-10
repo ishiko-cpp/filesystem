@@ -18,6 +18,7 @@ namespace FileSystem
 bool Exists(const char* path);
 bool IsDirectory(const char* path, Error& error);
 bool IsEmpty(const char* path, Error& error);
+void ToAbsolutePath(const char* path, std::string& absolutePath);
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error);
 
 }
