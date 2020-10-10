@@ -59,6 +59,11 @@ void ToAbsolutePath(const char* path, std::string& absolutePath)
     absolutePath = boost::filesystem::absolute(path).string();
 }
 
+void ToAbsolutePath(const std::string& path, std::string& absolutePath)
+{
+    absolutePath = boost::filesystem::absolute(path).string();
+}
+
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error)
 {
     size_t result = 0;

@@ -26,6 +26,7 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("IsEmpty test 4", IsEmptyTest4);
     append<HeapAllocationErrorsTest>("IsEmpty test 5", IsEmptyTest5);
     append<HeapAllocationErrorsTest>("ToAbsolutePath test 1", ToAbsolutePathTest1);
+    append<HeapAllocationErrorsTest>("ToAbsolutePath test 2", ToAbsolutePathTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
     append<HeapAllocationErrorsTest>("ReadFile test 2", ReadFileTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 3", ReadFileTest3);
@@ -167,6 +168,24 @@ void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
     
     std::string absolutePath;
     Ishiko::FileSystem::ToAbsolutePath(inputPath.string().c_str(), absolutePath);
+
+    ISHTF_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+
+    std::string currentPath = boost::filesystem::current_path().string();
+#ifdef WIN32
+    currentPath += "\\";
+#else
+    currentPath += "/";
+#endif
+
+    std::string absolutePath;
+    Ishiko::FileSystem::ToAbsolutePath(inputPath.string(), absolutePath);
 
     ISHTF_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
     ISHTF_PASS();
