@@ -17,6 +17,11 @@ const ErrorCategory& ErrorCategory::Get() noexcept
     return theCategory;
 }
 
+const char* ErrorCategory::name() const noexcept
+{
+    return "Ishiko::FileSystem::ErrorCategory";
+}
+
 void Fail(Error& error, ErrorCategory::EErrorValues value) noexcept
 {
     error.fail(value, ErrorCategory::Get());
