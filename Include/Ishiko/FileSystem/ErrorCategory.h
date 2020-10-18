@@ -27,6 +27,8 @@ public:
 
     static const ErrorCategory& Get() noexcept;
 
+    const char* name() const noexcept override;
+
 private:
     ErrorCategory() noexcept = default;
 };
