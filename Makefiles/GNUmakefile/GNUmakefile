@@ -77,9 +77,12 @@ ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/Errors
 
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a: $(_builddir)IshikoFileSystem_ErrorCategory.o $(_builddir)IshikoFileSystem_Utilities.o
-	$(AR) rc $@ $(_builddir)IshikoFileSystem_ErrorCategory.o $(_builddir)IshikoFileSystem_Utilities.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSystem-d,IshikoFileSystem).a: $(_builddir)IshikoFileSystem_Directory.o $(_builddir)IshikoFileSystem_ErrorCategory.o $(_builddir)IshikoFileSystem_Utilities.o
+	$(AR) rc $@ $(_builddir)IshikoFileSystem_Directory.o $(_builddir)IshikoFileSystem_ErrorCategory.o $(_builddir)IshikoFileSystem_Utilities.o
 	$(RANLIB) $@
+
+$(_builddir)IshikoFileSystem_Directory.o: ../../Source/Directory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Directory.cpp
 
 $(_builddir)IshikoFileSystem_ErrorCategory.o: ../../Source/ErrorCategory.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/ErrorCategory.cpp

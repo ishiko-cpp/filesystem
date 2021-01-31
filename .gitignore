@@ -2,6 +2,7 @@
 /Makefiles/VC14/x64/
 /Makefiles/VC15/.vs/
 /Makefiles/VC15/x64/
+/Makefiles/VC15/IshikoFileSystem.vcxproj.user
 /Lib/*
 !/Lib/README.md
 /Tests/Makefiles/VC15/.vs/

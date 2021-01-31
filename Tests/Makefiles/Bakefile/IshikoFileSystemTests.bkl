@@ -21,6 +21,7 @@ program IshikoFileSystemTests : IshikoFileSystem, IshikoTestFrameworkCore
 
     headers
     {
+        ../../Source/DirectoryTests.h
         ../../Source/UtilitiesTests.h
     }
 
@@ -28,6 +29,7 @@ program IshikoFileSystemTests : IshikoFileSystem, IshikoTestFrameworkCore
     {
         ../../Source/main.cpp
 
+        ../../Source/DirectoryTests.cpp
         ../../Source/UtilitiesTests.cpp
     }
 }
