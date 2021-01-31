@@ -20,6 +20,10 @@ private:
     static void ForEachRegularFileTest2(Ishiko::Tests::Test& test);
     static void ForEachRegularFileTest3(Ishiko::Tests::Test& test);
     static void ForEachRegularFileTest4(Ishiko::Tests::Test& test);
+    static void ForEachRegularFileTest5(Ishiko::Tests::Test& test);
+    static void ForEachRegularFileTest6(Ishiko::Tests::Test& test);
+    static void ForEachRegularFileTest7(Ishiko::Tests::Test& test);
+    static void ForEachRegularFileTest8(Ishiko::Tests::Test& test);
 };
 
 #endif
