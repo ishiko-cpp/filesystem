@@ -17,17 +17,33 @@ Directory::Directory(const char* path)
 {
 }
 
-void Directory::forEachRegularFile(std::function<void(const std::string& path)> callback)
+void Directory::forEachRegularFile(std::function<void(const std::string& path)> callback, bool recursive)
 {
-    boost::filesystem::directory_iterator iterator(m_path);
-    boost::filesystem::directory_iterator iterator_end;
-    while (iterator != iterator_end)
+    if (recursive)
     {
-        if (boost::filesystem::is_regular_file(iterator->status()))
+        boost::filesystem::recursive_directory_iterator iterator(m_path);
+        boost::filesystem::recursive_directory_iterator iterator_end;
+        while (iterator != iterator_end)
         {
-            callback(iterator->path().generic_string());
+            if (boost::filesystem::is_regular_file(iterator->status()))
+            {
+                callback(iterator->path().generic_string());
+            }
+            ++iterator;
         }
-        ++iterator;
+    }
+    else
+    {
+        boost::filesystem::directory_iterator iterator(m_path);
+        boost::filesystem::directory_iterator iterator_end;
+        while (iterator != iterator_end)
+        {
+            if (boost::filesystem::is_regular_file(iterator->status()))
+            {
+                callback(iterator->path().generic_string());
+            }
+            ++iterator;
+        }
     }
 }
 

@@ -18,6 +18,8 @@ private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
     static void ForEachRegularFileTest1(Ishiko::Tests::Test& test);
     static void ForEachRegularFileTest2(Ishiko::Tests::Test& test);
+    static void ForEachRegularFileTest3(Ishiko::Tests::Test& test);
+    static void ForEachRegularFileTest4(Ishiko::Tests::Test& test);
 };
 
 #endif
