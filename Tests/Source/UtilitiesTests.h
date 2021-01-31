@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
@@ -7,7 +7,8 @@
 #ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
 #define _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
 
-#include "Ishiko/TestFramework/TestFrameworkCore.h"
+#include <Ishiko/Platform/OS.h>
+#include <Ishiko/TestFramework/TestFrameworkCore.h>
 
 class UtilitiesTests : public Ishiko::Tests::TestSequence
 {
@@ -31,6 +32,9 @@ private:
     static void ReadFileTest1(Ishiko::Tests::Test& test);
     static void ReadFileTest2(Ishiko::Tests::Test& test);
     static void ReadFileTest3(Ishiko::Tests::Test& test);
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
+    static void GetVolumeListTest1(Ishiko::Tests::Test& test);
+#endif
 };
 
 #endif
