@@ -19,6 +19,7 @@ private:
     static void ExistsTest1(Ishiko::Tests::Test& test);
     static void ExistsTest2(Ishiko::Tests::Test& test);
     static void ExistsTest3(Ishiko::Tests::Test& test);
+    static void GetFileSizeTest1(Ishiko::Tests::Test& test);
     static void IsDirectoryTest1(Ishiko::Tests::Test& test);
     static void IsDirectoryTest2(Ishiko::Tests::Test& test);
     static void IsDirectoryTest3(Ishiko::Tests::Test& test);

@@ -17,6 +17,7 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("Exists test 1", ExistsTest1);
     append<HeapAllocationErrorsTest>("Exists test 2", ExistsTest2);
     append<HeapAllocationErrorsTest>("Exists test 3", ExistsTest3);
+    append<HeapAllocationErrorsTest>("GetFileSize test 1", GetFileSizeTest1);
     append<HeapAllocationErrorsTest>("IsDirectory test 1", IsDirectoryTest1);
     append<HeapAllocationErrorsTest>("IsDirectory test 2", IsDirectoryTest2);
     append<HeapAllocationErrorsTest>("IsDirectory test 3", IsDirectoryTest3);
@@ -56,6 +57,16 @@ void UtilitiesTests::ExistsTest3(Ishiko::Tests::Test& test)
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
 
     ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::GetFileSizeTest1(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+
+    size_t fileSize = Ishiko::FileSystem::GetFileSize(inputPath.string().c_str());
+
+    ISHTF_FAIL_IF_NEQ(fileSize, 5);
     ISHTF_PASS();
 }
 

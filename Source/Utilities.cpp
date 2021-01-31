@@ -21,6 +21,11 @@ bool Exists(const char* path)
     return boost::filesystem::exists(path);
 }
 
+size_t GetFileSize(const char* path)
+{
+    return boost::filesystem::file_size(path);
+}
+
 bool IsDirectory(const char* path, Error& error)
 {
     try
