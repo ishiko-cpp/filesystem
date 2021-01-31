@@ -5,3 +5,31 @@
 */
 
 #include "Directory.h"
+#include <boost/filesystem.hpp>
+
+namespace Ishiko
+{
+namespace FileSystem
+{
+
+Directory::Directory(const char* path)
+    : m_path(path)
+{
+}
+
+void Directory::forEachRegularFile(std::function<void(const std::string& path)> callback)
+{
+    boost::filesystem::directory_iterator iterator(m_path);
+    boost::filesystem::directory_iterator iterator_end;
+    while (iterator != iterator_end)
+    {
+        if (boost::filesystem::is_regular_file(iterator->status()))
+        {
+            callback(iterator->path().generic_string());
+        }
+        ++iterator;
+    }
+}
+
+}
+}

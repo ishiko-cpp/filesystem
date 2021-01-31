@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
-#define _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
+#ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIESTESTS_H_
+#define _ISHIKO_FILESYSTEM_TESTS_UTILITIESTESTS_H_
 
 #include <Ishiko/Platform/OS.h>
 #include <Ishiko/TestFramework/TestFrameworkCore.h>

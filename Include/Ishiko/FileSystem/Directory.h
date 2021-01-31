@@ -7,4 +7,25 @@
 #ifndef _ISHIKO_FILESYSTEM_DIRECTORY_H_
 #define _ISHIKO_FILESYSTEM_DIRECTORY_H_
 
+#include <functional>
+
+namespace Ishiko
+{
+namespace FileSystem
+{
+
+class Directory
+{
+public:
+    Directory(const char* path);
+
+    void forEachRegularFile(std::function<void(const std::string& path)> callback);
+
+private:
+    std::string m_path;
+};
+
+}
+}
+
 #endif

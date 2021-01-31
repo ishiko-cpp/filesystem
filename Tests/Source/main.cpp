@@ -4,6 +4,7 @@
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
 
+#include "DirectoryTests.h"
 #include "UtilitiesTests.h"
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
 
@@ -17,6 +18,7 @@ int main(int argc, char* argv[])
     theTestHarness.environment().setTestOutputDirectory("../../TestOutput");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<DirectoryTests>();
     theTests.append<UtilitiesTests>();
 
     return theTestHarness.run();
