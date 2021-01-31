@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_FILESYSTEM_DIRECTORY_H_
 #define _ISHIKO_FILESYSTEM_DIRECTORY_H_
 
+#include <string>
 #include <functional>
 
 namespace Ishiko
