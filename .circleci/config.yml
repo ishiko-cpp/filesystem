@@ -19,6 +19,9 @@ jobs:
           name: Build
           command: cd /Ishiko-cpp/FileSystem/Makefiles/GNUmakefile && make
       - run:
+          name: "Checkout Ishiko-cpp/Platform test dependency"
+          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Platform.git
+      - run:
           name: "Checkout Ishiko-cpp/Process test dependency"
           command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Process.git
       - run:
