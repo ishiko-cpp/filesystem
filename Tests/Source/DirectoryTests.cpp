@@ -66,6 +66,7 @@ void DirectoryTests::ForEachRegularFileTest2(Test& test)
         },
         false
     );
+    std::sort(files.begin(), files.end());
 
     ISHTF_ABORT_IF_NEQ(files.size(), 2);
     ISHTF_FAIL_IF_NEQ(files[0], "../../TestData/Directory2/file1.txt");
@@ -146,6 +147,7 @@ void DirectoryTests::ForEachRegularFileTest6(Test& test)
         },
         true
     );
+    std::sort(files.begin(), files.end());
 
     ISHTF_ABORT_IF_NEQ(files.size(), 2);
     ISHTF_FAIL_IF_NEQ(files[0], "../../TestData/Directory2/file1.txt");
@@ -187,6 +189,7 @@ void DirectoryTests::ForEachRegularFileTest8(Test& test)
         },
         true
         );
+    std::sort(files.begin(), files.end());
 
     ISHTF_ABORT_IF_NEQ(files.size(), 4);
     ISHTF_FAIL_IF_NEQ(files[0], "../../TestData/Directory4/dir_1/file_1_1.txt");
