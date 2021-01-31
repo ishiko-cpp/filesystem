@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
@@ -30,6 +30,9 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
     append<HeapAllocationErrorsTest>("ReadFile test 2", ReadFileTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 3", ReadFileTest3);
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
+    append<HeapAllocationErrorsTest>("GetVolumeList test 1", GetVolumeListTest1);
+#endif
 }
 
 void UtilitiesTests::ExistsTest1(Ishiko::Tests::Test& test)
@@ -233,3 +236,30 @@ void UtilitiesTests::ReadFileTest3(Test& test)
     ISHTF_FAIL_IF_NEQ(bytesRead, 5);
     ISHTF_PASS();
 }
+
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
+void UtilitiesTests::GetVolumeListTest1(Ishiko::Tests::Test& test)
+{
+    Ishiko::Error error;
+    std::vector<std::string> volumeNames;
+    Ishiko::FileSystem::GetVolumeList(volumeNames, error);
+
+    ISHTF_FAIL_IF(error);
+    ISHTF_ABORT_IF_NOT(volumeNames.size() >= 1);
+
+    for (const std::string& volumeName : volumeNames)
+    {
+        DWORD volumePathNamesLength = 5 * (MAX_PATH + 1) + 1;
+        char* volumePathNames = new char[volumePathNamesLength];
+        if (GetVolumePathNamesForVolumeNameA(volumeName.c_str(), volumePathNames, volumePathNamesLength,
+            &volumePathNamesLength))
+        {
+            if ((volumePathNamesLength != 0) && (volumePathNames[0] != 0) && (strcmp(volumePathNames, "C:\\") == 0))
+            {
+                ISHTF_PASS();
+            }
+        }
+        delete[] volumePathNames;
+    }
+}
+#endif
