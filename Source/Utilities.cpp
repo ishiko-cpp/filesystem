@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2020 Xavier Leclercq
+    Copyright (c) 2017-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
@@ -7,6 +7,9 @@
 #include "Utilities.h"
 #include "ErrorCategory.h"
 #include <boost/filesystem/operations.hpp>
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
+#include <windows.h>
+#endif
 
 namespace Ishiko
 {
@@ -93,6 +96,27 @@ size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& er
 
     return result;
 }
+
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
+void GetVolumeList(std::vector<std::string>& volumeNames, Error& error)
+{
+    char volumeName[MAX_PATH + 1];
+    HANDLE searchHandle = FindFirstVolumeA(volumeName, MAX_PATH + 1);
+    if (searchHandle == INVALID_HANDLE_VALUE)
+    {
+        Fail(error, ErrorCategory::eGeneric);
+    }
+    else
+    {
+        volumeNames.emplace_back(volumeName);
+        while (FindNextVolumeA(searchHandle, volumeName, MAX_PATH + 1))
+        {
+            volumeNames.emplace_back(volumeName);
+        }
+        FindVolumeClose(searchHandle);
+    }
+}
+#endif
 
 }
 }
