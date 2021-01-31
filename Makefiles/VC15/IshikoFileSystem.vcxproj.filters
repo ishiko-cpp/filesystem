@@ -17,6 +17,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\Ishiko\FileSystem\Directory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\FileSystem\ErrorCategory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -28,6 +31,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Directory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ErrorCategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

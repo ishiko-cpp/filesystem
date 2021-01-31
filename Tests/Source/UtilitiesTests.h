@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
-#define _ISHIKO_FILESYSTEM_TESTS_UTILITIES_TESTS_H_
+#ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIESTESTS_H_
+#define _ISHIKO_FILESYSTEM_TESTS_UTILITIESTESTS_H_
 
 #include <Ishiko/Platform/OS.h>
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
@@ -19,6 +19,7 @@ private:
     static void ExistsTest1(Ishiko::Tests::Test& test);
     static void ExistsTest2(Ishiko::Tests::Test& test);
     static void ExistsTest3(Ishiko::Tests::Test& test);
+    static void GetFileSizeTest1(Ishiko::Tests::Test& test);
     static void IsDirectoryTest1(Ishiko::Tests::Test& test);
     static void IsDirectoryTest2(Ishiko::Tests::Test& test);
     static void IsDirectoryTest3(Ishiko::Tests::Test& test);
