@@ -28,6 +28,8 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("IsEmpty test 5", IsEmptyTest5);
     append<HeapAllocationErrorsTest>("ToAbsolutePath test 1", ToAbsolutePathTest1);
     append<HeapAllocationErrorsTest>("ToAbsolutePath test 2", ToAbsolutePathTest2);
+    append<HeapAllocationErrorsTest>("CreateEmptyFile test 1", CreateEmptyFileTest1);
+    append<HeapAllocationErrorsTest>("CreateEmptyFile test 2", CreateEmptyFileTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
     append<HeapAllocationErrorsTest>("ReadFile test 2", ReadFileTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 3", ReadFileTest3);
@@ -202,6 +204,34 @@ void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
     Ishiko::FileSystem::ToAbsolutePath(inputPath.string(), absolutePath);
 
     ISHTF_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::CreateEmptyFileTest1(Test& test)
+{
+    boost::filesystem::path outputPath = test.environment().getTestOutputPath("file1.txt");
+
+    Ishiko::Error error;
+    Ishiko::FileSystem::CreateEmptyFile(outputPath, error);
+
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(outputPath));
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::CreateEmptyFileTest2(Test& test)
+{
+    boost::filesystem::path outputPath = test.environment().getTestOutputPath("file2.txt");
+
+    Ishiko::Error error;
+    Ishiko::FileSystem::CreateEmptyFile(outputPath, error);
+
+    ISHTF_ABORT_IF(error);
+    
+    Ishiko::FileSystem::CreateEmptyFile(outputPath, error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eAlreadyExists);
     ISHTF_PASS();
 }
 
