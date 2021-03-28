@@ -10,6 +10,7 @@
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
 #include <windows.h>
 #endif
+#include <fstream>
 
 namespace Ishiko
 {
