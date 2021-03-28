@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
@@ -22,7 +22,8 @@ public:
     {
         eGeneric = -1,
         eBufferOverflow = -2,
-        eNotFound = -3
+        eNotFound = -3,
+        eAlreadyExists = -4
     };
 
     static const ErrorCategory& Get() noexcept;

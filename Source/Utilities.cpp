@@ -10,6 +10,7 @@
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
 #include <windows.h>
 #endif
+#include <fstream>
 
 namespace Ishiko
 {
@@ -19,6 +20,16 @@ namespace FileSystem
 bool Exists(const char* path)
 {
     return boost::filesystem::exists(path);
+}
+
+bool Exists(const std::string& path)
+{
+    return Exists(path.c_str());
+}
+
+bool Exists(const boost::filesystem::path& path)
+{
+    return Exists(path.string());
 }
 
 size_t GetFileSize(const char* path)
@@ -70,6 +81,24 @@ void ToAbsolutePath(const char* path, std::string& absolutePath)
 void ToAbsolutePath(const std::string& path, std::string& absolutePath)
 {
     absolutePath = boost::filesystem::absolute(path).string();
+}
+
+void CreateEmptyFile(const std::string& path, Error& error)
+{
+    // TODO: use lower level file functions to make this more robust
+    if (!Exists(path))
+    {
+        std::ofstream file(path);
+    }
+    else
+    {
+        Fail(error, ErrorCategory::eAlreadyExists);
+    }
+}
+
+void CreateEmptyFile(const boost::filesystem::path& path, Error& error)
+{
+    CreateEmptyFile(path.string(), error);
 }
 
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error)
