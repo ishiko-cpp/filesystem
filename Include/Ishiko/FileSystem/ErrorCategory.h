@@ -35,6 +35,8 @@ private:
 };
 
 void Fail(Error& error, ErrorCategory::EErrorValues value) noexcept;
+void Fail(Error& error, ErrorCategory::EErrorValues value, const std::string& message, const char* file,
+    int line) noexcept;
 
 }
 }

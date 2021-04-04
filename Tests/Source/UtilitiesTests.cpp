@@ -40,7 +40,7 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
 
 void UtilitiesTests::ExistsTest1(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
     ISHTF_FAIL_IF(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
     ISHTF_PASS();
@@ -48,7 +48,7 @@ void UtilitiesTests::ExistsTest1(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::ExistsTest2(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
     ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
     ISHTF_PASS();
@@ -64,7 +64,7 @@ void UtilitiesTests::ExistsTest3(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::GetFileSizeTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
     size_t fileSize = Ishiko::FileSystem::GetFileSize(inputPath.string().c_str());
 
@@ -86,7 +86,7 @@ void UtilitiesTests::IsDirectoryTest1(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::IsDirectoryTest2(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
     Ishiko::Error error;
     bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
@@ -98,7 +98,7 @@ void UtilitiesTests::IsDirectoryTest2(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
     Ishiko::Error error;
     bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
@@ -111,7 +111,7 @@ void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::IsEmptyTest1(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "empty.txt");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("empty.txt"));
 
     Ishiko::Error error;
     bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
@@ -123,7 +123,7 @@ void UtilitiesTests::IsEmptyTest1(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::IsEmptyTest2(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
     Ishiko::Error error;
     bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
@@ -135,7 +135,7 @@ void UtilitiesTests::IsEmptyTest2(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::IsEmptyTest3(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestOutputDirectory() / "empty");
+    boost::filesystem::path inputPath(test.environment().getTestOutputPath("empty"));
     boost::filesystem::create_directory(inputPath);
 
     Ishiko::Error error;
@@ -160,7 +160,7 @@ void UtilitiesTests::IsEmptyTest4(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::IsEmptyTest5(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
     Ishiko::Error error;
     bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
@@ -173,7 +173,7 @@ void UtilitiesTests::IsEmptyTest5(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
     std::string currentPath = boost::filesystem::current_path().string();
 #ifdef WIN32
@@ -191,7 +191,7 @@ void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
 
 void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
     std::string currentPath = boost::filesystem::current_path().string();
 #ifdef WIN32
@@ -237,7 +237,7 @@ void UtilitiesTests::CreateEmptyFileTest2(Test& test)
 
 void UtilitiesTests::ReadFileTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
     Ishiko::Error error;
     const int bufferSize = 10;
@@ -251,7 +251,7 @@ void UtilitiesTests::ReadFileTest1(Test& test)
 
 void UtilitiesTests::ReadFileTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "doesnotexist");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
     Ishiko::Error error;
     const int bufferSize = 10;
@@ -265,7 +265,7 @@ void UtilitiesTests::ReadFileTest2(Test& test)
 
 void UtilitiesTests::ReadFileTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "file1.txt");
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
     Ishiko::Error error;
     const int bufferSize = 2;
