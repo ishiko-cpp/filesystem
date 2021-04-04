@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
@@ -25,6 +25,12 @@ const char* ErrorCategory::name() const noexcept
 void Fail(Error& error, ErrorCategory::EErrorValues value) noexcept
 {
     error.fail(value, ErrorCategory::Get());
+}
+
+void Fail(Error& error, ErrorCategory::EErrorValues value, const std::string& message, const char* file,
+    int line) noexcept
+{
+    error.fail(value, ErrorCategory::Get(), message, file, line);
 }
 
 }
