@@ -1,7 +1,7 @@
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/Boost.bkl;
-import $(ishikopath)/Platform/Include/Ishiko/Platform.bkl;
 import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
+import $(ishikopath)/Platform/Include/Ishiko/Platform.bkl;
+import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
 
 setting ISHIKO_CPP_FILESYSTEM_ROOT
 {
