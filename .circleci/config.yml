@@ -16,6 +16,9 @@ jobs:
       - checkout:
           path: /Ishiko-cpp/FileSystem
       - run:
+          name: "Build Ishiko-cpp/Platform dependency"
+          command: cd /Ishiko-cpp/Platform/Makefiles/GNUmakefile && make
+      - run:
           name: "Build Ishiko-cpp/Errors dependency"
           command: cd /Ishiko-cpp/Errors/Makefiles/GNUmakefile && make
       - run:
