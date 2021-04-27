@@ -38,6 +38,7 @@ library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
 
         ../../Include/Ishiko/FileSystem/Directory.h
         ../../Include/Ishiko/FileSystem/ErrorCategory.h
+        ../../Include/Ishiko/FileSystem/TextFile.h
         ../../Include/Ishiko/FileSystem/Utilities.h
         ../../Include/Ishiko/FileSystem/linkoptions.h
     }
@@ -46,6 +47,7 @@ library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
     {
         ../../Source/Directory.cpp
         ../../Source/ErrorCategory.cpp
+        ../../Source/TextFile.cpp
         ../../Source/Utilities.cpp
     }
 }
