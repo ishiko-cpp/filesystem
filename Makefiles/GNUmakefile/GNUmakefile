@@ -37,9 +37,9 @@ endif
 # Additionally, this makefile is customizable with the following
 # settings:
 #
-#      BOOST_ROOT                Path to the Boost installation
-#      ISHIKO_CPP_PLATFORM_ROOT  Path to the Ishiko Platform installation
 #      ISHIKO_CPP_ERRORS_ROOT    Path to the Ishiko Errors installation
+#      ISHIKO_CPP_PLATFORM_ROOT  Path to the Ishiko Platform installation
+#      ISHIKO_CPP_BOOST_ROOT     Path to the Boost installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -66,12 +66,12 @@ endif
 # Configurable settings:
 # 
 
-# Path to the Boost installation
-BOOST_ROOT ?= $(BOOST)
-# Path to the Ishiko Platform installation
-ISHIKO_CPP_PLATFORM_ROOT ?= $(ISHIKO_CPP)/Platform
 # Path to the Ishiko Errors installation
 ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/Errors
+# Path to the Ishiko Platform installation
+ISHIKO_CPP_PLATFORM_ROOT ?= $(ISHIKO_CPP)/Platform
+# Path to the Boost installation
+ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
 
 # ------------
 
@@ -82,13 +82,13 @@ all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSyst
 	$(RANLIB) $@
 
 $(_builddir)IshikoFileSystem_Directory.o: ../../Source/Directory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Directory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Directory.cpp
 
 $(_builddir)IshikoFileSystem_ErrorCategory.o: ../../Source/ErrorCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/ErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/ErrorCategory.cpp
 
 $(_builddir)IshikoFileSystem_Utilities.o: ../../Source/Utilities.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Utilities.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../Include/Ishiko/FileSystem -std=c++11 ../../Source/Utilities.cpp
 
 clean:
 	rm -f $(_builddir)*.o
