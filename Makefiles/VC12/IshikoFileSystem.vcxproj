@@ -155,6 +155,7 @@
     <ClCompile Include="..\..\Source\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\Ishiko\FileSystem.h" />
     <ClInclude Include="..\..\Include\Ishiko\FileSystem\Directory.h" />
     <ClInclude Include="..\..\Include\Ishiko\FileSystem\ErrorCategory.h" />
     <ClInclude Include="..\..\Include\Ishiko\FileSystem\Utilities.h" />

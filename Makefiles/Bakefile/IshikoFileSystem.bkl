@@ -34,6 +34,8 @@ library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
 
     headers
     {
+        ../../Include/Ishiko/FileSystem.h
+
         ../../Include/Ishiko/FileSystem/Directory.h
         ../../Include/Ishiko/FileSystem/ErrorCategory.h
         ../../Include/Ishiko/FileSystem/Utilities.h
