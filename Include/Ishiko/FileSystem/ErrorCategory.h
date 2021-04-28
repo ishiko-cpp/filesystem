@@ -23,7 +23,8 @@ public:
         eGeneric = -1,
         eBufferOverflow = -2,
         eNotFound = -3,
-        eAlreadyExists = -4
+        eAlreadyExists = -4,
+        eEndOfFile = -5
     };
 
     static const ErrorCategory& Get() noexcept;

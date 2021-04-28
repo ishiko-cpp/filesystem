@@ -9,6 +9,8 @@
 #include "Ishiko/FileSystem/ErrorCategory.h"
 #include <boost/filesystem/operations.hpp>
 
+using namespace Ishiko;
+using namespace Ishiko::FileSystem;
 using namespace Ishiko::Tests;
 
 UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& environment)
@@ -18,6 +20,7 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("Exists test 2", ExistsTest2);
     append<HeapAllocationErrorsTest>("Exists test 3", ExistsTest3);
     append<HeapAllocationErrorsTest>("GetFileSize test 1", GetFileSizeTest1);
+    append<HeapAllocationErrorsTest>("GetFileSize test 2", GetFileSizeTest2);
     append<HeapAllocationErrorsTest>("IsDirectory test 1", IsDirectoryTest1);
     append<HeapAllocationErrorsTest>("IsDirectory test 2", IsDirectoryTest2);
     append<HeapAllocationErrorsTest>("IsDirectory test 3", IsDirectoryTest3);
@@ -33,6 +36,10 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestEnvironment& 
     append<HeapAllocationErrorsTest>("ReadFile test 1", ReadFileTest1);
     append<HeapAllocationErrorsTest>("ReadFile test 2", ReadFileTest2);
     append<HeapAllocationErrorsTest>("ReadFile test 3", ReadFileTest3);
+    append<HeapAllocationErrorsTest>("ReadFile test 4", ReadFileTest4);
+    append<HeapAllocationErrorsTest>("ReadFile test 5", ReadFileTest5);
+    append<HeapAllocationErrorsTest>("ReadFile test 6", ReadFileTest6);
+    append<HeapAllocationErrorsTest>("ReadFile test 7", ReadFileTest7);
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
     append<HeapAllocationErrorsTest>("GetVolumeList test 1", GetVolumeListTest1);
 #endif
@@ -42,7 +49,7 @@ void UtilitiesTests::ExistsTest1(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
-    ISHTF_FAIL_IF(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_FAIL_IF(Exists(inputPath.string().c_str()));
     ISHTF_PASS();
 }
 
@@ -50,7 +57,7 @@ void UtilitiesTests::ExistsTest2(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
-    ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
     ISHTF_PASS();
 }
 
@@ -58,7 +65,7 @@ void UtilitiesTests::ExistsTest3(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
 
-    ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(inputPath.string().c_str()));
+    ISHTF_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
     ISHTF_PASS();
 }
 
@@ -66,9 +73,24 @@ void UtilitiesTests::GetFileSizeTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
-    size_t fileSize = Ishiko::FileSystem::GetFileSize(inputPath.string().c_str());
+    Error error;
+    size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
+    ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NEQ(fileSize, 5);
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::GetFileSizeTest2(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+
+    Error error;
+    size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
+    ISHTF_FAIL_IF_NEQ(fileSize, 0);
     ISHTF_PASS();
 }
 
@@ -76,8 +98,8 @@ void UtilitiesTests::IsDirectoryTest1(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
 
-    Ishiko::Error error;
-    bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
+    Error error;
+    bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NOT(isDir);
@@ -88,8 +110,8 @@ void UtilitiesTests::IsDirectoryTest2(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
-    Ishiko::Error error;
-    bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
+    Error error;
+    bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF(isDir);
@@ -100,11 +122,11 @@ void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
-    Ishiko::Error error;
-    bool isDir = Ishiko::FileSystem::IsDirectory(inputPath.string().c_str(), error);
+    Error error;
+    bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eNotFound);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
     ISHTF_FAIL_IF(isDir);
     ISHTF_PASS();
 }
@@ -113,8 +135,8 @@ void UtilitiesTests::IsEmptyTest1(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("empty.txt"));
 
-    Ishiko::Error error;
-    bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
+    Error error;
+    bool empty = IsEmpty(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NOT(empty);
@@ -125,8 +147,8 @@ void UtilitiesTests::IsEmptyTest2(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
-    Ishiko::Error error;
-    bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
+    Error error;
+    bool empty = IsEmpty(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF(empty);
@@ -139,7 +161,7 @@ void UtilitiesTests::IsEmptyTest3(Ishiko::Tests::Test& test)
     boost::filesystem::create_directory(inputPath);
 
     Ishiko::Error error;
-    bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
+    bool empty = IsEmpty(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NOT(empty);
@@ -151,7 +173,7 @@ void UtilitiesTests::IsEmptyTest4(Ishiko::Tests::Test& test)
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
 
     Ishiko::Error error;
-    bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
+    bool empty = IsEmpty(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF(empty);
@@ -163,7 +185,7 @@ void UtilitiesTests::IsEmptyTest5(Ishiko::Tests::Test& test)
     boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
     Ishiko::Error error;
-    bool empty = Ishiko::FileSystem::IsEmpty(inputPath.string().c_str(), error);
+    bool empty = IsEmpty(inputPath.string().c_str(), error);
 
     ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eNotFound);
@@ -183,7 +205,7 @@ void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
 #endif
     
     std::string absolutePath;
-    Ishiko::FileSystem::ToAbsolutePath(inputPath.string().c_str(), absolutePath);
+    ToAbsolutePath(inputPath.string().c_str(), absolutePath);
 
     ISHTF_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
     ISHTF_PASS();
@@ -201,7 +223,7 @@ void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
 #endif
 
     std::string absolutePath;
-    Ishiko::FileSystem::ToAbsolutePath(inputPath.string(), absolutePath);
+    ToAbsolutePath(inputPath.string(), absolutePath);
 
     ISHTF_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
     ISHTF_PASS();
@@ -212,10 +234,10 @@ void UtilitiesTests::CreateEmptyFileTest1(Test& test)
     boost::filesystem::path outputPath = test.environment().getTestOutputPath("file1.txt");
 
     Ishiko::Error error;
-    Ishiko::FileSystem::CreateEmptyFile(outputPath, error);
+    CreateEmptyFile(outputPath, error);
 
     ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NOT(Ishiko::FileSystem::Exists(outputPath));
+    ISHTF_FAIL_IF_NOT(Exists(outputPath));
     ISHTF_PASS();
 }
 
@@ -223,15 +245,15 @@ void UtilitiesTests::CreateEmptyFileTest2(Test& test)
 {
     boost::filesystem::path outputPath = test.environment().getTestOutputPath("file2.txt");
 
-    Ishiko::Error error;
-    Ishiko::FileSystem::CreateEmptyFile(outputPath, error);
+    Error error;
+    CreateEmptyFile(outputPath, error);
 
     ISHTF_ABORT_IF(error);
     
-    Ishiko::FileSystem::CreateEmptyFile(outputPath, error);
+    CreateEmptyFile(outputPath, error);
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eAlreadyExists);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eAlreadyExists);
     ISHTF_PASS();
 }
 
@@ -239,10 +261,10 @@ void UtilitiesTests::ReadFileTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
-    Ishiko::Error error;
+    Error error;
     const int bufferSize = 10;
     char buffer[bufferSize];
-    size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
+    size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_FAIL_IF_NEQ(bytesRead, 5);
@@ -253,10 +275,10 @@ void UtilitiesTests::ReadFileTest2(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
-    Ishiko::Error error;
+    Error error;
     const int bufferSize = 10;
     char buffer[bufferSize];
-    size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
+    size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
     ISHTF_FAIL_IF_NOT(error);
     ISHTF_FAIL_IF_NEQ(bytesRead, 0);
@@ -267,14 +289,62 @@ void UtilitiesTests::ReadFileTest3(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
-    Ishiko::Error error;
+    Error error;
     const int bufferSize = 2;
     char buffer[bufferSize];
-    size_t bytesRead = Ishiko::FileSystem::ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
+    size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
     ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eBufferOverflow);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eBufferOverflow);
     ISHTF_FAIL_IF_NEQ(bytesRead, 5);
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ReadFileTest4(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
+
+    Error error;
+    std::string bytes = ReadFile(inputPath.string().c_str(), error);
+
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NEQ(bytes, "hello");
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ReadFileTest5(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+
+    Error error;
+    std::string bytes = ReadFile(inputPath.string().c_str(), error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(bytes, "");
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ReadFileTest6(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
+
+    Error error;
+    std::string bytes = ReadFile(inputPath, error);
+
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NEQ(bytes, "hello");
+    ISHTF_PASS();
+}
+
+void UtilitiesTests::ReadFileTest7(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+
+    Error error;
+    std::string bytes = ReadFile(inputPath, error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(bytes, "");
     ISHTF_PASS();
 }
 
@@ -283,7 +353,7 @@ void UtilitiesTests::GetVolumeListTest1(Ishiko::Tests::Test& test)
 {
     Ishiko::Error error;
     std::vector<std::string> volumeNames;
-    Ishiko::FileSystem::GetVolumeList(volumeNames, error);
+    GetVolumeList(volumeNames, error);
 
     ISHTF_FAIL_IF(error);
     ISHTF_ABORT_IF_NOT(volumeNames.size() >= 1);

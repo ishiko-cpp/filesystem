@@ -32,9 +32,17 @@ bool Exists(const boost::filesystem::path& path)
     return Exists(path.string());
 }
 
-size_t GetFileSize(const char* path)
+size_t GetFileSize(const char* path, Error& error)
 {
-    return boost::filesystem::file_size(path);
+    try
+    {
+        return boost::filesystem::file_size(path);
+    }
+    catch (...)
+    {
+        Fail(error, ErrorCategory::eNotFound, std::string("path \'") + path + "\' not found", __FILE__, __LINE__);
+        return false;
+    }
 }
 
 bool IsDirectory(const char* path, Error& error)
@@ -131,6 +139,23 @@ size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& er
     }
 
     return result;
+}
+
+std::string ReadFile(const char* filename, Error& error)
+{
+    std::string result;
+    size_t fileSize = GetFileSize(filename, error);
+    if (!error)
+    {
+        result.resize(fileSize);
+        ReadFile(filename, const_cast<char*>(result.data()), fileSize, error);
+    }
+    return result;
+}
+
+std::string ReadFile(const boost::filesystem::path& path, Error& error)
+{
+    return ReadFile(path.string().c_str(), error);
 }
 
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
