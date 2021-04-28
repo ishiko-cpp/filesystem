@@ -1,9 +1,10 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
 */
 
+#include "TextFileTests.h"
 #include "DirectoryTests.h"
 #include "UtilitiesTests.h"
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
@@ -18,6 +19,7 @@ int main(int argc, char* argv[])
     theTestHarness.environment().setTestOutputDirectory("../../TestOutput");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<TextFileTests>();
     theTests.append<DirectoryTests>();
     theTests.append<UtilitiesTests>();
 
