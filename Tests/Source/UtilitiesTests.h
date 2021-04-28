@@ -20,6 +20,7 @@ private:
     static void ExistsTest2(Ishiko::Tests::Test& test);
     static void ExistsTest3(Ishiko::Tests::Test& test);
     static void GetFileSizeTest1(Ishiko::Tests::Test& test);
+    static void GetFileSizeTest2(Ishiko::Tests::Test& test);
     static void IsDirectoryTest1(Ishiko::Tests::Test& test);
     static void IsDirectoryTest2(Ishiko::Tests::Test& test);
     static void IsDirectoryTest3(Ishiko::Tests::Test& test);
@@ -35,6 +36,10 @@ private:
     static void ReadFileTest1(Ishiko::Tests::Test& test);
     static void ReadFileTest2(Ishiko::Tests::Test& test);
     static void ReadFileTest3(Ishiko::Tests::Test& test);
+    static void ReadFileTest4(Ishiko::Tests::Test& test);
+    static void ReadFileTest5(Ishiko::Tests::Test& test);
+    static void ReadFileTest6(Ishiko::Tests::Test& test);
+    static void ReadFileTest7(Ishiko::Tests::Test& test);
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
     static void GetVolumeListTest1(Ishiko::Tests::Test& test);
 #endif
