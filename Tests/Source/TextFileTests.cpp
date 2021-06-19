@@ -16,6 +16,8 @@ TextFileTests::TextFileTests(const TestNumber& number, const TestEnvironment& en
     : TestSequence(number, "TextFile tests", environment)
 {
     append<HeapAllocationErrorsTest>("constructor test 1", ConstructorTest1);
+    append<FileComparisonTest>("create test 1", CreateTest1);
+    append<HeapAllocationErrorsTest>("create test 2", CreateTest2);
     append<HeapAllocationErrorsTest>("open test 1", OpenTest1);
     append<HeapAllocationErrorsTest>("open test 2", OpenTest2);
     append<HeapAllocationErrorsTest>("readLine test 1", ReadLineTest1);
@@ -23,12 +25,45 @@ TextFileTests::TextFileTests(const TestNumber& number, const TestEnvironment& en
     append<HeapAllocationErrorsTest>("readAllLines test 1", ReadAllLinesTest1);
     append<HeapAllocationErrorsTest>("readAllLines test 2", ReadAllLinesTest2);
     append<HeapAllocationErrorsTest>("readAllLines test 3", ReadAllLinesTest3);
+    append<FileComparisonTest>("write test 1", WriteTest1);
+    append<FileComparisonTest>("writeLine test 1", WriteLineTest1);
 }
 
 void TextFileTests::ConstructorTest1(Test& test)
 {
     TextFile file;
 
+    ISHTF_PASS();
+}
+
+void TextFileTests::CreateTest1(FileComparisonTest& test)
+{
+    boost::filesystem::path outputPath(test.environment().getTestOutputPath("TextFileTests_CreateTest1.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.create(outputPath.string(), error);
+
+    ISHTF_FAIL_IF(error);
+
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataPath("TextFileTests_CreateTest1.txt"));
+
+    ISHTF_PASS();
+}
+
+void TextFileTests::CreateTest2(Test& test)
+{
+    boost::filesystem::path outputPath(test.environment().getTestDataPath("file1.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.create(outputPath.string(), error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eAlreadyExists);
     ISHTF_PASS();
 }
 
@@ -152,5 +187,43 @@ void TextFileTests::ReadAllLinesTest3(Test& test)
     ISHTF_ABORT_IF_NEQ(lines.size(), 2);
     ISHTF_FAIL_IF_NEQ(lines[0], "hello");
     ISHTF_FAIL_IF_NEQ(lines[1], "world");
+    ISHTF_PASS();
+}
+
+void TextFileTests::WriteTest1(FileComparisonTest& test)
+{
+    boost::filesystem::path outputPath(test.environment().getTestOutputPath("TextFileTests_WriteTest1.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.create(outputPath.string(), error);
+
+    ISHTF_FAIL_IF(error);
+
+    file.write("hello");
+
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataPath("TextFileTests_WriteTest1.txt"));
+
+    ISHTF_PASS();
+}
+
+void TextFileTests::WriteLineTest1(FileComparisonTest& test)
+{
+    boost::filesystem::path outputPath(test.environment().getTestOutputPath("TextFileTests_WriteLineTest1.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.create(outputPath.string(), error);
+
+    ISHTF_FAIL_IF(error);
+
+    file.writeLine("hello");
+
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataPath("TextFileTests_WriteLineTest1.txt"));
+
     ISHTF_PASS();
 }

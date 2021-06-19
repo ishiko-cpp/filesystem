@@ -37,16 +37,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Directory.cpp">
+    <ClCompile Include="..\..\src\Directory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ErrorCategory.cpp">
+    <ClCompile Include="..\..\src\ErrorCategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\TextFile.cpp">
+    <ClCompile Include="..\..\src\TextFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Utilities.cpp">
+    <ClCompile Include="..\..\src\Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
