@@ -19,26 +19,17 @@ jobs:
           name: Build
           command: cd /projects/ishiko/cpp/filesystem/build/GNUmakefile && make
       - run:
-          name: "Checkout Ishiko-cpp/Text test dependency"
-          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Text.git
+          name: "Install test dependency: Ishiko/C++ Text"
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/GNUmakefile && make
       - run:
-          name: "Checkout Ishiko-cpp/Process test dependency"
-          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Process.git
+          name: "Install test dependency: Ishiko/C++ Process"
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/process.git && cd process/build/GNUmakefile && make
       - run:
-          name: "Checkout Ishiko-cpp/TestFramework test dependency"
-          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/TestFramework.git
-      - run:
-          name: "Build Ishiko-cpp/Text test dependency"
-          command: cd /Ishiko-cpp/Text/Makefiles/GNUmakefile && make
-      - run:
-          name: "Build Ishiko-cpp/Process test dependency"
-          command: cd /Ishiko-cpp/Process/Makefiles/GNUmakefile && make
-      - run:
-          name: "Build Ishiko-cpp/TestFramework test dependency"
-          command: cd /Ishiko-cpp/TestFramework/Core/Makefiles/GNUmakefile && make
+          name: "Install test dependency: Ishiko/C++ Test"
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test.git && cd test/core/build/GNUmakefile && make
       - run:
           name: Test build
-          command: cd /Ishiko-cpp/FileSystem/Tests/Makefiles/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/filesystem/Tests/Makefiles/GNUmakefile && make
       - run:
           name: Run the tests
-          command: cd /Ishiko-cpp/FileSystem/Tests/Makefiles/GNUmakefile && ./IshikoFileSystemTests
+          command: cd /projects/ishiko/cpp/filesystem/Tests/Makefiles/GNUmakefile && ./IshikoFileSystemTests
