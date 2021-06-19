@@ -88,7 +88,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/Errors\Include;$(ISHIKO_CPP)/Platform\Include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\Include\Ishiko\FileSystem</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\FileSystem</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/Errors\Include;$(ISHIKO_CPP)/Platform\Include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\Include\Ishiko\FileSystem</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\FileSystem</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/Errors\Include;$(ISHIKO_CPP)/Platform\Include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\Include\Ishiko\FileSystem</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\FileSystem</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/Errors\Include;$(ISHIKO_CPP)/Platform\Include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\Include\Ishiko\FileSystem</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\FileSystem</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -156,12 +156,12 @@
     <ClCompile Include="..\..\Source\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\Ishiko\FileSystem.h" />
-    <ClInclude Include="..\..\Include\Ishiko\FileSystem\Directory.h" />
-    <ClInclude Include="..\..\Include\Ishiko\FileSystem\ErrorCategory.h" />
-    <ClInclude Include="..\..\Include\Ishiko\FileSystem\TextFile.h" />
-    <ClInclude Include="..\..\Include\Ishiko\FileSystem\Utilities.h" />
-    <ClInclude Include="..\..\Include\Ishiko\FileSystem\linkoptions.h" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem.h" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\Directory.h" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\ErrorCategory.h" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\TextFile.h" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\Utilities.h" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\linkoptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

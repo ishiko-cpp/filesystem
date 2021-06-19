@@ -1,7 +1,7 @@
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
-import $(ishikopath)/Platform/Include/Ishiko/Platform.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
+import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+import $(ishikopath)/platform/include/Ishiko/Platform.bkl;
+import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
@@ -14,7 +14,7 @@ library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
 {
     archs = x86 x86_64;
 
-    includedirs += ../../Include/Ishiko/FileSystem;
+    includedirs += ../../include/Ishiko/FileSystem;
 
     if ($(toolset) == gnu)
     {
@@ -34,13 +34,13 @@ library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
 
     headers
     {
-        ../../Include/Ishiko/FileSystem.h
+        ../../include/Ishiko/FileSystem.h
 
-        ../../Include/Ishiko/FileSystem/Directory.h
-        ../../Include/Ishiko/FileSystem/ErrorCategory.h
-        ../../Include/Ishiko/FileSystem/TextFile.h
-        ../../Include/Ishiko/FileSystem/Utilities.h
-        ../../Include/Ishiko/FileSystem/linkoptions.h
+        ../../include/Ishiko/FileSystem/Directory.h
+        ../../include/Ishiko/FileSystem/ErrorCategory.h
+        ../../include/Ishiko/FileSystem/TextFile.h
+        ../../include/Ishiko/FileSystem/Utilities.h
+        ../../include/Ishiko/FileSystem/linkoptions.h
     }
 
     sources
