@@ -12,6 +12,15 @@ namespace Ishiko
 namespace FileSystem
 {
 
+void TextFile::create(const std::string& path, Error& error)
+{
+    m_file.open(path, std::ios::out);
+    FailIfCreateFileError(error, m_file, path, __FILE__, __LINE__);
+    m_file.close();
+    m_file.open(path);
+    FailIfCreateFileError(error, m_file, path, __FILE__, __LINE__);
+}
+
 void TextFile::open(const std::string& path, Error& error)
 {
     m_file.open(path);

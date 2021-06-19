@@ -16,6 +16,7 @@ TextFileTests::TextFileTests(const TestNumber& number, const TestEnvironment& en
     : TestSequence(number, "TextFile tests", environment)
 {
     append<HeapAllocationErrorsTest>("constructor test 1", ConstructorTest1);
+    append<FileComparisonTest>("create test 1", CreateTest1);
     append<HeapAllocationErrorsTest>("open test 1", OpenTest1);
     append<HeapAllocationErrorsTest>("open test 2", OpenTest2);
     append<HeapAllocationErrorsTest>("readLine test 1", ReadLineTest1);
@@ -28,6 +29,23 @@ TextFileTests::TextFileTests(const TestNumber& number, const TestEnvironment& en
 void TextFileTests::ConstructorTest1(Test& test)
 {
     TextFile file;
+
+    ISHTF_PASS();
+}
+
+void TextFileTests::CreateTest1(FileComparisonTest& test)
+{
+    boost::filesystem::path outputPath(test.environment().getTestOutputPath("TextFileTests_CreateTest1.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.create(outputPath.string(), error);
+
+    ISHTF_FAIL_IF(error);
+
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataPath("TextFileTests_CreateTest1.txt"));
 
     ISHTF_PASS();
 }

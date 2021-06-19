@@ -20,6 +20,7 @@ class TextFile
 {
 public:
     TextFile() = default;
+    void create(const std::string& path, Error& error);
     void open(const std::string& path, Error& error);
 
     std::string readLine(Error& error);

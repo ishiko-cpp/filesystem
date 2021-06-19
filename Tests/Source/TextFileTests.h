@@ -16,6 +16,7 @@ public:
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
+    static void CreateTest1(Ishiko::Tests::FileComparisonTest& test);
     static void OpenTest1(Ishiko::Tests::Test& test);
     static void OpenTest2(Ishiko::Tests::Test& test);
     static void ReadLineTest1(Ishiko::Tests::Test& test);
