@@ -45,9 +45,9 @@ library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
 
     sources
     {
-        ../../Source/Directory.cpp
-        ../../Source/ErrorCategory.cpp
-        ../../Source/TextFile.cpp
-        ../../Source/Utilities.cpp
+        ../../src/Directory.cpp
+        ../../src/ErrorCategory.cpp
+        ../../src/TextFile.cpp
+        ../../src/Utilities.cpp
     }
 }
