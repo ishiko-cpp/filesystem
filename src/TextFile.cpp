@@ -71,5 +71,15 @@ std::vector<std::string> TextFile::readAllLines()
     return result;
 }
 
+void TextFile::write(const char* str)
+{
+    m_file << str;
+}
+
+void TextFile::writeLine(const char* str)
+{
+    m_file << str << std::endl;
+}
+
 }
 }

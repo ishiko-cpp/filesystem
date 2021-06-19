@@ -25,6 +25,7 @@ private:
     static void ReadAllLinesTest1(Ishiko::Tests::Test& test);
     static void ReadAllLinesTest2(Ishiko::Tests::Test& test);
     static void ReadAllLinesTest3(Ishiko::Tests::Test& test);
+    static void WriteTest1(Ishiko::Tests::FileComparisonTest& test);
 };
 
 #endif
