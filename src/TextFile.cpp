@@ -73,11 +73,13 @@ std::vector<std::string> TextFile::readAllLines()
 
 void TextFile::write(const char* str)
 {
+    // TODO: error handling
     m_file << str;
 }
 
 void TextFile::writeLine(const char* str)
 {
+    // TODO: error handling
     m_file << str << std::endl;
 }
 
