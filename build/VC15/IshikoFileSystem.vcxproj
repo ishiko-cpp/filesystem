@@ -150,10 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Directory.cpp" />
-    <ClCompile Include="..\..\Source\ErrorCategory.cpp" />
-    <ClCompile Include="..\..\Source\TextFile.cpp" />
-    <ClCompile Include="..\..\Source\Utilities.cpp" />
+    <ClCompile Include="..\..\src\Directory.cpp" />
+    <ClCompile Include="..\..\src\ErrorCategory.cpp" />
+    <ClCompile Include="..\..\src\TextFile.cpp" />
+    <ClCompile Include="..\..\src\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\FileSystem.h" />

@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
 
     theTestHarness.environment().setTestDataDirectory("../../TestData");
     theTestHarness.environment().setTestOutputDirectory("../../TestOutput");
+    theTestHarness.environment().setReferenceDataDirectory("../../ReferenceData");
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<TextFileTests>();

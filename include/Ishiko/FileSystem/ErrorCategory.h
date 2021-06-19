@@ -7,8 +7,7 @@
 #ifndef _ISHIKO_FILESYSTEM_ERRORCATEGORY_H_
 #define _ISHIKO_FILESYSTEM_ERRORCATEGORY_H_
 
-#include <Ishiko/Errors/ErrorCategory.h>
-#include <Ishiko/Errors/Error.h>
+#include <Ishiko/Errors.h>
 
 namespace Ishiko
 {
