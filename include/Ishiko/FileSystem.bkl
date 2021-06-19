@@ -6,7 +6,7 @@ import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
 setting ISHIKO_CPP_FILESYSTEM_ROOT
 {
     help = "Path to the Ishiko FileSystem installation";
-    default = '$(ISHIKO_CPP)/FileSystem';
+    default = '$(ISHIKO_CPP)/filesystem';
 }
 
 template IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost

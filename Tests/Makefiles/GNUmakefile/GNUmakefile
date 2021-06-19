@@ -71,7 +71,7 @@ ISHIKO_CPP_PLATFORM_ROOT ?= $(ISHIKO_CPP)/platform
 # Path to the Boost installation
 ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
 # Path to the Ishiko FileSystem installation
-ISHIKO_CPP_FILESYSTEM_ROOT ?= $(ISHIKO_CPP)/FileSystem
+ISHIKO_CPP_FILESYSTEM_ROOT ?= $(ISHIKO_CPP)/filesystem
 # Path to the Ishiko/Text installation
 ISHIKO_CPP_TEXT_ROOT ?= $(ISHIKO_CPP)/text
 # Path to the Ishiko Process installation
