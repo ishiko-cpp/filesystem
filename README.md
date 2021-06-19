@@ -1,4 +1,4 @@
-# Ishiko/C++ - FileSystem
+# Ishiko/C++ FileSystem
 
 Utilities to work with the file system.
 
@@ -12,7 +12,7 @@ Utilities to work with the file system.
 
 # Project Status
 
-[![Ishiko-cpp](https://circleci.com/gh/Ishiko-cpp/FileSystem.svg?style=shield)](https://circleci.com/gh/Ishiko-cpp/FileSystem)
+[![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/filesystem.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/filesystem)
 
 This project is intended for use by its author only.
 
