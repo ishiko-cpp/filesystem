@@ -81,17 +81,17 @@ all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoFileSyst
 	$(AR) rc $@ $(_builddir)IshikoFileSystem_Directory.o $(_builddir)IshikoFileSystem_ErrorCategory.o $(_builddir)IshikoFileSystem_TextFile.o $(_builddir)IshikoFileSystem_Utilities.o
 	$(RANLIB) $@
 
-$(_builddir)IshikoFileSystem_Directory.o: ../../Source/Directory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../Source/Directory.cpp
+$(_builddir)IshikoFileSystem_Directory.o: ../../src/Directory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../src/Directory.cpp
 
-$(_builddir)IshikoFileSystem_ErrorCategory.o: ../../Source/ErrorCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../Source/ErrorCategory.cpp
+$(_builddir)IshikoFileSystem_ErrorCategory.o: ../../src/ErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../src/ErrorCategory.cpp
 
-$(_builddir)IshikoFileSystem_TextFile.o: ../../Source/TextFile.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../Source/TextFile.cpp
+$(_builddir)IshikoFileSystem_TextFile.o: ../../src/TextFile.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../src/TextFile.cpp
 
-$(_builddir)IshikoFileSystem_Utilities.o: ../../Source/Utilities.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../Source/Utilities.cpp
+$(_builddir)IshikoFileSystem_Utilities.o: ../../src/Utilities.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/FileSystem -std=c++11 ../../src/Utilities.cpp
 
 clean:
 	rm -f $(_builddir)*.o
