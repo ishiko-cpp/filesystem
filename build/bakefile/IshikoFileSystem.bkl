@@ -5,10 +5,10 @@ import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
-gnu.makefile = ../GNUmakefile/GNUmakefile;
-vs2017.solutionfile = ../VC15/IshikoFileSystem.sln;
-vs2015.solutionfile = ../VC14/IshikoFileSystem.sln;
-vs2013.solutionfile = ../VC12/IshikoFileSystem.sln;
+gnu.makefile = ../gnumake/GNUmakefile;
+vs2017.solutionfile = ../vc15/IshikoFileSystem.sln;
+vs2015.solutionfile = ../vc14/IshikoFileSystem.sln;
+vs2013.solutionfile = ../vc12/IshikoFileSystem.sln;
 
 library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
 {
@@ -19,12 +19,12 @@ library IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        outputdir = ../../Lib;
+        outputdir = ../../lib;
     }
     
     if ($(toolset) != gnu)
     {
-        outputdir = ../../Lib/$(arch);
+        outputdir = ../../lib/$(arch);
     }
 
     if ($(config) == Debug)

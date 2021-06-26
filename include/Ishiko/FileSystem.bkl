@@ -15,11 +15,11 @@ template IshikoFileSystem : IshikoErrors, IshikoPlatform, Boost
 
     if ($(toolset) == gnu)
     {
-       libdirs += $(ISHIKO_CPP_FILESYSTEM_ROOT)/Lib;
+       libdirs += $(ISHIKO_CPP_FILESYSTEM_ROOT)/lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_CPP_FILESYSTEM_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_FILESYSTEM_ROOT)/lib/$(arch);
     }
 }
