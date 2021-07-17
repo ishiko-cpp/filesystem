@@ -42,12 +42,17 @@ std::string TextFile::readLine(Error& error)
     std::string result;
     
     std::getline(m_file, result);
-    if (m_file.fail() && m_file.eof())
+    if (m_file.fail())
     {
-        Fail(error, ErrorCategory::eEndOfFile);
+        if (m_file.eof())
+        {
+            Fail(error, ErrorCategory::eEndOfFile);
+        }
+        else
+        {
+            Fail(error, ErrorCategory::eReadError);
+        }
     }
-
-    // TODO: handle other errors
 
     return result;
 }
