@@ -1,15 +1,15 @@
 import ../../../include/Ishiko/FileSystem.bkl;
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/tests/include/Ishiko/TestFramework/TestFrameworkCore.bkl;
+import $(ishikopath)/tests/include/Ishiko/Tests/Core.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
-gnu.makefile = ../GNUmakefile/GNUmakefile;
-vs2017.solutionfile = ../VC15/IshikoFileSystemTests.sln;
-vs2015.solutionfile = ../VC14/IshikoFileSystemTests.sln;
-vs2013.solutionfile = ../VC12/IshikoFileSystemTests.sln;
+gnu.makefile = ../gnumake/GNUmakefile;
+vs2017.solutionfile = ../vc15/IshikoFileSystemTests.sln;
+vs2015.solutionfile = ../vc14/IshikoFileSystemTests.sln;
+vs2013.solutionfile = ../vc12/IshikoFileSystemTests.sln;
 
-program IshikoFileSystemTests : IshikoFileSystem, IshikoTestFrameworkCore
+program IshikoFileSystemTests : IshikoFileSystem, IshikoTestsCore
 {
     archs = x86 x86_64;
 
