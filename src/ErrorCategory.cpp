@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #include "ErrorCategory.h"
