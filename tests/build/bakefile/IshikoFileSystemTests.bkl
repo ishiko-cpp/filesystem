@@ -21,17 +21,16 @@ program IshikoFileSystemTests : IshikoFileSystem, IshikoTestsCore
 
     headers
     {
-        ../../Source/DirectoryTests.h
-        ../../Source/TextFileTests.h
-        ../../Source/UtilitiesTests.h
+        ../../src/DirectoryTests.h
+        ../../src/TextFileTests.h
+        ../../src/UtilitiesTests.h
     }
 
     sources
     {
-        ../../Source/main.cpp
-
-        ../../Source/DirectoryTests.cpp
-        ../../Source/TextFileTests.cpp
-        ../../Source/UtilitiesTests.cpp
+        ../../src/DirectoryTests.cpp
+        ../../src/main.cpp
+        ../../src/TextFileTests.cpp
+        ../../src/UtilitiesTests.cpp
     }
 }

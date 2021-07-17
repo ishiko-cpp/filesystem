@@ -152,15 +152,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\main.cpp" />
-    <ClCompile Include="..\..\Source\DirectoryTests.cpp" />
-    <ClCompile Include="..\..\Source\TextFileTests.cpp" />
-    <ClCompile Include="..\..\Source\UtilitiesTests.cpp" />
+    <ClCompile Include="..\..\src\DirectoryTests.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\TextFileTests.cpp" />
+    <ClCompile Include="..\..\src\UtilitiesTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\DirectoryTests.h" />
-    <ClInclude Include="..\..\Source\TextFileTests.h" />
-    <ClInclude Include="..\..\Source\UtilitiesTests.h" />
+    <ClInclude Include="..\..\src\DirectoryTests.h" />
+    <ClInclude Include="..\..\src\TextFileTests.h" />
+    <ClInclude Include="..\..\src\UtilitiesTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
