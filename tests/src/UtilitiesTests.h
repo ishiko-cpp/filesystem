@@ -7,8 +7,8 @@
 #ifndef _ISHIKO_FILESYSTEM_TESTS_UTILITIESTESTS_H_
 #define _ISHIKO_FILESYSTEM_TESTS_UTILITIESTESTS_H_
 
-#include <Ishiko/Platform/OS.h>
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Platform.h>
+#include <Ishiko/Tests/Core.h>
 
 class UtilitiesTests : public Ishiko::Tests::TestSequence
 {
