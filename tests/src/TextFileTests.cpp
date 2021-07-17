@@ -26,6 +26,7 @@ TextFileTests::TextFileTests(const TestNumber& number, const TestEnvironment& en
     append<HeapAllocationErrorsTest>("readAllLines test 1", ReadAllLinesTest1);
     append<HeapAllocationErrorsTest>("readAllLines test 2", ReadAllLinesTest2);
     append<HeapAllocationErrorsTest>("readAllLines test 3", ReadAllLinesTest3);
+    append<HeapAllocationErrorsTest>("readAllLines test 4", ReadAllLinesTest4);
     append<FileComparisonTest>("write test 1", WriteTest1);
     append<FileComparisonTest>("writeLine test 1", WriteLineTest1);
 }
@@ -159,6 +160,25 @@ void TextFileTests::ReadLineTest3(Test& test)
 
 void TextFileTests::ReadAllLinesTest1(Test& test)
 {
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+
+    TextFile file;
+
+    Error error;
+    file.open(inputPath.string(), error);
+
+    // Ignore the open error on purpose to cause an error when we try to read a line
+    error.succeed();
+
+    std::vector<std::string> lines = file.readAllLines(error);
+
+    ISHTF_FAIL_IF_NOT(error);
+    ISHTF_FAIL_IF_NEQ(lines.size(), 0);
+    ISHTF_PASS();
+}
+
+void TextFileTests::ReadAllLinesTest2(Test& test)
+{
     boost::filesystem::path inputPath(test.environment().getTestDataPath("empty.txt"));
 
     TextFile file;
@@ -168,13 +188,14 @@ void TextFileTests::ReadAllLinesTest1(Test& test)
 
     ISHTF_ABORT_IF(error);
 
-    std::vector<std::string> lines = file.readAllLines();
+    std::vector<std::string> lines = file.readAllLines(error);
 
-    ISHTF_ABORT_IF_NEQ(lines.size(), 0);
+    ISHTF_FAIL_IF(error);
+    ISHTF_FAIL_IF_NEQ(lines.size(), 0);
     ISHTF_PASS();
 }
 
-void TextFileTests::ReadAllLinesTest2(Test& test)
+void TextFileTests::ReadAllLinesTest3(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
@@ -185,14 +206,15 @@ void TextFileTests::ReadAllLinesTest2(Test& test)
 
     ISHTF_ABORT_IF(error);
 
-    std::vector<std::string> lines = file.readAllLines();
+    std::vector<std::string> lines = file.readAllLines(error);
 
+    ISHTF_FAIL_IF(error);
     ISHTF_ABORT_IF_NEQ(lines.size(), 1);
     ISHTF_FAIL_IF_NEQ(lines[0], "hello");
     ISHTF_PASS();
 }
 
-void TextFileTests::ReadAllLinesTest3(Test& test)
+void TextFileTests::ReadAllLinesTest4(Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file2.txt"));
 
@@ -203,8 +225,9 @@ void TextFileTests::ReadAllLinesTest3(Test& test)
 
     ISHTF_ABORT_IF(error);
 
-    std::vector<std::string> lines = file.readAllLines();
+    std::vector<std::string> lines = file.readAllLines(error);
 
+    ISHTF_FAIL_IF(error);
     ISHTF_ABORT_IF_NEQ(lines.size(), 2);
     ISHTF_FAIL_IF_NEQ(lines[0], "hello");
     ISHTF_FAIL_IF_NEQ(lines[1], "world");

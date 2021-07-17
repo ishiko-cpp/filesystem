@@ -57,17 +57,20 @@ std::string TextFile::readLine(Error& error)
     return result;
 }
 
-std::vector<std::string> TextFile::readAllLines()
+std::vector<std::string> TextFile::readAllLines(Error& error)
 {
     std::vector<std::string> result;
 
     while (true)
     {
-        Error error;
-        std::string line = readLine(error);
-        if (error)
+        Error readError;
+        std::string line = readLine(readError);
+        if (readError)
         {
-            // TODO: handle errors other than EOF
+            if (readError.condition().value() != ErrorCategory::eEndOfFile)
+            {
+                error.fail(readError);
+            }
             break;
         }
         result.push_back(line);
