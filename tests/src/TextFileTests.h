@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_FILESYSTEM_TESTS_TEXTFILETESTS_H_
 #define _ISHIKO_FILESYSTEM_TESTS_TEXTFILETESTS_H_
 
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Tests/Core.h>
 
 class TextFileTests : public Ishiko::Tests::TestSequence
 {

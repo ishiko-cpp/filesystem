@@ -1,0 +1,36 @@
+import ../../../include/Ishiko/FileSystem.bkl;
+ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/tests/include/Ishiko/Tests/Core.bkl;
+
+toolsets = gnu vs2017 vs2015 vs2013;
+
+gnu.makefile = ../gnumake/GNUmakefile;
+vs2017.solutionfile = ../vc15/IshikoFileSystemTests.sln;
+vs2015.solutionfile = ../vc14/IshikoFileSystemTests.sln;
+vs2013.solutionfile = ../vc12/IshikoFileSystemTests.sln;
+
+program IshikoFileSystemTests : IshikoFileSystem, IshikoTestsCore
+{
+    archs = x86 x86_64;
+
+    if ($(toolset) == gnu)
+    {
+        cxx-compiler-options = "-std=c++11";
+        libs += IshikoFileSystem IshikoTestsCore IshikoDiff IshikoProcess IshikoText IshikoErrors boost_filesystem boost_system;
+    }
+
+    headers
+    {
+        ../../src/DirectoryTests.h
+        ../../src/TextFileTests.h
+        ../../src/UtilitiesTests.h
+    }
+
+    sources
+    {
+        ../../src/DirectoryTests.cpp
+        ../../src/main.cpp
+        ../../src/TextFileTests.cpp
+        ../../src/UtilitiesTests.cpp
+    }
+}
