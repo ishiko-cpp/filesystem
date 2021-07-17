@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #ifndef _ISHIKO_FILESYSTEM_TEXTFILE_H_
@@ -24,7 +24,7 @@ public:
     void open(const std::string& path, Error& error);
 
     std::string readLine(Error& error);
-    std::vector<std::string> readAllLines();
+    std::vector<std::string> readAllLines(Error& error);
 
     void write(const char* str);
     void writeLine(const char* str);

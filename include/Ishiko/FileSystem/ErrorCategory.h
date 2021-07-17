@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #ifndef _ISHIKO_FILESYSTEM_ERRORCATEGORY_H_
@@ -23,7 +23,8 @@ public:
         eBufferOverflow = -2,
         eNotFound = -3,
         eAlreadyExists = -4,
-        eEndOfFile = -5
+        eEndOfFile = -5,
+        eReadError = -6
     };
 
     static const ErrorCategory& Get() noexcept;

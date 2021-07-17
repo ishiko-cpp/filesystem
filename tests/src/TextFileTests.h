@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_FILESYSTEM_TESTS_TEXTFILETESTS_H_
 #define _ISHIKO_FILESYSTEM_TESTS_TEXTFILETESTS_H_
 
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Tests/Core.h>
 
 class TextFileTests : public Ishiko::Tests::TestSequence
 {
@@ -22,9 +22,11 @@ private:
     static void OpenTest2(Ishiko::Tests::Test& test);
     static void ReadLineTest1(Ishiko::Tests::Test& test);
     static void ReadLineTest2(Ishiko::Tests::Test& test);
+    static void ReadLineTest3(Ishiko::Tests::Test& test);
     static void ReadAllLinesTest1(Ishiko::Tests::Test& test);
     static void ReadAllLinesTest2(Ishiko::Tests::Test& test);
     static void ReadAllLinesTest3(Ishiko::Tests::Test& test);
+    static void ReadAllLinesTest4(Ishiko::Tests::Test& test);
     static void WriteTest1(Ishiko::Tests::FileComparisonTest& test);
     static void WriteLineTest1(Ishiko::Tests::FileComparisonTest& test);
 };

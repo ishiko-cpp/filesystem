@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #include "TextFile.h"
@@ -42,27 +42,35 @@ std::string TextFile::readLine(Error& error)
     std::string result;
     
     std::getline(m_file, result);
-    if (m_file.fail() && m_file.eof())
+    if (m_file.fail())
     {
-        Fail(error, ErrorCategory::eEndOfFile);
+        if (m_file.eof())
+        {
+            Fail(error, ErrorCategory::eEndOfFile);
+        }
+        else
+        {
+            Fail(error, ErrorCategory::eReadError);
+        }
     }
-
-    // TODO: handle other errors
 
     return result;
 }
 
-std::vector<std::string> TextFile::readAllLines()
+std::vector<std::string> TextFile::readAllLines(Error& error)
 {
     std::vector<std::string> result;
 
     while (true)
     {
-        Error error;
-        std::string line = readLine(error);
-        if (error)
+        Error readError;
+        std::string line = readLine(readError);
+        if (readError)
         {
-            // TODO: handle errors other than EOF
+            if (readError.condition().value() != ErrorCategory::eEndOfFile)
+            {
+                error.fail(readError);
+            }
             break;
         }
         result.push_back(line);
