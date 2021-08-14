@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_FILESYSTEM_UTILITIES_H_
 #define _ISHIKO_FILESYSTEM_UTILITIES_H_
 
-#include <Ishiko/Platform/OS.h>
+#include <Ishiko/BasePlatform.h>
 #include <Ishiko/Errors/Error.h>
 #include <boost/filesystem/path.hpp>
 #include <cstddef>
