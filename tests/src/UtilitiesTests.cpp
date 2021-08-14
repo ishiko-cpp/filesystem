@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #include "UtilitiesTests.h"
@@ -49,24 +49,24 @@ void UtilitiesTests::ExistsTest1(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
 
-    ISHTF_FAIL_IF(Exists(inputPath.string().c_str()));
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(Exists(inputPath.string().c_str()));
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ExistsTest2(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
 
-    ISHTF_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ExistsTest3(Ishiko::Tests::Test& test)
 {
     boost::filesystem::path inputPath(test.environment().getTestDataDirectory());
 
-    ISHTF_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::GetFileSizeTest1(Test& test)
@@ -76,9 +76,9 @@ void UtilitiesTests::GetFileSizeTest1(Test& test)
     Error error;
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(fileSize, 5);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(fileSize, 5);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::GetFileSizeTest2(Test& test)
@@ -88,10 +88,10 @@ void UtilitiesTests::GetFileSizeTest2(Test& test)
     Error error;
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
-    ISHTF_FAIL_IF_NEQ(fileSize, 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
+    ISHIKO_FAIL_IF_NEQ(fileSize, 0);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsDirectoryTest1(Ishiko::Tests::Test& test)
@@ -101,9 +101,9 @@ void UtilitiesTests::IsDirectoryTest1(Ishiko::Tests::Test& test)
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NOT(isDir);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NOT(isDir);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsDirectoryTest2(Ishiko::Tests::Test& test)
@@ -113,9 +113,9 @@ void UtilitiesTests::IsDirectoryTest2(Ishiko::Tests::Test& test)
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF(isDir);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF(isDir);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
@@ -125,10 +125,10 @@ void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
-    ISHTF_FAIL_IF(isDir);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
+    ISHIKO_FAIL_IF(isDir);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsEmptyTest1(Ishiko::Tests::Test& test)
@@ -138,9 +138,9 @@ void UtilitiesTests::IsEmptyTest1(Ishiko::Tests::Test& test)
     Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NOT(empty);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NOT(empty);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsEmptyTest2(Ishiko::Tests::Test& test)
@@ -150,9 +150,9 @@ void UtilitiesTests::IsEmptyTest2(Ishiko::Tests::Test& test)
     Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF(empty);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF(empty);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsEmptyTest3(Ishiko::Tests::Test& test)
@@ -163,9 +163,9 @@ void UtilitiesTests::IsEmptyTest3(Ishiko::Tests::Test& test)
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NOT(empty);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NOT(empty);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsEmptyTest4(Ishiko::Tests::Test& test)
@@ -175,9 +175,9 @@ void UtilitiesTests::IsEmptyTest4(Ishiko::Tests::Test& test)
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF(empty);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF(empty);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::IsEmptyTest5(Ishiko::Tests::Test& test)
@@ -187,10 +187,10 @@ void UtilitiesTests::IsEmptyTest5(Ishiko::Tests::Test& test)
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eNotFound);
-    ISHTF_FAIL_IF(empty);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eNotFound);
+    ISHIKO_FAIL_IF(empty);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
@@ -207,8 +207,8 @@ void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
     std::string absolutePath;
     ToAbsolutePath(inputPath.string().c_str(), absolutePath);
 
-    ISHTF_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
@@ -225,8 +225,8 @@ void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
     std::string absolutePath;
     ToAbsolutePath(inputPath.string(), absolutePath);
 
-    ISHTF_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::CreateEmptyFileTest1(Test& test)
@@ -236,9 +236,9 @@ void UtilitiesTests::CreateEmptyFileTest1(Test& test)
     Ishiko::Error error;
     CreateEmptyFile(outputPath, error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NOT(Exists(outputPath));
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NOT(Exists(outputPath));
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::CreateEmptyFileTest2(Test& test)
@@ -248,13 +248,13 @@ void UtilitiesTests::CreateEmptyFileTest2(Test& test)
     Error error;
     CreateEmptyFile(outputPath, error);
 
-    ISHTF_ABORT_IF(error);
+    ISHIKO_ABORT_IF(error);
     
     CreateEmptyFile(outputPath, error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eAlreadyExists);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eAlreadyExists);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ReadFileTest1(Test& test)
@@ -266,9 +266,9 @@ void UtilitiesTests::ReadFileTest1(Test& test)
     char buffer[bufferSize];
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(bytesRead, 5);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(bytesRead, 5);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ReadFileTest2(Test& test)
@@ -280,9 +280,9 @@ void UtilitiesTests::ReadFileTest2(Test& test)
     char buffer[bufferSize];
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(bytesRead, 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(bytesRead, 0);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ReadFileTest3(Test& test)
@@ -294,10 +294,10 @@ void UtilitiesTests::ReadFileTest3(Test& test)
     char buffer[bufferSize];
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eBufferOverflow);
-    ISHTF_FAIL_IF_NEQ(bytesRead, 5);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eBufferOverflow);
+    ISHIKO_FAIL_IF_NEQ(bytesRead, 5);
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ReadFileTest4(Test& test)
@@ -307,9 +307,9 @@ void UtilitiesTests::ReadFileTest4(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(bytes, "hello");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(bytes, "hello");
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ReadFileTest5(Test& test)
@@ -319,9 +319,9 @@ void UtilitiesTests::ReadFileTest5(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath.string().c_str(), error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(bytes, "");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(bytes, "");
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ReadFileTest6(Test& test)
@@ -331,9 +331,9 @@ void UtilitiesTests::ReadFileTest6(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath, error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_FAIL_IF_NEQ(bytes, "hello");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(bytes, "hello");
+    ISHIKO_PASS();
 }
 
 void UtilitiesTests::ReadFileTest7(Test& test)
@@ -343,9 +343,9 @@ void UtilitiesTests::ReadFileTest7(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath, error);
 
-    ISHTF_FAIL_IF_NOT(error);
-    ISHTF_FAIL_IF_NEQ(bytes, "");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(bytes, "");
+    ISHIKO_PASS();
 }
 
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
@@ -355,8 +355,8 @@ void UtilitiesTests::GetVolumeListTest1(Ishiko::Tests::Test& test)
     std::vector<std::string> volumeNames;
     GetVolumeList(volumeNames, error);
 
-    ISHTF_FAIL_IF(error);
-    ISHTF_ABORT_IF_NOT(volumeNames.size() >= 1);
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_ABORT_IF_NOT(volumeNames.size() >= 1);
 
     for (const std::string& volumeName : volumeNames)
     {
@@ -367,7 +367,7 @@ void UtilitiesTests::GetVolumeListTest1(Ishiko::Tests::Test& test)
         {
             if ((volumePathNamesLength != 0) && (volumePathNames[0] != 0) && (strcmp(volumePathNames, "C:\\") == 0))
             {
-                ISHTF_PASS();
+                ISHIKO_PASS();
             }
         }
         delete[] volumePathNames;
