@@ -49,7 +49,7 @@ void DirectoryTests::ForEachRegularFileTest1(Test& test)
     );
 
     ISHIKO_ABORT_IF_NEQ(files.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(files[0], "../../TestData/Directory1/file1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[0], "../../data/Directory1/file1.txt");
     ISHIKO_PASS();
 }
 
@@ -70,8 +70,8 @@ void DirectoryTests::ForEachRegularFileTest2(Test& test)
     std::sort(files.begin(), files.end());
 
     ISHIKO_ABORT_IF_NEQ(files.size(), 2);
-    ISHIKO_FAIL_IF_NEQ(files[0], "../../TestData/Directory2/file1.txt");
-    ISHIKO_FAIL_IF_NEQ(files[1], "../../TestData/Directory2/file2.txt");
+    ISHIKO_FAIL_IF_NEQ(files[0], "../../data/Directory2/file1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[1], "../../data/Directory2/file2.txt");
     ISHIKO_PASS();
 }
 
@@ -110,7 +110,7 @@ void DirectoryTests::ForEachRegularFileTest4(Test& test)
         );
 
     ISHIKO_ABORT_IF_NEQ(files.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(files[0], "../../TestData/Directory4/file_1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[0], "../../data/Directory4/file_1.txt");
     ISHIKO_PASS();
 }
 
@@ -130,7 +130,7 @@ void DirectoryTests::ForEachRegularFileTest5(Test& test)
     );
 
     ISHIKO_ABORT_IF_NEQ(files.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(files[0], "../../TestData/Directory1/file1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[0], "../../data/Directory1/file1.txt");
     ISHIKO_PASS();
 }
 
@@ -151,8 +151,8 @@ void DirectoryTests::ForEachRegularFileTest6(Test& test)
     std::sort(files.begin(), files.end());
 
     ISHIKO_ABORT_IF_NEQ(files.size(), 2);
-    ISHIKO_FAIL_IF_NEQ(files[0], "../../TestData/Directory2/file1.txt");
-    ISHIKO_FAIL_IF_NEQ(files[1], "../../TestData/Directory2/file2.txt");
+    ISHIKO_FAIL_IF_NEQ(files[0], "../../data/Directory2/file1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[1], "../../data/Directory2/file2.txt");
     ISHIKO_PASS();
 }
 
@@ -172,7 +172,7 @@ void DirectoryTests::ForEachRegularFileTest7(Test& test)
     );
 
     ISHIKO_ABORT_IF_NEQ(files.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(files[0], "../../TestData/Directory3/dir_1/file_1_1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[0], "../../data/Directory3/dir_1/file_1_1.txt");
     ISHIKO_PASS();
 }
 
@@ -193,9 +193,9 @@ void DirectoryTests::ForEachRegularFileTest8(Test& test)
     std::sort(files.begin(), files.end());
 
     ISHIKO_ABORT_IF_NEQ(files.size(), 4);
-    ISHIKO_FAIL_IF_NEQ(files[0], "../../TestData/Directory4/dir_1/file_1_1.txt");
-    ISHIKO_FAIL_IF_NEQ(files[1], "../../TestData/Directory4/dir_2/file_2_1.txt");
-    ISHIKO_FAIL_IF_NEQ(files[2], "../../TestData/Directory4/dir_2/file_2_2.txt");
-    ISHIKO_FAIL_IF_NEQ(files[3], "../../TestData/Directory4/file_1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[0], "../../data/Directory4/dir_1/file_1_1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[1], "../../data/Directory4/dir_2/file_2_1.txt");
+    ISHIKO_FAIL_IF_NEQ(files[2], "../../data/Directory4/dir_2/file_2_2.txt");
+    ISHIKO_FAIL_IF_NEQ(files[3], "../../data/Directory4/file_1.txt");
     ISHIKO_PASS();
 }
