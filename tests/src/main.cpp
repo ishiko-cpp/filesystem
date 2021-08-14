@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #include "TextFileTests.h"
@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoFileSystem");
 
-    theTestHarness.environment().setTestDataDirectory("../../TestData");
+    theTestHarness.environment().setTestDataDirectory("../../data");
     theTestHarness.environment().setTestOutputDirectory("../../TestOutput");
     theTestHarness.environment().setReferenceDataDirectory("../../ReferenceData");
 
