@@ -1,11 +1,11 @@
 /*
     Copyright (c) 2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/FileSystem/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_FILESYSTEM_TESTS_DIRECTORYTESTS_H_
-#define _ISHIKO_FILESYSTEM_TESTS_DIRECTORYTESTS_H_
+#ifndef _ISHIKO_CPP_FILESYSTEM_TESTS_DIRECTORYTESTS_H_
+#define _ISHIKO_CPP_FILESYSTEM_TESTS_DIRECTORYTESTS_H_
 
 #include <Ishiko/Tests/Core.h>
 
