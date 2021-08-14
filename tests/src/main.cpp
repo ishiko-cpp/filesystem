@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoFileSystem");
 
-    theTestHarness.environment().setTestDataDirectory("../../TestData");
+    theTestHarness.environment().setTestDataDirectory("../../data");
     theTestHarness.environment().setTestOutputDirectory("../../TestOutput");
     theTestHarness.environment().setReferenceDataDirectory("../../ReferenceData");
 
