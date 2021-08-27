@@ -4,10 +4,10 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_FILESYSTEM_TEXTFILE_H_
-#define _ISHIKO_FILESYSTEM_TEXTFILE_H_
+#ifndef _ISHIKO_CPP_FILESYSTEM_TEXTFILE_H_
+#define _ISHIKO_CPP_FILESYSTEM_TEXTFILE_H_
 
-#include <Ishiko/Errors.h>
+#include <Ishiko/Errors.hpp>
 #include <fstream>
 #include <string>
 

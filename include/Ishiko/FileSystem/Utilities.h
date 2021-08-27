@@ -4,12 +4,12 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_FILESYSTEM_UTILITIES_H_
-#define _ISHIKO_FILESYSTEM_UTILITIES_H_
+#ifndef _ISHIKO_CPP_FILESYSTEM_UTILITIES_H_
+#define _ISHIKO_CPP_FILESYSTEM_UTILITIES_H_
 
-#include <Ishiko/BasePlatform.h>
-#include <Ishiko/Errors/Error.h>
 #include <boost/filesystem/path.hpp>
+#include <Ishiko/BasePlatform.h>
+#include <Ishiko/Errors.hpp>
 #include <cstddef>
 #include <string>
 #include <vector>
