@@ -29,6 +29,7 @@ void ToAbsolutePath(const char* path, std::string& absolutePath);
 void ToAbsolutePath(const std::string& path, std::string& absolutePath);
 void CreateEmptyFile(const std::string& path, Error& error);
 void CreateEmptyFile(const boost::filesystem::path& path, Error& error);
+void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error);
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error);
 std::string ReadFile(const char* filename, Error& error);
 std::string ReadFile(const boost::filesystem::path& path, Error& error);
