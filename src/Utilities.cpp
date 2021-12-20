@@ -110,6 +110,17 @@ void CreateEmptyFile(const boost::filesystem::path& path, Error& error)
     CreateEmptyFile(path.string(), error);
 }
 
+void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error)
+{
+    boost::system::error_code ec;
+    boost::filesystem::copy_file(sourcePath, targetPath, ec);
+    if (ec.failed())
+    {
+        // TODO: interpret error properly
+        Fail(error, ErrorCategory::eGeneric, "", __FILE__, __LINE__);
+    }
+}
+
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error)
 {
     size_t result = 0;
