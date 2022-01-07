@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2021 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
@@ -7,7 +7,7 @@
 #include "TextFileTests.h"
 #include "DirectoryTests.h"
 #include "UtilitiesTests.h"
-#include <Ishiko/Tests/Core.h>
+#include <Ishiko/Tests/Core.hpp>
 
 using namespace Ishiko::Tests;
 

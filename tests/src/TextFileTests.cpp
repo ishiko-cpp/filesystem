@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #include "TextFileTests.h"
-#include "Ishiko/FileSystem/TextFile.h"
-#include "Ishiko/FileSystem/ErrorCategory.h"
+#include <Ishiko/FileSystem/ErrorCategory.hpp>
+#include <Ishiko/FileSystem/TextFile.hpp>
 
 using namespace Ishiko;
 using namespace Ishiko::FileSystem;

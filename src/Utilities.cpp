@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2017-2021 Xavier Leclercq
+    Copyright (c) 2017-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#include "Utilities.h"
-#include "ErrorCategory.h"
+#include "Utilities.hpp"
+#include "ErrorCategory.hpp"
 #include <boost/filesystem/operations.hpp>
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
 #include <windows.h>
