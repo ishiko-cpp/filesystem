@@ -40,6 +40,4 @@ void GetVolumeList(std::vector<std::string>& volumeNames, Error& error);
 }
 }
 
-#include "linkoptions.h"
-
 #endif
