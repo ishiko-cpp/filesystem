@@ -156,12 +156,12 @@
     <ClCompile Include="..\..\src\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\FileSystem.h" />
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\Directory.h" />
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\ErrorCategory.h" />
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\TextFile.h" />
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\Utilities.h" />
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\linkoptions.h" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\Directory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\ErrorCategory.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\TextFile.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\Utilities.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\linkoptions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
