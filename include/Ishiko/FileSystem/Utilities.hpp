@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_FILESYSTEM_UTILITIES_H_
-#define _ISHIKO_CPP_FILESYSTEM_UTILITIES_H_
+#ifndef _ISHIKO_CPP_FILESYSTEM_UTILITIES_HPP_
+#define _ISHIKO_CPP_FILESYSTEM_UTILITIES_HPP_
 
 #include <boost/filesystem/path.hpp>
 #include <Ishiko/BasePlatform.h>

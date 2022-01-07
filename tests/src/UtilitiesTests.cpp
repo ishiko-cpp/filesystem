@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2020-2021 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
 #include "UtilitiesTests.h"
-#include "Ishiko/FileSystem/Utilities.h"
-#include "Ishiko/FileSystem/ErrorCategory.h"
+#include <Ishiko/FileSystem/ErrorCategory.hpp>
+#include <Ishiko/FileSystem/Utilities.hpp>
 #include <boost/filesystem/operations.hpp>
 
 using namespace Ishiko;

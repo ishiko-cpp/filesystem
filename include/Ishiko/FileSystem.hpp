@@ -4,14 +4,14 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_FILESYSTEM_H_
-#define _ISHIKO_CPP_FILESYSTEM_H_
+#ifndef _ISHIKO_CPP_FILESYSTEM_HPP_
+#define _ISHIKO_CPP_FILESYSTEM_HPP_
 
-#include "FileSystem/Directory.h"
-#include "FileSystem/ErrorCategory.h"
-#include "FileSystem/TextFile.h"
-#include "FileSystem/Utilities.h"
+#include "FileSystem/Directory.hpp"
+#include "FileSystem/ErrorCategory.hpp"
+#include "FileSystem/TextFile.hpp"
+#include "FileSystem/Utilities.hpp"
 
-#include "FileSystem/linkoptions.h"
+#include "FileSystem/linkoptions.hpp"
 
 #endif

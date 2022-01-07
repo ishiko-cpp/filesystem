@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_FILESYSTEM_LINKOPTIONS_H_
-#define _ISHIKO_CPP_FILESYSTEM_LINKOPTIONS_H_
+#ifndef _ISHIKO_CPP_FILESYSTEM_LINKOPTIONS_HPP_
+#define _ISHIKO_CPP_FILESYSTEM_LINKOPTIONS_HPP_
 
 #ifdef _DEBUG
 #pragma comment(lib, "IshikoFileSystem-d.lib")

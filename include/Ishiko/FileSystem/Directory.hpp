@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_FILESYSTEM_DIRECTORY_H_
-#define _ISHIKO_CPP_FILESYSTEM_DIRECTORY_H_
+#ifndef _ISHIKO_CPP_FILESYSTEM_DIRECTORY_HPP_
+#define _ISHIKO_CPP_FILESYSTEM_DIRECTORY_HPP_
 
 #include <functional>
 #include <string>
