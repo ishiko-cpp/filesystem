@@ -17,22 +17,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\FileSystem.h">
+    <ClInclude Include="..\..\include\Ishiko\FileSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\Directory.h">
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\Directory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\ErrorCategory.h">
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\ErrorCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\TextFile.h">
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\TextFile.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\Utilities.h">
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\Utilities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\FileSystem\linkoptions.h">
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
