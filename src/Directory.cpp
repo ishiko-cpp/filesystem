@@ -1,10 +1,10 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#include "Directory.h"
+#include "Directory.hpp"
 #include <boost/filesystem.hpp>
 
 namespace Ishiko
