@@ -27,6 +27,10 @@ TextFileTests::TextFileTests(const TestNumber& number, const TestEnvironment& en
     append<HeapAllocationErrorsTest>("readAllLines test 2", ReadAllLinesTest2);
     append<HeapAllocationErrorsTest>("readAllLines test 3", ReadAllLinesTest3);
     append<HeapAllocationErrorsTest>("readAllLines test 4", ReadAllLinesTest4);
+    append<HeapAllocationErrorsTest>("forEachLine test 1", ForEachLineTest1);
+    append<HeapAllocationErrorsTest>("forEachLine test 2", ForEachLineTest2);
+    append<HeapAllocationErrorsTest>("forEachLine test 3", ForEachLineTest3);
+    append<HeapAllocationErrorsTest>("forEachLine test 4", ForEachLineTest4);
     append<FileComparisonTest>("write test 1", WriteTest1);
     append<FileComparisonTest>("writeLine test 1", WriteLineTest1);
 }
@@ -226,6 +230,106 @@ void TextFileTests::ReadAllLinesTest4(Test& test)
     ISHIKO_ABORT_IF(error);
 
     std::vector<std::string> lines = file.readAllLines(error);
+
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_ABORT_IF_NEQ(lines.size(), 2);
+    ISHIKO_FAIL_IF_NEQ(lines[0], "hello");
+    ISHIKO_FAIL_IF_NEQ(lines[1], "world");
+    ISHIKO_PASS();
+}
+
+void TextFileTests::ForEachLineTest1(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+
+    TextFile file;
+
+    Error error;
+    file.open(inputPath.string(), error);
+
+    // Ignore the open error on purpose to cause an error when we try to read a line
+    error.succeed();
+
+    std::vector<std::string> lines;
+    file.forEachLine(
+        [&lines](const std::string& line)
+        {
+            lines.push_back(line);
+        },
+        error);
+
+    ISHIKO_FAIL_IF_NOT(error);
+    ISHIKO_FAIL_IF_NEQ(lines.size(), 0);
+    ISHIKO_PASS();
+}
+
+void TextFileTests::ForEachLineTest2(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("empty.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.open(inputPath.string(), error);
+
+    ISHIKO_ABORT_IF(error);
+
+    std::vector<std::string> lines;
+    file.forEachLine(
+        [&lines](const std::string& line)
+        {
+            lines.push_back(line);
+        },
+        error);
+
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_FAIL_IF_NEQ(lines.size(), 0);
+    ISHIKO_PASS();
+}
+
+void TextFileTests::ForEachLineTest3(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.open(inputPath.string(), error);
+
+    ISHIKO_ABORT_IF(error);
+
+    std::vector<std::string> lines;
+    file.forEachLine(
+        [&lines](const std::string& line)
+        {
+            lines.push_back(line);
+        },
+        error);
+
+    ISHIKO_FAIL_IF(error);
+    ISHIKO_ABORT_IF_NEQ(lines.size(), 1);
+    ISHIKO_FAIL_IF_NEQ(lines[0], "hello");
+    ISHIKO_PASS();
+}
+
+void TextFileTests::ForEachLineTest4(Test& test)
+{
+    boost::filesystem::path inputPath(test.environment().getTestDataPath("file2.txt"));
+
+    TextFile file;
+
+    Error error;
+    file.open(inputPath.string(), error);
+
+    ISHIKO_ABORT_IF(error);
+
+    std::vector<std::string> lines;
+    file.forEachLine(
+        [&lines](const std::string& line)
+        {
+            lines.push_back(line);
+        },
+        error);
 
     ISHIKO_FAIL_IF(error);
     ISHIKO_ABORT_IF_NEQ(lines.size(), 2);
