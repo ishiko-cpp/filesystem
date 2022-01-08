@@ -7,10 +7,17 @@
 #include "TextFile.hpp"
 #include "Utilities.hpp"
 
+using namespace boost::filesystem;
+
 namespace Ishiko
 {
 namespace FileSystem
 {
+
+void TextFile::create(const boost::filesystem::path& path, Error& error)
+{
+    create(path.string(), error);
+}
 
 void TextFile::create(const std::string& path, Error& error)
 {
@@ -28,6 +35,11 @@ void TextFile::create(const std::string& path, Error& error)
         Fail(error, ErrorCategory::eAlreadyExists, std::string("path \'") + path + "\' already exists", __FILE__,
             __LINE__);
     }
+}
+
+void TextFile::open(const boost::filesystem::path& path, Error& error)
+{
+    open(path.string(), error);
 }
 
 void TextFile::open(const std::string& path, Error& error)
