@@ -8,6 +8,7 @@
 #define _ISHIKO_CPP_FILESYSTEM_TEXTFILE_HPP_
 
 #include "ErrorCategory.hpp"
+#include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
 #include <fstream>
 #include <string>
@@ -21,7 +22,9 @@ class TextFile
 {
 public:
     TextFile() = default;
+    void create(const boost::filesystem::path& path, Error& error);
     void create(const std::string& path, Error& error);
+    void open(const boost::filesystem::path& path, Error& error);
     void open(const std::string& path, Error& error);
 
     std::string readLine(Error& error);
