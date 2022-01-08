@@ -5,7 +5,6 @@
 */
 
 #include "TextFile.hpp"
-#include "ErrorCategory.hpp"
 #include "Utilities.hpp"
 
 namespace Ishiko

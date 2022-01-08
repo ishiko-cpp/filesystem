@@ -5,4 +5,4 @@
 /build/VC15/IshikoFileSystem.vcxproj.user
 /Lib/*
 !/Lib/README.md
-/Tests/TestOutput/
+/tests/output/

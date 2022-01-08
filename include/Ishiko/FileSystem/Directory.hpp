@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_CPP_FILESYSTEM_DIRECTORY_HPP_
 #define _ISHIKO_CPP_FILESYSTEM_DIRECTORY_HPP_
 
+#include <boost/filesystem.hpp>
 #include <functional>
 #include <string>
 
@@ -20,11 +21,42 @@ class Directory
 public:
     Directory(const char* path);
 
-    void forEachRegularFile(std::function<void(const std::string& path)> callback, bool recursive);
+    template<typename Callable> void forEachRegularFile(Callable&& callback, bool recursive);
 
 private:
     std::string m_path;
 };
+
+template<typename Callable>
+void Directory::forEachRegularFile(Callable&& callback, bool recursive)
+{
+    if (recursive)
+    {
+        boost::filesystem::recursive_directory_iterator iterator(m_path);
+        boost::filesystem::recursive_directory_iterator iterator_end;
+        while (iterator != iterator_end)
+        {
+            if (boost::filesystem::is_regular_file(iterator->status()))
+            {
+                callback(iterator->path().generic_string());
+            }
+            ++iterator;
+        }
+    }
+    else
+    {
+        boost::filesystem::directory_iterator iterator(m_path);
+        boost::filesystem::directory_iterator iterator_end;
+        while (iterator != iterator_end)
+        {
+            if (boost::filesystem::is_regular_file(iterator->status()))
+            {
+                callback(iterator->path().generic_string());
+            }
+            ++iterator;
+        }
+    }
+}
 
 }
 }
