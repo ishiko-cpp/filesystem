@@ -21,8 +21,7 @@ class Directory
 public:
     Directory(const char* path);
 
-    template<typename Callable>
-    void forEachRegularFile(Callable&& callback, bool recursive);
+    template<typename Callable> void forEachRegularFile(Callable&& callback, bool recursive);
 
 private:
     std::string m_path;

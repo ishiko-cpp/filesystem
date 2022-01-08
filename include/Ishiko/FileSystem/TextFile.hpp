@@ -25,6 +25,7 @@ public:
 
     std::string readLine(Error& error);
     std::vector<std::string> readAllLines(Error& error);
+    template<typename Callable> void forEachLine(Callable&& callback, bool recursive);
 
     void write(const char* str);
     void writeLine(const char* str);
@@ -32,6 +33,11 @@ public:
 private:
     std::fstream m_file;
 };
+
+template<typename Callable>
+void TextFile::forEachLine(Callable&& callback, bool recursive)
+{
+}
 
 }
 }
