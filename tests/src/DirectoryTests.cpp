@@ -10,8 +10,8 @@
 using namespace Ishiko::FileSystem;
 using namespace Ishiko::Tests;
 
-DirectoryTests::DirectoryTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "Directory tests", environment)
+DirectoryTests::DirectoryTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "Directory tests", context)
 {
     append<HeapAllocationErrorsTest>("constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("forEachRegularFile test 1", ForEachRegularFileTest1);
@@ -26,7 +26,7 @@ DirectoryTests::DirectoryTests(const TestNumber& number, const TestEnvironment& 
 
 void DirectoryTests::ConstructorTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory1");
 
     Directory directory(inputPath.string().c_str());
 
@@ -35,7 +35,7 @@ void DirectoryTests::ConstructorTest1(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory1");
 
     Directory directory(inputPath.string().c_str());
 
@@ -55,7 +55,7 @@ void DirectoryTests::ForEachRegularFileTest1(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory2");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory2");
 
     Directory directory(inputPath.string().c_str());
 
@@ -77,7 +77,7 @@ void DirectoryTests::ForEachRegularFileTest2(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory3");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory3");
 
     Directory directory(inputPath.string().c_str());
 
@@ -96,7 +96,7 @@ void DirectoryTests::ForEachRegularFileTest3(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory4");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory4");
 
     Directory directory(inputPath.string().c_str());
 
@@ -116,7 +116,7 @@ void DirectoryTests::ForEachRegularFileTest4(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest5(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory1");
 
     Ishiko::FileSystem::Directory directory(inputPath.string().c_str());
 
@@ -136,7 +136,7 @@ void DirectoryTests::ForEachRegularFileTest5(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest6(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory2");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory2");
 
     Directory directory(inputPath.string().c_str());
 
@@ -158,7 +158,7 @@ void DirectoryTests::ForEachRegularFileTest6(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest7(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory3");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory3");
 
     Directory directory(inputPath.string().c_str());
 
@@ -178,7 +178,7 @@ void DirectoryTests::ForEachRegularFileTest7(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest8(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataDirectory() / "Directory4");
+    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory4");
 
     Directory directory(inputPath.string().c_str());
 
