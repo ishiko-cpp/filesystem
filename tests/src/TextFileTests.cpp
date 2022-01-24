@@ -12,8 +12,8 @@ using namespace Ishiko;
 using namespace Ishiko::FileSystem;
 using namespace Ishiko::Tests;
 
-TextFileTests::TextFileTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "TextFile tests", environment)
+TextFileTests::TextFileTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "TextFile tests", context)
 {
     append<HeapAllocationErrorsTest>("constructor test 1", ConstructorTest1);
     append<FileComparisonTest>("create test 1", CreateTest1);
@@ -44,7 +44,7 @@ void TextFileTests::ConstructorTest1(Test& test)
 
 void TextFileTests::CreateTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath(test.environment().getTestOutputPath("TextFileTests_CreateTest1.txt"));
+    boost::filesystem::path outputPath(test.context().getTestOutputPath("TextFileTests_CreateTest1.txt"));
 
     TextFile file;
 
@@ -54,14 +54,14 @@ void TextFileTests::CreateTest1(FileComparisonTest& test)
     ISHIKO_FAIL_IF(error);
 
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataPath("TextFileTests_CreateTest1.txt"));
+    test.setReferenceFilePath(test.context().getReferenceDataPath("TextFileTests_CreateTest1.txt"));
 
     ISHIKO_PASS();
 }
 
 void TextFileTests::CreateTest2(Test& test)
 {
-    boost::filesystem::path outputPath(test.environment().getTestDataPath("file1.txt"));
+    boost::filesystem::path outputPath(test.context().getTestDataPath("file1.txt"));
 
     TextFile file;
 
@@ -75,7 +75,7 @@ void TextFileTests::CreateTest2(Test& test)
 
 void TextFileTests::OpenTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
     TextFile file;
 
@@ -88,7 +88,7 @@ void TextFileTests::OpenTest1(Test& test)
 
 void TextFileTests::OpenTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
     TextFile file;
 
@@ -101,7 +101,7 @@ void TextFileTests::OpenTest2(Test& test)
 
 void TextFileTests::ReadLineTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
     TextFile file;
 
@@ -121,7 +121,7 @@ void TextFileTests::ReadLineTest1(Test& test)
 
 void TextFileTests::ReadLineTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("empty.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("empty.txt"));
 
     TextFile file;
 
@@ -140,7 +140,7 @@ void TextFileTests::ReadLineTest2(Test& test)
 
 void TextFileTests::ReadLineTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
     TextFile file;
 
@@ -164,7 +164,7 @@ void TextFileTests::ReadLineTest3(Test& test)
 
 void TextFileTests::ReadAllLinesTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
     TextFile file;
 
@@ -183,7 +183,7 @@ void TextFileTests::ReadAllLinesTest1(Test& test)
 
 void TextFileTests::ReadAllLinesTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("empty.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("empty.txt"));
 
     TextFile file;
 
@@ -201,7 +201,7 @@ void TextFileTests::ReadAllLinesTest2(Test& test)
 
 void TextFileTests::ReadAllLinesTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
     TextFile file;
 
@@ -220,7 +220,7 @@ void TextFileTests::ReadAllLinesTest3(Test& test)
 
 void TextFileTests::ReadAllLinesTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("file2.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file2.txt"));
 
     TextFile file;
 
@@ -240,7 +240,7 @@ void TextFileTests::ReadAllLinesTest4(Test& test)
 
 void TextFileTests::ForEachLineTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
     TextFile file;
 
@@ -265,7 +265,7 @@ void TextFileTests::ForEachLineTest1(Test& test)
 
 void TextFileTests::ForEachLineTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("empty.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("empty.txt"));
 
     TextFile file;
 
@@ -289,7 +289,7 @@ void TextFileTests::ForEachLineTest2(Test& test)
 
 void TextFileTests::ForEachLineTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
     TextFile file;
 
@@ -314,7 +314,7 @@ void TextFileTests::ForEachLineTest3(Test& test)
 
 void TextFileTests::ForEachLineTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.environment().getTestDataPath("file2.txt"));
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file2.txt"));
 
     TextFile file;
 
@@ -340,7 +340,7 @@ void TextFileTests::ForEachLineTest4(Test& test)
 
 void TextFileTests::WriteTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath(test.environment().getTestOutputPath("TextFileTests_WriteTest1.txt"));
+    boost::filesystem::path outputPath(test.context().getTestOutputPath("TextFileTests_WriteTest1.txt"));
 
     TextFile file;
 
@@ -352,14 +352,14 @@ void TextFileTests::WriteTest1(FileComparisonTest& test)
     file.write("hello");
 
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataPath("TextFileTests_WriteTest1.txt"));
+    test.setReferenceFilePath(test.context().getReferenceDataPath("TextFileTests_WriteTest1.txt"));
 
     ISHIKO_PASS();
 }
 
 void TextFileTests::WriteLineTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath(test.environment().getTestOutputPath("TextFileTests_WriteLineTest1.txt"));
+    boost::filesystem::path outputPath(test.context().getTestOutputPath("TextFileTests_WriteLineTest1.txt"));
 
     TextFile file;
 
@@ -371,7 +371,7 @@ void TextFileTests::WriteLineTest1(FileComparisonTest& test)
     file.writeLine("hello");
 
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataPath("TextFileTests_WriteLineTest1.txt"));
+    test.setReferenceFilePath(test.context().getReferenceDataPath("TextFileTests_WriteLineTest1.txt"));
 
     ISHIKO_PASS();
 }
