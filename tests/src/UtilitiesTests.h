@@ -13,7 +13,7 @@
 class UtilitiesTests : public Ishiko::Tests::TestSequence
 {
 public:
-    UtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    UtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ExistsTest1(Ishiko::Tests::Test& test);

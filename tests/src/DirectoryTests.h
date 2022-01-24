@@ -12,7 +12,7 @@
 class DirectoryTests : public Ishiko::Tests::TestSequence
 {
 public:
-    DirectoryTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    DirectoryTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
