@@ -4,6 +4,7 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
+#include "BinaryFileTests.hpp"
 #include "TextFileTests.h"
 #include "DirectoryTests.h"
 #include "UtilitiesTests.h"
@@ -20,6 +21,7 @@ int main(int argc, char* argv[])
     theTestHarness.context().setReferenceDataDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<BinaryFileTests>();
     theTests.append<TextFileTests>();
     theTests.append<DirectoryTests>();
     theTests.append<UtilitiesTests>();

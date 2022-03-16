@@ -152,12 +152,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\BinaryFileTests.cpp" />
     <ClCompile Include="..\..\src\DirectoryTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\TextFileTests.cpp" />
     <ClCompile Include="..\..\src\UtilitiesTests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\BinaryFileTests.hpp" />
     <ClInclude Include="..\..\src\DirectoryTests.h" />
     <ClInclude Include="..\..\src\TextFileTests.h" />
     <ClInclude Include="..\..\src\UtilitiesTests.h" />
