@@ -15,8 +15,6 @@
 
 namespace Ishiko
 {
-namespace FileSystem
-{
 
 class TextFile
 {
@@ -57,7 +55,6 @@ void TextFile::forEachLine(Callable&& callback, Error& error)
     }
 }
 
-}
 }
 
 #endif

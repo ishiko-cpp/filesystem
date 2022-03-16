@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_CPP_FILESYSTEM_HPP_
 #define _ISHIKO_CPP_FILESYSTEM_HPP_
 
+#include "FileSystem/BinaryFile.hpp"
 #include "FileSystem/Directory.hpp"
 #include "FileSystem/FileSystemErrorCategory.hpp"
 #include "FileSystem/TextFile.hpp"

@@ -9,7 +9,6 @@
 #include <Ishiko/FileSystem/TextFile.hpp>
 
 using namespace Ishiko;
-using namespace Ishiko::FileSystem;
 using namespace Ishiko::Tests;
 
 TextFileTests::TextFileTests(const TestNumber& number, const TestContext& context)

@@ -11,8 +11,6 @@ using namespace boost::filesystem;
 
 namespace Ishiko
 {
-namespace FileSystem
-{
 
 void TextFile::create(const boost::filesystem::path& path, Error& error)
 {
@@ -22,7 +20,7 @@ void TextFile::create(const boost::filesystem::path& path, Error& error)
 void TextFile::create(const std::string& path, Error& error)
 {
     // TODO: use lower level file functions to make this more robust
-    if (!Exists(path))
+    if (!FileSystem::Exists(path))
     {
         m_file.open(path, std::ios::out);
         FailIfCreateFileError(error, m_file, path, __FILE__, __LINE__);
@@ -102,5 +100,4 @@ void TextFile::writeLine(const char* str)
     m_file << str << std::endl;
 }
 
-}
 }
