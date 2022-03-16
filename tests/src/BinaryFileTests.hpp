@@ -15,7 +15,8 @@ public:
     BinaryFileTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
+    static void CreateTest1(Ishiko::Tests::FileComparisonTest& test);
+    static void WriteTest1(Ishiko::Tests::FileComparisonTest& test);
 };
 
 #endif
