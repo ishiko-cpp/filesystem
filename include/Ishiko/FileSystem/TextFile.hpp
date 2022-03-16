@@ -7,15 +7,13 @@
 #ifndef _ISHIKO_CPP_FILESYSTEM_TEXTFILE_HPP_
 #define _ISHIKO_CPP_FILESYSTEM_TEXTFILE_HPP_
 
-#include "ErrorCategory.hpp"
+#include "FileSystemErrorCategory.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
 #include <fstream>
 #include <string>
 
 namespace Ishiko
-{
-namespace FileSystem
 {
 
 class TextFile
@@ -47,7 +45,7 @@ void TextFile::forEachLine(Callable&& callback, Error& error)
         std::string line = readLine(readError);
         if (readError)
         {
-            if (readError.condition().value() != ErrorCategory::eEndOfFile)
+            if (readError.condition() != FileSystemErrorCategory::Value::endOfFile)
             {
                 error.fail(readError);
             }
@@ -57,7 +55,6 @@ void TextFile::forEachLine(Callable&& callback, Error& error)
     }
 }
 
-}
 }
 
 #endif

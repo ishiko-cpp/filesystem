@@ -39,7 +39,7 @@ library IshikoFileSystem : IshikoErrors, IshikoBasePlatform, Boost
 
         ../../include/Ishiko/FileSystem/BinaryFile.hpp
         ../../include/Ishiko/FileSystem/Directory.hpp
-        ../../include/Ishiko/FileSystem/ErrorCategory.hpp
+        ../../include/Ishiko/FileSystem/FileSystemErrorCategory.hpp
         ../../include/Ishiko/FileSystem/TextFile.hpp
         ../../include/Ishiko/FileSystem/Utilities.hpp
         ../../include/Ishiko/FileSystem/linkoptions.hpp
@@ -49,7 +49,7 @@ library IshikoFileSystem : IshikoErrors, IshikoBasePlatform, Boost
     {
         ../../src/BinaryFile.cpp
         ../../src/Directory.cpp
-        ../../src/ErrorCategory.cpp
+        ../../src/FileSystemErrorCategory.cpp
         ../../src/TextFile.cpp
         ../../src/Utilities.cpp
     }
