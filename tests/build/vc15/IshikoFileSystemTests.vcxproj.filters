@@ -17,6 +17,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\BinaryFileTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\DirectoryTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -28,6 +31,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\BinaryFileTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\DirectoryTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

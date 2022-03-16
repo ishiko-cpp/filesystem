@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\BinaryFile.cpp" />
     <ClCompile Include="..\..\src\Directory.cpp" />
     <ClCompile Include="..\..\src\ErrorCategory.cpp" />
     <ClCompile Include="..\..\src\TextFile.cpp" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\FileSystem.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\BinaryFile.hpp" />
     <ClInclude Include="..\..\include\Ishiko\FileSystem\Directory.hpp" />
     <ClInclude Include="..\..\include\Ishiko\FileSystem\ErrorCategory.hpp" />
     <ClInclude Include="..\..\include\Ishiko\FileSystem\TextFile.hpp" />
