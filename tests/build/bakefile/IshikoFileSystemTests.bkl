@@ -22,6 +22,7 @@ program IshikoFileSystemTests : IshikoFileSystem, IshikoTestsCore
 
     headers
     {
+        ../../src/BinaryFileTests.hpp
         ../../src/DirectoryTests.h
         ../../src/TextFileTests.h
         ../../src/UtilitiesTests.h
@@ -29,6 +30,7 @@ program IshikoFileSystemTests : IshikoFileSystem, IshikoTestsCore
 
     sources
     {
+        ../../src/BinaryFileTests.cpp
         ../../src/DirectoryTests.cpp
         ../../src/main.cpp
         ../../src/TextFileTests.cpp

@@ -37,6 +37,7 @@ library IshikoFileSystem : IshikoErrors, IshikoBasePlatform, Boost
     {
         ../../include/Ishiko/FileSystem.hpp
 
+        ../../include/Ishiko/FileSystem/BinaryFile.hpp
         ../../include/Ishiko/FileSystem/Directory.hpp
         ../../include/Ishiko/FileSystem/ErrorCategory.hpp
         ../../include/Ishiko/FileSystem/TextFile.hpp
@@ -46,6 +47,7 @@ library IshikoFileSystem : IshikoErrors, IshikoBasePlatform, Boost
 
     sources
     {
+        ../../src/BinaryFile.cpp
         ../../src/Directory.cpp
         ../../src/ErrorCategory.cpp
         ../../src/TextFile.cpp
