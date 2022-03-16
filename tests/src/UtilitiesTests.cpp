@@ -5,7 +5,7 @@
 */
 
 #include "UtilitiesTests.h"
-#include <Ishiko/FileSystem/ErrorCategory.hpp>
+#include <Ishiko/FileSystem/FileSystemErrorCategory.hpp>
 #include <Ishiko/FileSystem/Utilities.hpp>
 #include <boost/filesystem/operations.hpp>
 
@@ -89,7 +89,7 @@ void UtilitiesTests::GetFileSizeTest2(Test& test)
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
     ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
+    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
     ISHIKO_FAIL_IF_NEQ(fileSize, 0);
     ISHIKO_PASS();
 }
@@ -126,7 +126,7 @@ void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
     ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eNotFound);
+    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
     ISHIKO_FAIL_IF(isDir);
     ISHIKO_PASS();
 }
@@ -188,7 +188,7 @@ void UtilitiesTests::IsEmptyTest5(Ishiko::Tests::Test& test)
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
     ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), Ishiko::FileSystem::ErrorCategory::eNotFound);
+    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
     ISHIKO_FAIL_IF(empty);
     ISHIKO_PASS();
 }
@@ -253,7 +253,7 @@ void UtilitiesTests::CreateEmptyFileTest2(Test& test)
     CreateEmptyFile(outputPath, error);
 
     ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eAlreadyExists);
+    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::alreadyExists);
     ISHIKO_PASS();
 }
 
@@ -295,7 +295,7 @@ void UtilitiesTests::ReadFileTest3(Test& test)
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
     ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition().value(), FileSystem::ErrorCategory::eBufferOverflow);
+    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::bufferOverflow);
     ISHIKO_FAIL_IF_NEQ(bytesRead, 5);
     ISHIKO_PASS();
 }

@@ -8,13 +8,10 @@
 
 namespace Ishiko
 {
-namespace FileSystem
-{
 
 Directory::Directory(const char* path)
     : m_path(path)
 {
 }
 
-}
 }

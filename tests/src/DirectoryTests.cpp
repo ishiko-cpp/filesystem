@@ -7,7 +7,7 @@
 #include "DirectoryTests.h"
 #include <Ishiko/FileSystem/Directory.hpp>
 
-using namespace Ishiko::FileSystem;
+using namespace Ishiko;
 using namespace Ishiko::Tests;
 
 DirectoryTests::DirectoryTests(const TestNumber& number, const TestContext& context)
@@ -118,7 +118,7 @@ void DirectoryTests::ForEachRegularFileTest5(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory1");
 
-    Ishiko::FileSystem::Directory directory(inputPath.string().c_str());
+    Directory directory(inputPath.string().c_str());
 
     std::vector<std::string> files;
     directory.forEachRegularFile(

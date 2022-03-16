@@ -13,8 +13,6 @@
 
 namespace Ishiko
 {
-namespace FileSystem
-{
 
 class Directory
 {
@@ -58,7 +56,6 @@ void Directory::forEachRegularFile(Callable&& callback, bool recursive)
     }
 }
 
-}
 }
 
 #endif
