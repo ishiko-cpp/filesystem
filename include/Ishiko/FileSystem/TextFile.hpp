@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_CPP_FILESYSTEM_TEXTFILE_HPP_
 #define _ISHIKO_CPP_FILESYSTEM_TEXTFILE_HPP_
 
-#include "ErrorCategory.hpp"
+#include "FileSystemErrorCategory.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
 #include <fstream>

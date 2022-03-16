@@ -8,7 +8,7 @@
 #define _ISHIKO_CPP_FILESYSTEM_HPP_
 
 #include "FileSystem/Directory.hpp"
-#include "FileSystem/ErrorCategory.hpp"
+#include "FileSystem/FileSystemErrorCategory.hpp"
 #include "FileSystem/TextFile.hpp"
 #include "FileSystem/Utilities.hpp"
 

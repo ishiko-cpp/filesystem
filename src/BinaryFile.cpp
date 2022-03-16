@@ -5,7 +5,7 @@
 */
 
 #include "BinaryFile.hpp"
-#include "ErrorCategory.hpp"
+#include "FileSystemErrorCategory.hpp"
 #include "Utilities.hpp"
 
 using namespace boost::filesystem;
@@ -34,7 +34,7 @@ BinaryFile BinaryFile::Create(const string& path, Error& error)
     }
     else
     {
-        Fail(error, FileSystem::ErrorCategory::eAlreadyExists, string("path \'") + path + "\' already exists",
+        Fail(error, FileSystemErrorCategory::Value::alreadyExists, string("path \'") + path + "\' already exists",
             __FILE__, __LINE__);
     }
 
