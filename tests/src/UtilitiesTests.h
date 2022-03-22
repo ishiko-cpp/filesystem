@@ -10,38 +10,38 @@
 #include <Ishiko/BasePlatform.h>
 #include <Ishiko/Tests/Core.hpp>
 
-class UtilitiesTests : public Ishiko::Tests::TestSequence
+class UtilitiesTests : public Ishiko::TestSequence
 {
 public:
-    UtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    UtilitiesTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ExistsTest1(Ishiko::Tests::Test& test);
-    static void ExistsTest2(Ishiko::Tests::Test& test);
-    static void ExistsTest3(Ishiko::Tests::Test& test);
-    static void GetFileSizeTest1(Ishiko::Tests::Test& test);
-    static void GetFileSizeTest2(Ishiko::Tests::Test& test);
-    static void IsDirectoryTest1(Ishiko::Tests::Test& test);
-    static void IsDirectoryTest2(Ishiko::Tests::Test& test);
-    static void IsDirectoryTest3(Ishiko::Tests::Test& test);
-    static void IsEmptyTest1(Ishiko::Tests::Test& test);
-    static void IsEmptyTest2(Ishiko::Tests::Test& test);
-    static void IsEmptyTest3(Ishiko::Tests::Test& test);
-    static void IsEmptyTest4(Ishiko::Tests::Test& test);
-    static void IsEmptyTest5(Ishiko::Tests::Test& test);
-    static void ToAbsolutePathTest1(Ishiko::Tests::Test& test);
-    static void ToAbsolutePathTest2(Ishiko::Tests::Test& test);
-    static void CreateEmptyFileTest1(Ishiko::Tests::Test& test);
-    static void CreateEmptyFileTest2(Ishiko::Tests::Test& test);
-    static void ReadFileTest1(Ishiko::Tests::Test& test);
-    static void ReadFileTest2(Ishiko::Tests::Test& test);
-    static void ReadFileTest3(Ishiko::Tests::Test& test);
-    static void ReadFileTest4(Ishiko::Tests::Test& test);
-    static void ReadFileTest5(Ishiko::Tests::Test& test);
-    static void ReadFileTest6(Ishiko::Tests::Test& test);
-    static void ReadFileTest7(Ishiko::Tests::Test& test);
+    static void ExistsTest1(Ishiko::Test& test);
+    static void ExistsTest2(Ishiko::Test& test);
+    static void ExistsTest3(Ishiko::Test& test);
+    static void GetFileSizeTest1(Ishiko::Test& test);
+    static void GetFileSizeTest2(Ishiko::Test& test);
+    static void IsDirectoryTest1(Ishiko::Test& test);
+    static void IsDirectoryTest2(Ishiko::Test& test);
+    static void IsDirectoryTest3(Ishiko::Test& test);
+    static void IsEmptyTest1(Ishiko::Test& test);
+    static void IsEmptyTest2(Ishiko::Test& test);
+    static void IsEmptyTest3(Ishiko::Test& test);
+    static void IsEmptyTest4(Ishiko::Test& test);
+    static void IsEmptyTest5(Ishiko::Test& test);
+    static void ToAbsolutePathTest1(Ishiko::Test& test);
+    static void ToAbsolutePathTest2(Ishiko::Test& test);
+    static void CreateEmptyFileTest1(Ishiko::Test& test);
+    static void CreateEmptyFileTest2(Ishiko::Test& test);
+    static void ReadFileTest1(Ishiko::Test& test);
+    static void ReadFileTest2(Ishiko::Test& test);
+    static void ReadFileTest3(Ishiko::Test& test);
+    static void ReadFileTest4(Ishiko::Test& test);
+    static void ReadFileTest5(Ishiko::Test& test);
+    static void ReadFileTest6(Ishiko::Test& test);
+    static void ReadFileTest7(Ishiko::Test& test);
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
-    static void GetVolumeListTest1(Ishiko::Tests::Test& test);
+    static void GetVolumeListTest1(Ishiko::Test& test);
 #endif
 };
 

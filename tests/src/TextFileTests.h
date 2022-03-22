@@ -9,30 +9,30 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class TextFileTests : public Ishiko::Tests::TestSequence
+class TextFileTests : public Ishiko::TestSequence
 {
 public:
-    TextFileTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    TextFileTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void CreateTest1(Ishiko::Tests::FileComparisonTest& test);
-    static void CreateTest2(Ishiko::Tests::Test& test);
-    static void OpenTest1(Ishiko::Tests::Test& test);
-    static void OpenTest2(Ishiko::Tests::Test& test);
-    static void ReadLineTest1(Ishiko::Tests::Test& test);
-    static void ReadLineTest2(Ishiko::Tests::Test& test);
-    static void ReadLineTest3(Ishiko::Tests::Test& test);
-    static void ReadAllLinesTest1(Ishiko::Tests::Test& test);
-    static void ReadAllLinesTest2(Ishiko::Tests::Test& test);
-    static void ReadAllLinesTest3(Ishiko::Tests::Test& test);
-    static void ReadAllLinesTest4(Ishiko::Tests::Test& test);
-    static void ForEachLineTest1(Ishiko::Tests::Test& test);
-    static void ForEachLineTest2(Ishiko::Tests::Test& test);
-    static void ForEachLineTest3(Ishiko::Tests::Test& test);
-    static void ForEachLineTest4(Ishiko::Tests::Test& test);
-    static void WriteTest1(Ishiko::Tests::FileComparisonTest& test);
-    static void WriteLineTest1(Ishiko::Tests::FileComparisonTest& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void CreateTest1(Ishiko::FileComparisonTest& test);
+    static void CreateTest2(Ishiko::Test& test);
+    static void OpenTest1(Ishiko::Test& test);
+    static void OpenTest2(Ishiko::Test& test);
+    static void ReadLineTest1(Ishiko::Test& test);
+    static void ReadLineTest2(Ishiko::Test& test);
+    static void ReadLineTest3(Ishiko::Test& test);
+    static void ReadAllLinesTest1(Ishiko::Test& test);
+    static void ReadAllLinesTest2(Ishiko::Test& test);
+    static void ReadAllLinesTest3(Ishiko::Test& test);
+    static void ReadAllLinesTest4(Ishiko::Test& test);
+    static void ForEachLineTest1(Ishiko::Test& test);
+    static void ForEachLineTest2(Ishiko::Test& test);
+    static void ForEachLineTest3(Ishiko::Test& test);
+    static void ForEachLineTest4(Ishiko::Test& test);
+    static void WriteTest1(Ishiko::FileComparisonTest& test);
+    static void WriteLineTest1(Ishiko::FileComparisonTest& test);
 };
 
 #endif

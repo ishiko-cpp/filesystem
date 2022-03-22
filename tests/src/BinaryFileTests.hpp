@@ -9,14 +9,14 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class BinaryFileTests : public Ishiko::Tests::TestSequence
+class BinaryFileTests : public Ishiko::TestSequence
 {
 public:
-    BinaryFileTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    BinaryFileTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void CreateTest1(Ishiko::Tests::FileComparisonTest& test);
-    static void WriteTest1(Ishiko::Tests::FileComparisonTest& test);
+    static void CreateTest1(Ishiko::FileComparisonTest& test);
+    static void WriteTest1(Ishiko::FileComparisonTest& test);
 };
 
 #endif

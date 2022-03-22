@@ -25,12 +25,12 @@ void BinaryFileTests::CreateTest1(FileComparisonTest& test)
     Error error;
     BinaryFile file = BinaryFile::Create(outputPath.string(), error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("BinaryFileTests_CreateTest1.bin"));
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void BinaryFileTests::WriteTest1(FileComparisonTest& test)
@@ -40,12 +40,12 @@ void BinaryFileTests::WriteTest1(FileComparisonTest& test)
     Error error;
     BinaryFile file = BinaryFile::Create(outputPath.string(), error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     file.write("hello\r\n", 7);
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("BinaryFileTests_WriteTest1.bin"));
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
