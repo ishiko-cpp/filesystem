@@ -14,7 +14,7 @@ Utilities to work with the file system.
 
 [![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/filesystem.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/filesystem)
 
-This project is intended for use by its author only.
+This project is in early development and not ready for public use yet. 
 
 ## Usage
 

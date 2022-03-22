@@ -11,7 +11,6 @@
 
 using namespace Ishiko;
 using namespace Ishiko::FileSystem;
-using namespace Ishiko::Tests;
 
 UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Utilities tests", context)
@@ -45,28 +44,28 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestContext& cont
 #endif
 }
 
-void UtilitiesTests::ExistsTest1(Ishiko::Tests::Test& test)
+void UtilitiesTests::ExistsTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
-    ISHIKO_FAIL_IF(Exists(inputPath.string().c_str()));
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(Exists(inputPath.string().c_str()));
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::ExistsTest2(Ishiko::Tests::Test& test)
+void UtilitiesTests::ExistsTest2(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
-    ISHIKO_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::ExistsTest3(Ishiko::Tests::Test& test)
+void UtilitiesTests::ExistsTest3(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataDirectory());
 
-    ISHIKO_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::GetFileSizeTest1(Test& test)
@@ -76,9 +75,9 @@ void UtilitiesTests::GetFileSizeTest1(Test& test)
     Error error;
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NEQ(fileSize, 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(fileSize, 5);
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::GetFileSizeTest2(Test& test)
@@ -88,74 +87,74 @@ void UtilitiesTests::GetFileSizeTest2(Test& test)
     Error error;
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
-    ISHIKO_FAIL_IF_NEQ(fileSize, 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
+    ISHIKO_TEST_FAIL_IF_NEQ(fileSize, 0);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsDirectoryTest1(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsDirectoryTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataDirectory());
 
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NOT(isDir);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NOT(isDir);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsDirectoryTest2(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsDirectoryTest2(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF(isDir);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(isDir);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsDirectoryTest3(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsDirectoryTest3(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
-    ISHIKO_FAIL_IF(isDir);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
+    ISHIKO_TEST_FAIL_IF(isDir);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsEmptyTest1(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsEmptyTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("empty.txt"));
 
     Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NOT(empty);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NOT(empty);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsEmptyTest2(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsEmptyTest2(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
     Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF(empty);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(empty);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsEmptyTest3(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsEmptyTest3(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestOutputPath("empty"));
     boost::filesystem::create_directory(inputPath);
@@ -163,37 +162,37 @@ void UtilitiesTests::IsEmptyTest3(Ishiko::Tests::Test& test)
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NOT(empty);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NOT(empty);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsEmptyTest4(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsEmptyTest4(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataDirectory());
 
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF(empty);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(empty);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::IsEmptyTest5(Ishiko::Tests::Test& test)
+void UtilitiesTests::IsEmptyTest5(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
-    ISHIKO_FAIL_IF(empty);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
+    ISHIKO_TEST_FAIL_IF(empty);
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
+void UtilitiesTests::ToAbsolutePathTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
@@ -207,11 +206,11 @@ void UtilitiesTests::ToAbsolutePathTest1(Ishiko::Tests::Test& test)
     std::string absolutePath;
     ToAbsolutePath(inputPath.string().c_str(), absolutePath);
 
-    ISHIKO_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
+    ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
+void UtilitiesTests::ToAbsolutePathTest2(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
@@ -225,8 +224,8 @@ void UtilitiesTests::ToAbsolutePathTest2(Ishiko::Tests::Test& test)
     std::string absolutePath;
     ToAbsolutePath(inputPath.string(), absolutePath);
 
-    ISHIKO_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(absolutePath, currentPath + inputPath.string());
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::CreateEmptyFileTest1(Test& test)
@@ -236,9 +235,9 @@ void UtilitiesTests::CreateEmptyFileTest1(Test& test)
     Ishiko::Error error;
     CreateEmptyFile(outputPath, error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NOT(Exists(outputPath));
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NOT(Exists(outputPath));
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::CreateEmptyFileTest2(Test& test)
@@ -248,13 +247,13 @@ void UtilitiesTests::CreateEmptyFileTest2(Test& test)
     Error error;
     CreateEmptyFile(outputPath, error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
     
     CreateEmptyFile(outputPath, error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::alreadyExists);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::alreadyExists);
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::ReadFileTest1(Test& test)
@@ -266,9 +265,9 @@ void UtilitiesTests::ReadFileTest1(Test& test)
     char buffer[bufferSize];
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NEQ(bytesRead, 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(bytesRead, 5);
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::ReadFileTest2(Test& test)
@@ -280,9 +279,9 @@ void UtilitiesTests::ReadFileTest2(Test& test)
     char buffer[bufferSize];
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(bytesRead, 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(bytesRead, 0);
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::ReadFileTest3(Test& test)
@@ -294,10 +293,10 @@ void UtilitiesTests::ReadFileTest3(Test& test)
     char buffer[bufferSize];
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::bufferOverflow);
-    ISHIKO_FAIL_IF_NEQ(bytesRead, 5);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::bufferOverflow);
+    ISHIKO_TEST_FAIL_IF_NEQ(bytesRead, 5);
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::ReadFileTest4(Test& test)
@@ -307,9 +306,9 @@ void UtilitiesTests::ReadFileTest4(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NEQ(bytes, "hello");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(bytes, "hello");
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::ReadFileTest5(Test& test)
@@ -319,9 +318,9 @@ void UtilitiesTests::ReadFileTest5(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath.string().c_str(), error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(bytes, "");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(bytes, "");
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::ReadFileTest6(Test& test)
@@ -331,9 +330,9 @@ void UtilitiesTests::ReadFileTest6(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath, error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NEQ(bytes, "hello");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(bytes, "hello");
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::ReadFileTest7(Test& test)
@@ -343,20 +342,20 @@ void UtilitiesTests::ReadFileTest7(Test& test)
     Error error;
     std::string bytes = ReadFile(inputPath, error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(bytes, "");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(bytes, "");
+    ISHIKO_TEST_PASS();
 }
 
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
-void UtilitiesTests::GetVolumeListTest1(Ishiko::Tests::Test& test)
+void UtilitiesTests::GetVolumeListTest1(Test& test)
 {
     Ishiko::Error error;
     std::vector<std::string> volumeNames;
     GetVolumeList(volumeNames, error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_ABORT_IF_NOT(volumeNames.size() >= 1);
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_NOT(volumeNames.size() >= 1);
 
     for (const std::string& volumeName : volumeNames)
     {
@@ -367,7 +366,7 @@ void UtilitiesTests::GetVolumeListTest1(Ishiko::Tests::Test& test)
         {
             if ((volumePathNamesLength != 0) && (volumePathNames[0] != 0) && (strcmp(volumePathNames, "C:\\") == 0))
             {
-                ISHIKO_PASS();
+                ISHIKO_TEST_PASS();
             }
         }
         delete[] volumePathNames;
