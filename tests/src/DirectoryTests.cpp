@@ -6,6 +6,7 @@
 
 #include "DirectoryTests.h"
 #include <Ishiko/FileSystem/Directory.hpp>
+#include <algorithm>
 
 using namespace Ishiko;
 
