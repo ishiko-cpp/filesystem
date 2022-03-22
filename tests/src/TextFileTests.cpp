@@ -9,7 +9,6 @@
 #include <Ishiko/FileSystem/TextFile.hpp>
 
 using namespace Ishiko;
-using namespace Ishiko::Tests;
 
 TextFileTests::TextFileTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "TextFile tests", context)
@@ -38,7 +37,7 @@ void TextFileTests::ConstructorTest1(Test& test)
 {
     TextFile file;
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::CreateTest1(FileComparisonTest& test)
@@ -50,12 +49,12 @@ void TextFileTests::CreateTest1(FileComparisonTest& test)
     Error error;
     file.create(outputPath.string(), error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("TextFileTests_CreateTest1.txt"));
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::CreateTest2(Test& test)
@@ -67,9 +66,9 @@ void TextFileTests::CreateTest2(Test& test)
     Error error;
     file.create(outputPath.string(), error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::alreadyExists);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::alreadyExists);
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::OpenTest1(Test& test)
@@ -81,8 +80,8 @@ void TextFileTests::OpenTest1(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::OpenTest2(Test& test)
@@ -94,8 +93,8 @@ void TextFileTests::OpenTest2(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ReadLineTest1(Test& test)
@@ -112,10 +111,10 @@ void TextFileTests::ReadLineTest1(Test& test)
 
     std::string line = file.readLine(error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::readError);
-    ISHIKO_FAIL_IF_NEQ(line, "");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::readError);
+    ISHIKO_TEST_FAIL_IF_NEQ(line, "");
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ReadLineTest2(Test& test)
@@ -127,14 +126,14 @@ void TextFileTests::ReadLineTest2(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::string line = file.readLine(error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::endOfFile);
-    ISHIKO_FAIL_IF_NEQ(line, "");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::endOfFile);
+    ISHIKO_TEST_FAIL_IF_NEQ(line, "");
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ReadLineTest3(Test& test)
@@ -146,19 +145,19 @@ void TextFileTests::ReadLineTest3(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::string line1 = file.readLine(error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NEQ(line1, "hello");
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(line1, "hello");
 
     std::string line2 = file.readLine(error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::endOfFile);
-    ISHIKO_FAIL_IF_NEQ(line2, "");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::endOfFile);
+    ISHIKO_TEST_FAIL_IF_NEQ(line2, "");
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ReadAllLinesTest1(Test& test)
@@ -175,9 +174,9 @@ void TextFileTests::ReadAllLinesTest1(Test& test)
 
     std::vector<std::string> lines = file.readAllLines(error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(lines.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ReadAllLinesTest2(Test& test)
@@ -189,13 +188,13 @@ void TextFileTests::ReadAllLinesTest2(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::vector<std::string> lines = file.readAllLines(error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NEQ(lines.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ReadAllLinesTest3(Test& test)
@@ -207,14 +206,14 @@ void TextFileTests::ReadAllLinesTest3(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::vector<std::string> lines = file.readAllLines(error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_ABORT_IF_NEQ(lines.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(lines[0], "hello");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(lines.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines[0], "hello");
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ReadAllLinesTest4(Test& test)
@@ -226,15 +225,15 @@ void TextFileTests::ReadAllLinesTest4(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::vector<std::string> lines = file.readAllLines(error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_ABORT_IF_NEQ(lines.size(), 2);
-    ISHIKO_FAIL_IF_NEQ(lines[0], "hello");
-    ISHIKO_FAIL_IF_NEQ(lines[1], "world");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(lines.size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines[0], "hello");
+    ISHIKO_TEST_FAIL_IF_NEQ(lines[1], "world");
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ForEachLineTest1(Test& test)
@@ -257,9 +256,9 @@ void TextFileTests::ForEachLineTest1(Test& test)
         },
         error);
 
-    ISHIKO_FAIL_IF_NOT(error);
-    ISHIKO_FAIL_IF_NEQ(lines.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ForEachLineTest2(Test& test)
@@ -271,7 +270,7 @@ void TextFileTests::ForEachLineTest2(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::vector<std::string> lines;
     file.forEachLine(
@@ -281,9 +280,9 @@ void TextFileTests::ForEachLineTest2(Test& test)
         },
         error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_FAIL_IF_NEQ(lines.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ForEachLineTest3(Test& test)
@@ -295,7 +294,7 @@ void TextFileTests::ForEachLineTest3(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::vector<std::string> lines;
     file.forEachLine(
@@ -305,10 +304,10 @@ void TextFileTests::ForEachLineTest3(Test& test)
         },
         error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_ABORT_IF_NEQ(lines.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(lines[0], "hello");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(lines.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines[0], "hello");
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::ForEachLineTest4(Test& test)
@@ -320,7 +319,7 @@ void TextFileTests::ForEachLineTest4(Test& test)
     Error error;
     file.open(inputPath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     std::vector<std::string> lines;
     file.forEachLine(
@@ -330,11 +329,11 @@ void TextFileTests::ForEachLineTest4(Test& test)
         },
         error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_ABORT_IF_NEQ(lines.size(), 2);
-    ISHIKO_FAIL_IF_NEQ(lines[0], "hello");
-    ISHIKO_FAIL_IF_NEQ(lines[1], "world");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(lines.size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(lines[0], "hello");
+    ISHIKO_TEST_FAIL_IF_NEQ(lines[1], "world");
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::WriteTest1(FileComparisonTest& test)
@@ -346,14 +345,14 @@ void TextFileTests::WriteTest1(FileComparisonTest& test)
     Error error;
     file.create(outputPath.string(), error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     file.write("hello");
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("TextFileTests_WriteTest1.txt"));
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void TextFileTests::WriteLineTest1(FileComparisonTest& test)
@@ -365,12 +364,12 @@ void TextFileTests::WriteLineTest1(FileComparisonTest& test)
     Error error;
     file.create(outputPath.string(), error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     file.writeLine("hello");
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("TextFileTests_WriteLineTest1.txt"));
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }

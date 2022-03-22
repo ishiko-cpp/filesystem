@@ -9,21 +9,21 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class DirectoryTests : public Ishiko::Tests::TestSequence
+class DirectoryTests : public Ishiko::TestSequence
 {
 public:
-    DirectoryTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    DirectoryTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest1(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest2(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest3(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest4(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest5(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest6(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest7(Ishiko::Tests::Test& test);
-    static void ForEachRegularFileTest8(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void ForEachRegularFileTest1(Ishiko::Test& test);
+    static void ForEachRegularFileTest2(Ishiko::Test& test);
+    static void ForEachRegularFileTest3(Ishiko::Test& test);
+    static void ForEachRegularFileTest4(Ishiko::Test& test);
+    static void ForEachRegularFileTest5(Ishiko::Test& test);
+    static void ForEachRegularFileTest6(Ishiko::Test& test);
+    static void ForEachRegularFileTest7(Ishiko::Test& test);
+    static void ForEachRegularFileTest8(Ishiko::Test& test);
 };
 
 #endif
