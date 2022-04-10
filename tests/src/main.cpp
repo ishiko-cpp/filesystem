@@ -8,7 +8,7 @@
 #include "TextFileTests.h"
 #include "DirectoryTests.h"
 #include "UtilitiesTests.h"
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 using namespace Ishiko;
 
