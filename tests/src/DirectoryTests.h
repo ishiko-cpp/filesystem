@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_CPP_FILESYSTEM_TESTS_DIRECTORYTESTS_H_
 #define _ISHIKO_CPP_FILESYSTEM_TESTS_DIRECTORYTESTS_H_
 
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 class DirectoryTests : public Ishiko::TestSequence
 {
