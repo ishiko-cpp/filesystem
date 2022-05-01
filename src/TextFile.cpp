@@ -46,6 +46,11 @@ void TextFile::open(const std::string& path, Error& error)
     FailIfOpenFileError(error, m_file, path, __FILE__, __LINE__);
 }
 
+void TextFile::close()
+{
+    m_file.close();
+}
+
 std::string TextFile::readLine(Error& error)
 {
     std::string result;

@@ -24,6 +24,7 @@ public:
     void create(const std::string& path, Error& error);
     void open(const boost::filesystem::path& path, Error& error);
     void open(const std::string& path, Error& error);
+    void close();
 
     std::string readLine(Error& error);
     std::vector<std::string> readAllLines(Error& error);
