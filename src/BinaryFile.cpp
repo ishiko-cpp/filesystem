@@ -41,6 +41,11 @@ BinaryFile BinaryFile::Create(const string& path, Error& error)
     return result;
 }
 
+void BinaryFile::close()
+{
+    m_file.close();
+}
+
 void BinaryFile::write(const char* buffer, size_t length)
 {
     // TODO: error handling
