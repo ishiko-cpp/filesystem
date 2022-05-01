@@ -31,6 +31,7 @@ public:
 
     void write(const char* str);
     void writeLine(const char* str);
+    void flush();
 
 private:
     std::fstream m_file;

@@ -100,4 +100,9 @@ void TextFile::writeLine(const char* str)
     m_file << str << std::endl;
 }
 
+void TextFile::flush()
+{
+    m_file.flush();
+}
+
 }
