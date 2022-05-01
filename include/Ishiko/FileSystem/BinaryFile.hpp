@@ -21,6 +21,7 @@ public:
     static BinaryFile Create(const std::string& path, Error& error);
 
     void write(const char* buffer, size_t length);
+    void flush();
 
 private:
     BinaryFile() = default;
