@@ -17,15 +17,15 @@ namespace Ishiko
 class BinaryFile
 {
 public:
+    BinaryFile() = default;
     static BinaryFile Create(const boost::filesystem::path& path, Error& error);
     static BinaryFile Create(const std::string& path, Error& error);
+    void close();
 
     void write(const char* buffer, size_t length);
     void flush();
 
 private:
-    BinaryFile() = default;
-
     std::fstream m_file;
 };
 
