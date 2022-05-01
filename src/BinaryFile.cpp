@@ -47,4 +47,9 @@ void BinaryFile::write(const char* buffer, size_t length)
     m_file.write(buffer, length);
 }
 
+void BinaryFile::flush()
+{
+    m_file.flush();
+}
+
 }
