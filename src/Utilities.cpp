@@ -120,7 +120,7 @@ void CreateEmptyFile(const boost::filesystem::path& path, Error& error) noexcept
     CreateEmptyFile(path.string(), error);
 }
 
-void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error)
+void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error) noexcept
 {
     boost::system::error_code ec;
     boost::filesystem::copy_file(sourcePath, targetPath, ec);
