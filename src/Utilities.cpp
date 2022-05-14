@@ -32,7 +32,13 @@ bool Exists(const boost::filesystem::path& path)
     return Exists(path.string());
 }
 
-size_t GetFileSize(const char* path, Error& error)
+size_t GetFileSize(const char* path)
+{
+    // TODO: test exceptions, is the boost exception informative enough?
+    return boost::filesystem::file_size(path);
+}
+
+size_t GetFileSize(const char* path, Error& error) noexcept
 {
     try
     {
@@ -46,7 +52,7 @@ size_t GetFileSize(const char* path, Error& error)
     }
 }
 
-bool IsDirectory(const char* path, Error& error)
+bool IsDirectory(const char* path, Error& error) noexcept
 {
     try
     {
@@ -71,7 +77,7 @@ bool IsDirectory(const char* path, Error& error)
     }
 }
 
-bool IsEmpty(const char* path, Error& error)
+bool IsEmpty(const char* path, Error& error) noexcept
 {
     try
     {
@@ -95,7 +101,7 @@ void ToAbsolutePath(const std::string& path, std::string& absolutePath)
     absolutePath = boost::filesystem::absolute(path).string();
 }
 
-void CreateEmptyFile(const std::string& path, Error& error)
+void CreateEmptyFile(const std::string& path, Error& error) noexcept
 {
     // TODO: use lower level file functions to make this more robust
     if (!Exists(path))
@@ -109,12 +115,12 @@ void CreateEmptyFile(const std::string& path, Error& error)
     }
 }
 
-void CreateEmptyFile(const boost::filesystem::path& path, Error& error)
+void CreateEmptyFile(const boost::filesystem::path& path, Error& error) noexcept
 {
     CreateEmptyFile(path.string(), error);
 }
 
-void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error)
+void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error) noexcept
 {
     boost::system::error_code ec;
     boost::filesystem::copy_file(sourcePath, targetPath, ec);
@@ -125,7 +131,7 @@ void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem
     }
 }
 
-size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error)
+size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error) noexcept
 {
     size_t result = 0;
 
@@ -156,25 +162,43 @@ size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& er
     return result;
 }
 
-std::string ReadFile(const char* filename, Error& error)
+std::string ReadFile(const char* filename)
+{
+    std::string result;
+    size_t fileSize = GetFileSize(filename);
+    result.resize(fileSize);
+    Error error;
+    // TODO: robustness, race condition if file change sizes between GetFileSize and ReadFile
+    ReadFile(filename, const_cast<char*>(result.data()), fileSize, error);
+    ThrowIf(error);
+    return result;
+}
+
+std::string ReadFile(const char* filename, Error& error) noexcept
 {
     std::string result;
     size_t fileSize = GetFileSize(filename, error);
     if (!error)
     {
         result.resize(fileSize);
+        // TODO: robustness, race condition if file change sizes between GetFileSize and ReadFile
         ReadFile(filename, const_cast<char*>(result.data()), fileSize, error);
     }
     return result;
 }
 
-std::string ReadFile(const boost::filesystem::path& path, Error& error)
+std::string ReadFile(const boost::filesystem::path& path)
+{
+    return ReadFile(path.string().c_str());
+}
+
+std::string ReadFile(const boost::filesystem::path& path, Error& error) noexcept
 {
     return ReadFile(path.string().c_str(), error);
 }
 
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
-void GetVolumeList(std::vector<std::string>& volumeNames, Error& error)
+void GetVolumeList(std::vector<std::string>& volumeNames, Error& error) noexcept
 {
     char volumeName[MAX_PATH + 1];
     HANDLE searchHandle = FindFirstVolumeA(volumeName, MAX_PATH + 1);

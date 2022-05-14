@@ -20,6 +20,8 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestContext& cont
     append<HeapAllocationErrorsTest>("Exists test 3", ExistsTest3);
     append<HeapAllocationErrorsTest>("GetFileSize test 1", GetFileSizeTest1);
     append<HeapAllocationErrorsTest>("GetFileSize test 2", GetFileSizeTest2);
+    append<HeapAllocationErrorsTest>("GetFileSize test 3", GetFileSizeTest3);
+    append<HeapAllocationErrorsTest>("GetFileSize test 4", GetFileSizeTest4);
     append<HeapAllocationErrorsTest>("IsDirectory test 1", IsDirectoryTest1);
     append<HeapAllocationErrorsTest>("IsDirectory test 2", IsDirectoryTest2);
     append<HeapAllocationErrorsTest>("IsDirectory test 3", IsDirectoryTest3);
@@ -39,6 +41,10 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestContext& cont
     append<HeapAllocationErrorsTest>("ReadFile test 5", ReadFileTest5);
     append<HeapAllocationErrorsTest>("ReadFile test 6", ReadFileTest6);
     append<HeapAllocationErrorsTest>("ReadFile test 7", ReadFileTest7);
+    append<HeapAllocationErrorsTest>("ReadFile test 8", ReadFileTest8);
+    append<HeapAllocationErrorsTest>("ReadFile test 9", ReadFileTest9);
+    append<HeapAllocationErrorsTest>("ReadFile test 10", ReadFileTest10);
+    append<HeapAllocationErrorsTest>("ReadFile test 11", ReadFileTest11);
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
     append<HeapAllocationErrorsTest>("GetVolumeList test 1", GetVolumeListTest1);
 #endif
@@ -72,6 +78,38 @@ void UtilitiesTests::GetFileSizeTest1(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
+    size_t fileSize = GetFileSize(inputPath.string().c_str());
+
+    ISHIKO_TEST_FAIL_IF_NEQ(fileSize, 5);
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::GetFileSizeTest2(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+
+    bool canary = false;
+    try
+    {
+        size_t fileSize = GetFileSize(inputPath.string().c_str());
+    }
+    catch (const std::exception& e)
+    {
+        canary = true;
+    }
+    catch (...)
+    {   
+        ISHIKO_TEST_FAIL();
+    }
+
+    ISHIKO_TEST_FAIL_IF_NOT(canary);
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::GetFileSizeTest3(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+
     Error error;
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
@@ -80,7 +118,7 @@ void UtilitiesTests::GetFileSizeTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::GetFileSizeTest2(Test& test)
+void UtilitiesTests::GetFileSizeTest4(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
@@ -303,6 +341,38 @@ void UtilitiesTests::ReadFileTest4(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
+    std::string bytes = ReadFile(inputPath.string().c_str());
+
+    ISHIKO_TEST_FAIL_IF_NEQ(bytes, "hello");
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::ReadFileTest5(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+
+    bool canary = false;
+    try
+    {
+        std::string bytes = ReadFile(inputPath.string().c_str());
+    }
+    catch (const std::exception& e)
+    {
+        canary = true;
+    }
+    catch (...)
+    {
+        ISHIKO_TEST_FAIL();
+    }
+
+    ISHIKO_TEST_FAIL_IF_NOT(canary);
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::ReadFileTest6(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+
     Error error;
     std::string bytes = ReadFile(inputPath.string().c_str(), error);
 
@@ -311,7 +381,7 @@ void UtilitiesTests::ReadFileTest4(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::ReadFileTest5(Test& test)
+void UtilitiesTests::ReadFileTest7(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
@@ -323,7 +393,39 @@ void UtilitiesTests::ReadFileTest5(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::ReadFileTest6(Test& test)
+void UtilitiesTests::ReadFileTest8(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+
+    std::string bytes = ReadFile(inputPath);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(bytes, "hello");
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::ReadFileTest9(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+
+    bool canary = false;
+    try
+    {
+        std::string bytes = ReadFile(inputPath);
+    }
+    catch (const std::exception& e)
+    {
+        canary = true;
+    }
+    catch (...)
+    {
+        ISHIKO_TEST_FAIL();
+    }
+
+    ISHIKO_TEST_FAIL_IF_NOT(canary);
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::ReadFileTest10(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
 
@@ -335,7 +437,7 @@ void UtilitiesTests::ReadFileTest6(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void UtilitiesTests::ReadFileTest7(Test& test)
+void UtilitiesTests::ReadFileTest11(Test& test)
 {
     boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
 
