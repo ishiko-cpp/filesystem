@@ -33,6 +33,7 @@ private:
     FileSystemErrorCategory() noexcept = default;
 };
 
+void Throw(FileSystemErrorCategory::Value value, const char* file, int line);
 void Fail(Error& error, FileSystemErrorCategory::Value value) noexcept;
 void Fail(Error& error, FileSystemErrorCategory::Value value, const std::string& message, const char* file,
     int line) noexcept;
