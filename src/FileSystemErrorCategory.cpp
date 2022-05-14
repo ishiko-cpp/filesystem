@@ -20,6 +20,11 @@ const char* FileSystemErrorCategory::name() const noexcept
     return "Ishiko::FileSystemErrorCategory";
 }
 
+void Throw(FileSystemErrorCategory::Value value, const char* file, int line)
+{
+    throw Exception(static_cast<int>(value), FileSystemErrorCategory::Get(), file, line);
+}
+
 void Fail(Error& error, FileSystemErrorCategory::Value value) noexcept
 {
     error.fail(static_cast<int>(value), FileSystemErrorCategory::Get());
