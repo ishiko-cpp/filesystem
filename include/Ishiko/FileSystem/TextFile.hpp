@@ -31,7 +31,11 @@ public:
     template<typename Callable> void forEachLine(Callable&& callback, Error& error);
 
     void write(const char* str);
+    void write(const char* str, size_t size);
+    void write(const std::string& str);
     void writeLine(const char* str);
+    void writeLine(const char* str, size_t size);
+    void writeLine(const std::string& str);
     void flush();
 
 private:
