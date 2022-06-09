@@ -99,10 +99,39 @@ void TextFile::write(const char* str)
     m_file << str;
 }
 
+// TODO: test
+void TextFile::write(const char* str, size_t size)
+{
+    // TODO: error handling
+    m_file.write(str, size);
+}
+
+// TODO: test
+void TextFile::write(const std::string& str)
+{
+    m_file.write(str.c_str(), str.size());
+}
+
 void TextFile::writeLine(const char* str)
 {
     // TODO: error handling
     m_file << str << std::endl;
+}
+
+// TODO: test
+void TextFile::writeLine(const char* str, size_t size)
+{
+    // TODO: error handling
+    m_file.write(str, size);
+    m_file << std::endl;
+}
+
+// TODO: test
+void TextFile::writeLine(const std::string& str)
+{
+    // TODO: error handling
+    m_file.write(str.c_str(), str.size());
+    m_file << std::endl;
 }
 
 void TextFile::flush()
