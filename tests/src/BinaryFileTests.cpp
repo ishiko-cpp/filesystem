@@ -7,35 +7,31 @@
 #include "BinaryFileTests.hpp"
 #include "Ishiko/FileSystem/BinaryFile.hpp"
 
-using namespace boost::filesystem;
 using namespace Ishiko;
-using namespace Ishiko::Tests;
 
 BinaryFileTests::BinaryFileTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "BinaryFile tests", context)
 {
-    append<FileComparisonTest>("Create test 1", CreateTest1);
-    append<FileComparisonTest>("write test 1", WriteTest1);
+    append<HeapAllocationErrorsTest>("Create test 1", CreateTest1);
+    append<HeapAllocationErrorsTest>("write test 1", WriteTest1);
 }
 
-void BinaryFileTests::CreateTest1(FileComparisonTest& test)
+void BinaryFileTests::CreateTest1(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("BinaryFileTests_CreateTest1.bin"));
+    boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_CreateTest1.bin"));
 
     Error error;
     BinaryFile file = BinaryFile::Create(outputPath.string(), error);
+    file.close();
 
     ISHIKO_TEST_FAIL_IF(error);
-
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.context().getReferenceDataPath("BinaryFileTests_CreateTest1.bin"));
-
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_CreateTest1.bin");
     ISHIKO_TEST_PASS();
 }
 
-void BinaryFileTests::WriteTest1(FileComparisonTest& test)
+void BinaryFileTests::WriteTest1(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("BinaryFileTests_WriteTest1.bin"));
+    boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_WriteTest1.bin"));
 
     Error error;
     BinaryFile file = BinaryFile::Create(outputPath.string(), error);
@@ -43,9 +39,8 @@ void BinaryFileTests::WriteTest1(FileComparisonTest& test)
     ISHIKO_TEST_FAIL_IF(error);
 
     file.write("hello\r\n", 7);
+    file.close();
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.context().getReferenceDataPath("BinaryFileTests_WriteTest1.bin"));
-
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_WriteTest1.bin");
     ISHIKO_TEST_PASS();
 }

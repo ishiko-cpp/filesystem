@@ -16,7 +16,7 @@ public:
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);
-    static void CreateTest1(Ishiko::FileComparisonTest& test);
+    static void CreateTest1(Ishiko::Test& test);
     static void CreateTest2(Ishiko::Test& test);
     static void OpenTest1(Ishiko::Test& test);
     static void OpenTest2(Ishiko::Test& test);
@@ -31,8 +31,8 @@ private:
     static void ForEachLineTest2(Ishiko::Test& test);
     static void ForEachLineTest3(Ishiko::Test& test);
     static void ForEachLineTest4(Ishiko::Test& test);
-    static void WriteTest1(Ishiko::FileComparisonTest& test);
-    static void WriteLineTest1(Ishiko::FileComparisonTest& test);
+    static void WriteTest1(Ishiko::Test& test);
+    static void WriteLineTest1(Ishiko::Test& test);
 };
 
 #endif

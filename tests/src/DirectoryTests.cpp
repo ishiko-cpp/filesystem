@@ -26,7 +26,7 @@ DirectoryTests::DirectoryTests(const TestNumber& number, const TestContext& cont
 
 void DirectoryTests::ConstructorTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory1");
 
     Directory directory(inputPath.string().c_str());
 
@@ -35,7 +35,7 @@ void DirectoryTests::ConstructorTest1(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory1");
 
     Directory directory(inputPath.string().c_str());
 
@@ -55,7 +55,7 @@ void DirectoryTests::ForEachRegularFileTest1(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory2");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory2");
 
     Directory directory(inputPath.string().c_str());
 
@@ -77,7 +77,7 @@ void DirectoryTests::ForEachRegularFileTest2(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory3");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory3");
 
     Directory directory(inputPath.string().c_str());
 
@@ -96,7 +96,7 @@ void DirectoryTests::ForEachRegularFileTest3(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory4");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory4");
 
     Directory directory(inputPath.string().c_str());
 
@@ -116,7 +116,7 @@ void DirectoryTests::ForEachRegularFileTest4(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest5(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory1");
 
     Directory directory(inputPath.string().c_str());
 
@@ -136,7 +136,7 @@ void DirectoryTests::ForEachRegularFileTest5(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest6(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory2");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory2");
 
     Directory directory(inputPath.string().c_str());
 
@@ -158,7 +158,7 @@ void DirectoryTests::ForEachRegularFileTest6(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest7(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory3");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory3");
 
     Directory directory(inputPath.string().c_str());
 
@@ -178,7 +178,7 @@ void DirectoryTests::ForEachRegularFileTest7(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest8(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory() / "Directory4");
+    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory4");
 
     Directory directory(inputPath.string().c_str());
 
