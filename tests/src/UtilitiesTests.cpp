@@ -52,7 +52,7 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestContext& cont
 
 void UtilitiesTests::ExistsTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     ISHIKO_TEST_FAIL_IF(Exists(inputPath.string().c_str()));
     ISHIKO_TEST_PASS();
@@ -60,7 +60,7 @@ void UtilitiesTests::ExistsTest1(Test& test)
 
 void UtilitiesTests::ExistsTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     ISHIKO_TEST_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
     ISHIKO_TEST_PASS();
@@ -68,7 +68,7 @@ void UtilitiesTests::ExistsTest2(Test& test)
 
 void UtilitiesTests::ExistsTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory());
+    boost::filesystem::path inputPath(test.context().getDataDirectory());
 
     ISHIKO_TEST_FAIL_IF_NOT(Exists(inputPath.string().c_str()));
     ISHIKO_TEST_PASS();
@@ -76,7 +76,7 @@ void UtilitiesTests::ExistsTest3(Test& test)
 
 void UtilitiesTests::GetFileSizeTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     size_t fileSize = GetFileSize(inputPath.string().c_str());
 
@@ -86,7 +86,7 @@ void UtilitiesTests::GetFileSizeTest1(Test& test)
 
 void UtilitiesTests::GetFileSizeTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     bool canary = false;
     try
@@ -108,7 +108,7 @@ void UtilitiesTests::GetFileSizeTest2(Test& test)
 
 void UtilitiesTests::GetFileSizeTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     Error error;
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
@@ -120,7 +120,7 @@ void UtilitiesTests::GetFileSizeTest3(Test& test)
 
 void UtilitiesTests::GetFileSizeTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     Error error;
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
@@ -133,7 +133,7 @@ void UtilitiesTests::GetFileSizeTest4(Test& test)
 
 void UtilitiesTests::IsDirectoryTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory());
+    boost::filesystem::path inputPath(test.context().getDataDirectory());
 
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
@@ -145,7 +145,7 @@ void UtilitiesTests::IsDirectoryTest1(Test& test)
 
 void UtilitiesTests::IsDirectoryTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
@@ -157,7 +157,7 @@ void UtilitiesTests::IsDirectoryTest2(Test& test)
 
 void UtilitiesTests::IsDirectoryTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     Error error;
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
@@ -170,7 +170,7 @@ void UtilitiesTests::IsDirectoryTest3(Test& test)
 
 void UtilitiesTests::IsEmptyTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("empty.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("empty.txt"));
 
     Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
@@ -182,7 +182,7 @@ void UtilitiesTests::IsEmptyTest1(Test& test)
 
 void UtilitiesTests::IsEmptyTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
@@ -194,7 +194,7 @@ void UtilitiesTests::IsEmptyTest2(Test& test)
 
 void UtilitiesTests::IsEmptyTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestOutputPath("empty"));
+    boost::filesystem::path inputPath(test.context().getOutputPath("empty"));
     boost::filesystem::create_directory(inputPath);
 
     Ishiko::Error error;
@@ -207,7 +207,7 @@ void UtilitiesTests::IsEmptyTest3(Test& test)
 
 void UtilitiesTests::IsEmptyTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataDirectory());
+    boost::filesystem::path inputPath(test.context().getDataDirectory());
 
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
@@ -219,7 +219,7 @@ void UtilitiesTests::IsEmptyTest4(Test& test)
 
 void UtilitiesTests::IsEmptyTest5(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     Ishiko::Error error;
     bool empty = IsEmpty(inputPath.string().c_str(), error);
@@ -232,7 +232,7 @@ void UtilitiesTests::IsEmptyTest5(Test& test)
 
 void UtilitiesTests::ToAbsolutePathTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     std::string currentPath = boost::filesystem::current_path().string();
 #ifdef WIN32
@@ -250,7 +250,7 @@ void UtilitiesTests::ToAbsolutePathTest1(Test& test)
 
 void UtilitiesTests::ToAbsolutePathTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     std::string currentPath = boost::filesystem::current_path().string();
 #ifdef WIN32
@@ -268,7 +268,7 @@ void UtilitiesTests::ToAbsolutePathTest2(Test& test)
 
 void UtilitiesTests::CreateEmptyFileTest1(Test& test)
 {
-    boost::filesystem::path outputPath = test.context().getTestOutputPath("file1.txt");
+    boost::filesystem::path outputPath = test.context().getOutputPath("file1.txt");
 
     Ishiko::Error error;
     CreateEmptyFile(outputPath, error);
@@ -280,7 +280,7 @@ void UtilitiesTests::CreateEmptyFileTest1(Test& test)
 
 void UtilitiesTests::CreateEmptyFileTest2(Test& test)
 {
-    boost::filesystem::path outputPath = test.context().getTestOutputPath("file2.txt");
+    boost::filesystem::path outputPath = test.context().getOutputPath("file2.txt");
 
     Error error;
     CreateEmptyFile(outputPath, error);
@@ -296,7 +296,7 @@ void UtilitiesTests::CreateEmptyFileTest2(Test& test)
 
 void UtilitiesTests::ReadFileTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     Error error;
     const int bufferSize = 10;
@@ -310,7 +310,7 @@ void UtilitiesTests::ReadFileTest1(Test& test)
 
 void UtilitiesTests::ReadFileTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     Error error;
     const int bufferSize = 10;
@@ -324,7 +324,7 @@ void UtilitiesTests::ReadFileTest2(Test& test)
 
 void UtilitiesTests::ReadFileTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     Error error;
     const int bufferSize = 2;
@@ -339,7 +339,7 @@ void UtilitiesTests::ReadFileTest3(Test& test)
 
 void UtilitiesTests::ReadFileTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     std::string bytes = ReadFile(inputPath.string().c_str());
 
@@ -349,7 +349,7 @@ void UtilitiesTests::ReadFileTest4(Test& test)
 
 void UtilitiesTests::ReadFileTest5(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     bool canary = false;
     try
@@ -371,7 +371,7 @@ void UtilitiesTests::ReadFileTest5(Test& test)
 
 void UtilitiesTests::ReadFileTest6(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     Error error;
     std::string bytes = ReadFile(inputPath.string().c_str(), error);
@@ -383,7 +383,7 @@ void UtilitiesTests::ReadFileTest6(Test& test)
 
 void UtilitiesTests::ReadFileTest7(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     Error error;
     std::string bytes = ReadFile(inputPath.string().c_str(), error);
@@ -395,7 +395,7 @@ void UtilitiesTests::ReadFileTest7(Test& test)
 
 void UtilitiesTests::ReadFileTest8(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     std::string bytes = ReadFile(inputPath);
 
@@ -405,7 +405,7 @@ void UtilitiesTests::ReadFileTest8(Test& test)
 
 void UtilitiesTests::ReadFileTest9(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     bool canary = false;
     try
@@ -427,7 +427,7 @@ void UtilitiesTests::ReadFileTest9(Test& test)
 
 void UtilitiesTests::ReadFileTest10(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("file1.txt"));
+    boost::filesystem::path inputPath(test.context().getDataPath("file1.txt"));
 
     Error error;
     std::string bytes = ReadFile(inputPath, error);
@@ -439,7 +439,7 @@ void UtilitiesTests::ReadFileTest10(Test& test)
 
 void UtilitiesTests::ReadFileTest11(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("doesnotexist"));
+    boost::filesystem::path inputPath(test.context().getDataPath("doesnotexist"));
 
     Error error;
     std::string bytes = ReadFile(inputPath, error);
