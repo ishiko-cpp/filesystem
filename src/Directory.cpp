@@ -15,7 +15,7 @@ Directory::Directory(const char* path)
 }
 
 Directory::Directory(boost::filesystem::path path)
-    : m_path(path)
+    : m_path(std::move(path))
 {
 }
 
