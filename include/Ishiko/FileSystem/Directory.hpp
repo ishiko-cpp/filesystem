@@ -39,7 +39,7 @@ void Directory::forEachRegularFile(Callable&& callback, bool recursive) const
         {
             if (boost::filesystem::is_regular_file(iterator->status()))
             {
-                callback(iterator->path().generic_string());
+                callback(iterator->path());
             }
             ++iterator;
         }
@@ -52,7 +52,7 @@ void Directory::forEachRegularFile(Callable&& callback, bool recursive) const
         {
             if (boost::filesystem::is_regular_file(iterator->status()))
             {
-                callback(iterator->path().generic_string());
+                callback(iterator->path());
             }
             ++iterator;
         }
