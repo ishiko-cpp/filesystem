@@ -24,7 +24,7 @@ size_t Directory::getRegularFilesCount(bool recursive) const
     size_t result = 0;
 
     forEachRegularFile(
-        [&result](const std::string& filepath)
+        [&result](const boost::filesystem::path& filepath)
         {
             ++result;
         },
