@@ -18,15 +18,18 @@ class Directory
 {
 public:
     Directory(const char* path);
+    Directory(boost::filesystem::path path);
 
-    template<typename Callable> void forEachRegularFile(Callable&& callback, bool recursive);
+    template<typename Callable> void forEachRegularFile(Callable&& callback, bool recursive) const;
+
+    size_t getRegularFilesCount(bool recursive) const;
 
 private:
-    std::string m_path;
+    boost::filesystem::path m_path;
 };
 
 template<typename Callable>
-void Directory::forEachRegularFile(Callable&& callback, bool recursive)
+void Directory::forEachRegularFile(Callable&& callback, bool recursive) const
 {
     if (recursive)
     {
