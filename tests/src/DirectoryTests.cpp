@@ -44,9 +44,9 @@ void DirectoryTests::ForEachRegularFileTest1(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         false
     );
@@ -64,9 +64,9 @@ void DirectoryTests::ForEachRegularFileTest2(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         false
     );
@@ -86,9 +86,9 @@ void DirectoryTests::ForEachRegularFileTest3(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         false
     );
@@ -105,9 +105,9 @@ void DirectoryTests::ForEachRegularFileTest4(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         false
         );
@@ -125,9 +125,9 @@ void DirectoryTests::ForEachRegularFileTest5(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         true
     );
@@ -145,9 +145,9 @@ void DirectoryTests::ForEachRegularFileTest6(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         true
     );
@@ -167,9 +167,9 @@ void DirectoryTests::ForEachRegularFileTest7(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         true
     );
@@ -187,9 +187,9 @@ void DirectoryTests::ForEachRegularFileTest8(Test& test)
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
-        [&files](const std::string& path)
+        [&files](const boost::filesystem::path& path)
         {
-            files.emplace_back(path);
+            files.emplace_back(path.generic_string());
         },
         true
         );
