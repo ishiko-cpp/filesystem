@@ -22,22 +22,25 @@ DirectoryTests::DirectoryTests(const TestNumber& number, const TestContext& cont
     append<HeapAllocationErrorsTest>("forEachRegularFile test 6", ForEachRegularFileTest6);
     append<HeapAllocationErrorsTest>("forEachRegularFile test 7", ForEachRegularFileTest7);
     append<HeapAllocationErrorsTest>("forEachRegularFile test 8", ForEachRegularFileTest8);
+    append<HeapAllocationErrorsTest>("getRegularFilesCount test 1", GetRegularFilesCountTest1);
+    append<HeapAllocationErrorsTest>("getRegularFilesCount test 2", GetRegularFilesCountTest2);
+    append<HeapAllocationErrorsTest>("getRegularFilesCount test 3", GetRegularFilesCountTest3);
 }
 
 void DirectoryTests::ConstructorTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath = test.context().getDataPath("Directory1");
 
-    Directory directory(inputPath.string().c_str());
+    Directory directory(inputPath);
 
     ISHIKO_TEST_PASS();
 }
 
 void DirectoryTests::ForEachRegularFileTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory1");
+    boost::filesystem::path inputPath = test.context().getDataPath("Directory1");
 
-    Directory directory(inputPath.string().c_str());
+    Directory directory(inputPath);
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
@@ -55,9 +58,9 @@ void DirectoryTests::ForEachRegularFileTest1(Test& test)
 
 void DirectoryTests::ForEachRegularFileTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getDataDirectory() / "Directory2");
+    boost::filesystem::path inputPath = test.context().getDataPath("Directory2");
 
-    Directory directory(inputPath.string().c_str());
+    Directory directory(inputPath);
 
     std::vector<std::string> files;
     directory.forEachRegularFile(
@@ -197,5 +200,40 @@ void DirectoryTests::ForEachRegularFileTest8(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(files[1], "../../data/Directory4/dir_2/file_2_1.txt");
     ISHIKO_TEST_FAIL_IF_NEQ(files[2], "../../data/Directory4/dir_2/file_2_2.txt");
     ISHIKO_TEST_FAIL_IF_NEQ(files[3], "../../data/Directory4/file_1.txt");
+    ISHIKO_TEST_PASS();
+}
+
+void DirectoryTests::GetRegularFilesCountTest1(Test& test)
+{
+    boost::filesystem::path inputPath = test.context().getDataPath("Directory1");
+    Directory directory(inputPath);
+
+    size_t count = directory.getRegularFilesCount(false);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(count, 1);
+    ISHIKO_TEST_PASS();
+}
+
+void DirectoryTests::GetRegularFilesCountTest2(Test& test)
+{
+    boost::filesystem::path inputPath = test.context().getDataPath("Directory2");
+    Directory directory(inputPath);
+
+    size_t count = directory.getRegularFilesCount(false);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(count, 2);
+    ISHIKO_TEST_PASS();
+}
+
+void DirectoryTests::GetRegularFilesCountTest3(Test& test)
+{
+    boost::filesystem::path inputPath = test.context().getDataPath("Directory4");
+    Directory directory(inputPath);
+
+    size_t nonRecursiveCount = directory.getRegularFilesCount(false);
+    size_t recursiveCount = directory.getRegularFilesCount(true);
+
+    ISHIKO_TEST_FAIL_IF_NEQ(nonRecursiveCount, 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(recursiveCount, 4);
     ISHIKO_TEST_PASS();
 }

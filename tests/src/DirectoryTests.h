@@ -24,6 +24,9 @@ private:
     static void ForEachRegularFileTest6(Ishiko::Test& test);
     static void ForEachRegularFileTest7(Ishiko::Test& test);
     static void ForEachRegularFileTest8(Ishiko::Test& test);
+    static void GetRegularFilesCountTest1(Ishiko::Test& test);
+    static void GetRegularFilesCountTest2(Ishiko::Test& test);
+    static void GetRegularFilesCountTest3(Ishiko::Test& test);
 };
 
 #endif
