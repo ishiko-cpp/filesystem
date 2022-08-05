@@ -6,6 +6,7 @@
 
 #include "TextFile.hpp"
 #include "Utilities.hpp"
+#include <Ishiko/IO.hpp>
 
 using namespace boost::filesystem;
 
