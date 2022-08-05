@@ -7,6 +7,7 @@
 #include "BinaryFile.hpp"
 #include "FileSystemErrorCategory.hpp"
 #include "Utilities.hpp"
+#include <Ishiko/IO.hpp>
 
 using namespace boost::filesystem;
 using namespace std;
