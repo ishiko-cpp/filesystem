@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_FILESYSTEM_FILESYSTEMERRORCATEGORY_HPP_
-#define _ISHIKO_CPP_FILESYSTEM_FILESYSTEMERRORCATEGORY_HPP_
+#ifndef GUARD_ISHIKO_CPP_FILESYSTEM_FILESYSTEMERRORCATEGORY_HPP
+#define GUARD_ISHIKO_CPP_FILESYSTEM_FILESYSTEMERRORCATEGORY_HPP
 
 #include <Ishiko/Errors.hpp>
 
@@ -34,9 +34,9 @@ private:
 };
 
 void Throw(FileSystemErrorCategory::Value value, const char* file, int line);
-void Fail(Error& error, FileSystemErrorCategory::Value value) noexcept;
-void Fail(Error& error, FileSystemErrorCategory::Value value, const std::string& message, const char* file,
-    int line) noexcept;
+void Fail(FileSystemErrorCategory::Value value, Error& error) noexcept;
+void Fail(FileSystemErrorCategory::Value value, const std::string& message, const char* file, int line,
+    Error& error) noexcept;
 bool operator==(const ErrorCondition& error, FileSystemErrorCategory::Value value);
 bool operator!=(const ErrorCondition& error, FileSystemErrorCategory::Value value);
 
