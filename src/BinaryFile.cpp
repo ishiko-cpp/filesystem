@@ -28,10 +28,10 @@ BinaryFile BinaryFile::Create(const string& path, Error& error)
     if (!FileSystem::Exists(path))
     {
         result.m_file.open(path, ios::out | ios::binary);
-        FailIfCreateFileError(error, result.m_file, path, __FILE__, __LINE__);
+        FailIfCreateFileError(result.m_file, path, __FILE__, __LINE__, error);
         result.m_file.close();
         result.m_file.open(path, ios_base::in | ios_base::out | ios::binary);
-        FailIfCreateFileError(error, result.m_file, path, __FILE__, __LINE__);
+        FailIfCreateFileError(result.m_file, path, __FILE__, __LINE__, error);
     }
     else
     {
