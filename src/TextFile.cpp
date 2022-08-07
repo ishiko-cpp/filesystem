@@ -31,8 +31,8 @@ void TextFile::create(const std::string& path, Error& error)
     }
     else
     {
-        Fail(error, FileSystemErrorCategory::Value::alreadyExists, std::string("path \'") + path + "\' already exists",
-            __FILE__, __LINE__);
+        Fail(FileSystemErrorCategory::Value::alreadyExists, std::string("path \'") + path + "\' already exists",
+            __FILE__, __LINE__, error);
     }
 }
 
@@ -61,11 +61,11 @@ std::string TextFile::readLine(Error& error)
     {
         if (m_file.eof())
         {
-            Fail(error, FileSystemErrorCategory::Value::endOfFile);
+            Fail(FileSystemErrorCategory::Value::endOfFile, error);
         }
         else
         {
-            Fail(error, FileSystemErrorCategory::Value::readError);
+            Fail(FileSystemErrorCategory::Value::readError, error);
         }
     }
 
