@@ -24,10 +24,10 @@ void TextFile::create(const std::string& path, Error& error)
     if (!FileSystem::Exists(path))
     {
         m_file.open(path, std::ios::out);
-        FailIfCreateFileError(error, m_file, path, __FILE__, __LINE__);
+        FailIfCreateFileError(m_file, path, __FILE__, __LINE__, error);
         m_file.close();
         m_file.open(path);
-        FailIfCreateFileError(error, m_file, path, __FILE__, __LINE__);
+        FailIfCreateFileError(m_file, path, __FILE__, __LINE__, error);
     }
     else
     {
@@ -44,7 +44,7 @@ void TextFile::open(const boost::filesystem::path& path, Error& error)
 void TextFile::open(const std::string& path, Error& error)
 {
     m_file.open(path);
-    FailIfOpenFileError(error, m_file, path, __FILE__, __LINE__);
+    FailIfOpenFileError(m_file, path, __FILE__, __LINE__, error);
 }
 
 void TextFile::close()
