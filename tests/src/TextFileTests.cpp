@@ -105,7 +105,7 @@ void TextFileTests::ReadLineTest1(Test& test)
     file.open(inputPath.string(), error);
 
     // Ignore the open error on purpose to cause an error when we try to read a line
-    error.succeed();
+    error.clear();
 
     std::string line = file.readLine(error);
 
@@ -168,7 +168,7 @@ void TextFileTests::ReadAllLinesTest1(Test& test)
     file.open(inputPath.string(), error);
 
     // Ignore the open error on purpose to cause an error when we try to read a line
-    error.succeed();
+    error.clear();
 
     std::vector<std::string> lines = file.readAllLines(error);
 
@@ -244,7 +244,7 @@ void TextFileTests::ForEachLineTest1(Test& test)
     file.open(inputPath.string(), error);
 
     // Ignore the open error on purpose to cause an error when we try to read a line
-    error.succeed();
+    error.clear();
 
     std::vector<std::string> lines;
     file.forEachLine(
