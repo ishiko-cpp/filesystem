@@ -12,7 +12,7 @@
 namespace Ishiko
 {
 
-class FileSystemErrorCategory : public Ishiko::ErrorCategory
+class FileSystemErrorCategory : public ErrorCategory
 {
 public:
     enum class Value
