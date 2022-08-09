@@ -17,17 +17,18 @@ class FileSystemErrorCategory : public ErrorCategory
 public:
     enum class Value
     {
-        generic = -1,
-        bufferOverflow = -2,
-        notFound = -3,
-        alreadyExists = -4,
-        endOfFile = -5,
-        readError = -6
+        generic_error = -1,
+        buffer_overflow = -2,
+        not_found = -3,
+        already_exists = -4,
+        end_of_file = -5,
+        read_error = -6
     };
 
     static const FileSystemErrorCategory& Get() noexcept;
 
     const char* name() const noexcept override;
+    std::ostream& streamOut(int value, std::ostream& os) const override;
 
 private:
     FileSystemErrorCategory() noexcept = default;
