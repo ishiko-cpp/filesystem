@@ -46,7 +46,7 @@ size_t GetFileSize(const char* path, Error& error) noexcept
     }
     catch (...)
     {
-        Fail(FileSystemErrorCategory::Value::notFound, std::string("path \'") + path + "\' not found", __FILE__,
+        Fail(FileSystemErrorCategory::Value::not_found, std::string("path \'") + path + "\' not found", __FILE__,
             __LINE__, error);
         return false;
     }
@@ -62,7 +62,7 @@ bool IsDirectory(const char* path, Error& error) noexcept
         }
         else
         {
-            Fail(FileSystemErrorCategory::Value::notFound, std::string("path \'") + path + "\' not found", __FILE__,
+            Fail(FileSystemErrorCategory::Value::not_found, std::string("path \'") + path + "\' not found", __FILE__,
                 __LINE__, error);
             return false;
         }
@@ -71,7 +71,7 @@ bool IsDirectory(const char* path, Error& error) noexcept
     {
         // According to the Boost documentation boost::filesystem::is_directory throws when the path doesn't exist but
         // it doesn't seem to do that in our tests.
-        Fail(FileSystemErrorCategory::Value::notFound, std::string("path \'") + path + "\' not found", __FILE__,
+        Fail(FileSystemErrorCategory::Value::not_found, std::string("path \'") + path + "\' not found", __FILE__,
             __LINE__, error);
         return false;
     }
@@ -85,7 +85,7 @@ bool IsEmpty(const char* path, Error& error) noexcept
     }
     catch (...)
     {
-        Fail(FileSystemErrorCategory::Value::notFound, std::string("path \'") + path + "\' not found", __FILE__,
+        Fail(FileSystemErrorCategory::Value::not_found, std::string("path \'") + path + "\' not found", __FILE__,
             __LINE__, error);
         return false;
     }
@@ -110,7 +110,7 @@ void CreateEmptyFile(const std::string& path, Error& error) noexcept
     }
     else
     {
-        Fail(FileSystemErrorCategory::Value::alreadyExists, std::string("path \'") + path + "\' already exists",
+        Fail(FileSystemErrorCategory::Value::already_exists, std::string("path \'") + path + "\' already exists",
             __FILE__, __LINE__, error);
     }
 }
@@ -132,7 +132,7 @@ void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem
     if (ec.failed())
     {
         // TODO: interpret error properly
-        Fail(FileSystemErrorCategory::Value::generic, "", __FILE__, __LINE__, error);
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
     }
 }
 
@@ -155,12 +155,12 @@ size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& er
         else
         {
             result = filesize;
-            Fail(FileSystemErrorCategory::Value::bufferOverflow, error);
+            Fail(FileSystemErrorCategory::Value::buffer_overflow, error);
         }
     }
     catch (...)
     {
-        Fail(FileSystemErrorCategory::Value::generic, std::string("unknown error for path \'") + filename + "\'",
+        Fail(FileSystemErrorCategory::Value::generic_error, std::string("unknown error for path \'") + filename + "\'",
             __FILE__, __LINE__, error);
     }
 
@@ -209,7 +209,7 @@ void GetVolumeList(std::vector<std::string>& volumeNames, Error& error) noexcept
     HANDLE searchHandle = FindFirstVolumeA(volumeName, MAX_PATH + 1);
     if (searchHandle == INVALID_HANDLE_VALUE)
     {
-        Fail(FileSystemErrorCategory::Value::generic, "", __FILE__, __LINE__, error);
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
     }
     else
     {

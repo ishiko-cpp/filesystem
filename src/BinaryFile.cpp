@@ -35,7 +35,7 @@ BinaryFile BinaryFile::Create(const string& path, Error& error)
     }
     else
     {
-        Fail(FileSystemErrorCategory::Value::alreadyExists, string("path \'") + path + "\' already exists", __FILE__,
+        Fail(FileSystemErrorCategory::Value::already_exists, string("path \'") + path + "\' already exists", __FILE__,
             __LINE__, error);
     }
 
