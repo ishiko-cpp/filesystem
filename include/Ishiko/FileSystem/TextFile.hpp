@@ -51,7 +51,7 @@ void TextFile::forEachLine(Callable&& callback, Error& error)
         std::string line = readLine(readError);
         if (readError)
         {
-            if (readError.condition() != FileSystemErrorCategory::Value::endOfFile)
+            if (readError.condition() != FileSystemErrorCategory::Value::end_of_file)
             {
                 error.fail(readError);
             }
