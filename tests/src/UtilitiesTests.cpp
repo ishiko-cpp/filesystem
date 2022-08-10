@@ -126,7 +126,7 @@ void UtilitiesTests::GetFileSizeTest4(Test& test)
     size_t fileSize = GetFileSize(inputPath.string().c_str(), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::not_found);
     ISHIKO_TEST_FAIL_IF_NEQ(fileSize, 0);
     ISHIKO_TEST_PASS();
 }
@@ -163,7 +163,7 @@ void UtilitiesTests::IsDirectoryTest3(Test& test)
     bool isDir = IsDirectory(inputPath.string().c_str(), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::not_found);
     ISHIKO_TEST_FAIL_IF(isDir);
     ISHIKO_TEST_PASS();
 }
@@ -225,7 +225,7 @@ void UtilitiesTests::IsEmptyTest5(Test& test)
     bool empty = IsEmpty(inputPath.string().c_str(), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::notFound);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::not_found);
     ISHIKO_TEST_FAIL_IF(empty);
     ISHIKO_TEST_PASS();
 }
@@ -290,7 +290,7 @@ void UtilitiesTests::CreateEmptyFileTest2(Test& test)
     CreateEmptyFile(outputPath, error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::alreadyExists);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
     ISHIKO_TEST_PASS();
 }
 
@@ -332,7 +332,7 @@ void UtilitiesTests::ReadFileTest3(Test& test)
     size_t bytesRead = ReadFile(inputPath.string().c_str(), buffer, bufferSize, error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::bufferOverflow);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::buffer_overflow);
     ISHIKO_TEST_FAIL_IF_NEQ(bytesRead, 5);
     ISHIKO_TEST_PASS();
 }
