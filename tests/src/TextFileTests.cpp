@@ -65,7 +65,7 @@ void TextFileTests::CreateTest2(Test& test)
     file.create(outputPath.string(), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::alreadyExists);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
     ISHIKO_TEST_PASS();
 }
 
@@ -110,7 +110,7 @@ void TextFileTests::ReadLineTest1(Test& test)
     std::string line = file.readLine(error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::readError);
+    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::read_error);
     ISHIKO_TEST_FAIL_IF_NEQ(line, "");
     ISHIKO_TEST_PASS();
 }
@@ -129,7 +129,7 @@ void TextFileTests::ReadLineTest2(Test& test)
     std::string line = file.readLine(error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::endOfFile);
+    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::end_of_file);
     ISHIKO_TEST_FAIL_IF_NEQ(line, "");
     ISHIKO_TEST_PASS();
 }
@@ -153,7 +153,7 @@ void TextFileTests::ReadLineTest3(Test& test)
     std::string line2 = file.readLine(error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::endOfFile);
+    ISHIKO_TEST_ABORT_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::end_of_file);
     ISHIKO_TEST_FAIL_IF_NEQ(line2, "");
     ISHIKO_TEST_PASS();
 }
