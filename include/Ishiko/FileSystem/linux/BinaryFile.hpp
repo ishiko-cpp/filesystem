@@ -36,6 +36,8 @@ public:
     size_t getFilePointer();
     void setFilePointer(size_t pos);
 
+    size_t read(size_t length, char* buffer, Error& error);
+
     void write(const char* buffer, size_t length, Error& error);
     void flush();
 

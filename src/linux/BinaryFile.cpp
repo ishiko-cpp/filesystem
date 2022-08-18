@@ -107,6 +107,17 @@ void BinaryFile::setFilePointer(size_t pos)
     lseek(m_file_descriptor, pos, SEEK_SET);
 }
 
+size_t BinaryFile::read(size_t length, char* buffer, Error& error)
+{
+    ssize_t result = ::read(m_file_descriptor, buffer, length);
+    if (result == -1)
+    {
+        // TODO: more informative error
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
+    }
+    return result;
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     // TODO: error handling
