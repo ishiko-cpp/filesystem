@@ -6,13 +6,16 @@
 
 #include "BinaryFileTests.hpp"
 #include "Ishiko/FileSystem/BinaryFile.hpp"
+#include "Ishiko/FileSystem/FileSystemErrorCategory.hpp"
 
 using namespace Ishiko;
 
 BinaryFileTests::BinaryFileTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "BinaryFile tests", context)
 {
+    append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Create test 1", CreateTest1);
+    append<HeapAllocationErrorsTest>("Create test 2", CreateTest2);
     append<HeapAllocationErrorsTest>("write test 1", WriteTest1);
 }
 
@@ -29,10 +32,32 @@ void BinaryFileTests::CreateTest1(Test& test)
 
     Error error;
     BinaryFile file = BinaryFile::Create(outputPath.string(), error);
-    file.close();
 
     ISHIKO_TEST_FAIL_IF(error);
+
+    file.close();
+
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_CreateTest1.bin");
+    ISHIKO_TEST_PASS();
+}
+
+
+void BinaryFileTests::CreateTest2(Test& test)
+{
+    boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_CreateTest2.bin"));
+
+    Error error;
+    BinaryFile file1 = BinaryFile::Create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file1.close();
+
+    BinaryFile file2 = BinaryFile::Create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_CreateTest2.bin");
     ISHIKO_TEST_PASS();
 }
 
