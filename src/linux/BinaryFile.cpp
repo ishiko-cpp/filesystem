@@ -6,10 +6,22 @@
 
 #include "BinaryFile.hpp"
 #include "FileSystemErrorCategory.hpp"
-#include "Utilities.hpp"
-#include <Ishiko/IO.hpp>
+#include <fcntl.h>
 
 using namespace Ishiko;
+
+BinaryFile::BinaryFile(BinaryFile&& other)
+{
+    std::swap(m_file_descriptor, other.m_file_descriptor);
+}
+
+BinaryFile::~BinaryFile()
+{
+    if (m_file_descriptor != -1)
+    {
+        ::close(m_file_descriptor);
+    }
+}
 
 BinaryFile BinaryFile::Create(const boost::filesystem::path& path, Error& error)
 {
@@ -20,19 +32,20 @@ BinaryFile BinaryFile::Create(const std::string& path, Error& error)
 {
     BinaryFile result;
 
-    // TODO: use lower level file functions to make this more robust
-    if (!FileSystem::Exists(path))
+    // TODO: allow user to configure mask
+    result.m_file_descriptor = open(path.c_str(), O_CREAT | O_EXCL, S_IRUSR | S_IWUSR);
+    if (result.m_file_descriptor == -1)
     {
-        result.m_file.open(path, std::ios::out | std::ios::binary);
-        FailIfCreateFileError(result.m_file, path, __FILE__, __LINE__, error);
-        result.m_file.close();
-        result.m_file.open(path, std::ios_base::in | std::ios_base::out | std::ios::binary);
-        FailIfCreateFileError(result.m_file, path, __FILE__, __LINE__, error);
-    }
-    else
-    {
-        Fail(FileSystemErrorCategory::Value::already_exists, std::string("path \'") + path + "\' already exists",
-            __FILE__, __LINE__, error);
+        if (errno == EEXIST)
+        {
+            Fail(FileSystemErrorCategory::Value::already_exists, std::string("path \'") + path + "\' already exists",
+                 __FILE__, __LINE__, error);
+        }
+        else
+        {
+            Fail(FileSystemErrorCategory::Value::generic_error, std::string("path \'") + path + "\' already exists",
+                 __FILE__, __LINE__, error);
+        }
     }
 
     return result;
@@ -40,16 +53,20 @@ BinaryFile BinaryFile::Create(const std::string& path, Error& error)
 
 void BinaryFile::close()
 {
-    m_file.close();
+    if (m_file_descriptor != -1)
+    {
+        ::close(m_file_descriptor);
+        m_file_descriptor = -1;
+    }
 }
 
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     // TODO: error handling
-    m_file.write(buffer, length);
+    ::write(m_file_descriptor, buffer, length);
 }
 
 void BinaryFile::flush()
 {
-    m_file.flush();
+    fsync(m_file_descriptor);
 }

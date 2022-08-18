@@ -9,7 +9,6 @@
 
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
-#include <fstream>
 
 namespace Ishiko
 {
@@ -18,6 +17,13 @@ class BinaryFile
 {
 public:
     BinaryFile() = default;
+    BinaryFile(const BinaryFile& other) = delete;
+    BinaryFile(BinaryFile&& other);
+    ~BinaryFile();
+
+    BinaryFile& operator=(const BinaryFile& other) = delete;
+    BinaryFile& operator=(BinaryFile&& other);
+
     static BinaryFile Create(const boost::filesystem::path& path, Error& error);
     static BinaryFile Create(const std::string& path, Error& error);
     void close();
@@ -26,7 +32,7 @@ public:
     void flush();
 
 private:
-    std::fstream m_file;
+    int m_file_descriptor{-1};
 };
 
 }
