@@ -22,7 +22,7 @@ public:
     static BinaryFile Create(const std::string& path, Error& error);
     void close();
 
-    void write(const char* buffer, size_t length);
+    void write(const char* buffer, size_t length, Error& error);
     void flush();
 
 private:
