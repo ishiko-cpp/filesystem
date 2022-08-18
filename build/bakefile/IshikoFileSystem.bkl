@@ -37,7 +37,6 @@ library IshikoFileSystem : IshikoIO, IshikoErrors, IshikoBasePlatform, Boost
     headers
     {
         ../../include/Ishiko/FileSystem.hpp
-
         ../../include/Ishiko/FileSystem/BinaryFile.hpp
         ../../include/Ishiko/FileSystem/Directory.hpp
         ../../include/Ishiko/FileSystem/FileSystemErrorCategory.hpp
@@ -48,10 +47,35 @@ library IshikoFileSystem : IshikoIO, IshikoErrors, IshikoBasePlatform, Boost
 
     sources
     {
-        ../../src/BinaryFile.cpp
         ../../src/Directory.cpp
         ../../src/FileSystemErrorCategory.cpp
         ../../src/TextFile.cpp
         ../../src/Utilities.cpp
+    }
+
+    if ($(toolset) == gnu)
+    {
+        headers
+        {
+            ../../include/Ishiko/FileSystem/linux/BinaryFile.hpp
+        }
+
+        sources
+        {
+            ../../src/linux/BinaryFile.cpp
+        }
+    }
+
+    if ($(toolset) != gnu)
+    {
+        headers
+        {
+            ../../include/Ishiko/FileSystem/windows/BinaryFile.hpp
+        }
+
+        sources
+        {
+            ../../src/windows/BinaryFile.cpp
+        }
     }
 }

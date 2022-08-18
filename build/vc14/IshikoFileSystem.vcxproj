@@ -150,11 +150,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\BinaryFile.cpp" />
     <ClCompile Include="..\..\src\Directory.cpp" />
     <ClCompile Include="..\..\src\FileSystemErrorCategory.cpp" />
     <ClCompile Include="..\..\src\TextFile.cpp" />
     <ClCompile Include="..\..\src\Utilities.cpp" />
+    <ClCompile Include="..\..\src\windows\BinaryFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\FileSystem.hpp" />
@@ -164,6 +164,7 @@
     <ClInclude Include="..\..\include\Ishiko\FileSystem\TextFile.hpp" />
     <ClInclude Include="..\..\include\Ishiko\FileSystem\Utilities.hpp" />
     <ClInclude Include="..\..\include\Ishiko\FileSystem\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\windows\BinaryFile.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
