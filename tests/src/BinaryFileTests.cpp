@@ -21,6 +21,7 @@ BinaryFileTests::BinaryFileTests(const TestNumber& number, const TestContext& co
     append<HeapAllocationErrorsTest>("read test 1", ReadTest1);
     append<HeapAllocationErrorsTest>("read test 2", ReadTest2);
     append<HeapAllocationErrorsTest>("write test 1", WriteTest1);
+    append<HeapAllocationErrorsTest>("write test 2", WriteTest2);
     append<HeapAllocationErrorsTest>("resize test 1", ResizeTest1);
 }
 
@@ -143,6 +144,25 @@ void BinaryFileTests::WriteTest1(Test& test)
     file.close();
 
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_WriteTest1.bin");
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::WriteTest2(Test& test)
+{
+    boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_WriteTest2.bin"));
+
+    Error error;
+    BinaryFile file = BinaryFile::Create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file.write("hello\r\n", 2, 7, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file.close();
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_WriteTest2.bin");
     ISHIKO_TEST_PASS();
 }
 

@@ -162,6 +162,20 @@ void BinaryFile::write(const char* buffer, size_t length, Error& error)
     }
 }
 
+void BinaryFile::write(const char* buffer, size_t pos, size_t length, Error& error)
+{
+    DWORD bytes_written;
+    OVERLAPPED overlapped;
+    memset(&overlapped, 0, sizeof(overlapped));
+    overlapped.Offset = pos;
+    BOOL succeedded = WriteFile(m_file_handle, buffer, length, &bytes_written, &overlapped);
+    if (!succeedded)
+    {
+        // TODO: more informative error
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
+    }
+}
+
 void BinaryFile::flush()
 {
     FlushFileBuffers(m_file_handle);
