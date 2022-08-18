@@ -128,6 +128,19 @@ void BinaryFile::setFilePointer(size_t pos)
     SetFilePointerEx(m_file_handle, offset, NULL, FILE_BEGIN);
 }
 
+size_t BinaryFile::read(size_t length, char* buffer, Error& error)
+{
+    DWORD result;
+    // TODO: check return value
+    BOOL succeeded = ReadFile(m_file_handle, buffer, length, &result, NULL);
+    if (!succeeded)
+    {
+        // TODO: more informative error
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
+    }
+    return result;
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     DWORD bytes_written;
