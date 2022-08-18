@@ -118,10 +118,27 @@ size_t BinaryFile::read(size_t length, char* buffer, Error& error)
     return result;
 }
 
+size_t BinaryFile::read(size_t pos, size_t length, char* buffer, Error& error)
+{
+    ssize_t result = pread(m_file_descriptor, buffer, length, pos);
+    if (result == -1)
+    {
+        // TODO: more informative error
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
+    }
+    return result;
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     // TODO: error handling
     ::write(m_file_descriptor, buffer, length);
+}
+
+void BinaryFile::write(const char* buffer, size_t pos, size_t length, Error& error)
+{
+    // TODO: error handling
+    pwrite(m_file_descriptor, buffer, length, pos);
 }
 
 void BinaryFile::flush()
