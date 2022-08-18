@@ -4,31 +4,17 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_FILESYSTEM_BINARYFILE_HPP_
-#define _ISHIKO_CPP_FILESYSTEM_BINARYFILE_HPP_
+#ifndef GUARD_ISHIKO_CPP_FILESYSTEM_BINARYFILE_HPP
+#define GUARD_ISHIKO_CPP_FILESYSTEM_BINARYFILE_HPP
 
-#include <boost/filesystem.hpp>
-#include <Ishiko/Errors.hpp>
-#include <fstream>
+#include <Ishiko/BasePlatform.h>
 
-namespace Ishiko
-{
-
-class BinaryFile
-{
-public:
-    BinaryFile() = default;
-    static BinaryFile Create(const boost::filesystem::path& path, Error& error);
-    static BinaryFile Create(const std::string& path, Error& error);
-    void close();
-
-    void write(const char* buffer, size_t length);
-    void flush();
-
-private:
-    std::fstream m_file;
-};
-
-}
+#if ISHIKO_OS == ISHIKO_OS_LINUX
+#include "linux/BinaryFile.hpp"
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
+#include "windows/BinaryFile.hpp"
+#else
+#error Unsupported or unrecognized OS
+#endif
 
 #endif

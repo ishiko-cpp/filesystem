@@ -38,11 +38,11 @@
     <ClInclude Include="..\..\include\Ishiko\FileSystem\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\FileSystem\windows\BinaryFile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\BinaryFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Directory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -53,6 +53,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\windows\BinaryFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
