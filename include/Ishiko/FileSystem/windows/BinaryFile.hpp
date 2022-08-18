@@ -9,7 +9,7 @@
 
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
-#include <fstream>
+#include <Windows.h>    // TODO: provide fwd declares instead
 
 namespace Ishiko
 {
@@ -18,15 +18,22 @@ class BinaryFile
 {
 public:
     BinaryFile() = default;
+    BinaryFile(const BinaryFile& other) = delete;
+    BinaryFile(BinaryFile&& other);
+    ~BinaryFile();
+
+    BinaryFile& operator=(const BinaryFile& other) = delete;
+    BinaryFile& operator=(BinaryFile&& other);
+
     static BinaryFile Create(const boost::filesystem::path& path, Error& error);
     static BinaryFile Create(const std::string& path, Error& error);
     void close();
 
-    void write(const char* buffer, size_t length);
+    void write(const char* buffer, size_t length, Error& error);
     void flush();
 
 private:
-    std::fstream m_file;
+    HANDLE m_file_handle{INVALID_HANDLE_VALUE};
 };
 
 }
