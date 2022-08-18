@@ -141,10 +141,34 @@ size_t BinaryFile::read(size_t length, char* buffer, Error& error)
     return result;
 }
 
+size_t BinaryFile::read(size_t pos, size_t length, char* buffer, Error& error)
+{
+    DWORD result;
+    OVERLAPPED overlapped;
+    memset(&overlapped, 0, sizeof(overlapped));
+    overlapped.Offset = pos;
+    BOOL succeeded = ReadFile(m_file_handle, buffer, length, &result, &overlapped);
+    return result;
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     DWORD bytes_written;
     BOOL succeedded = WriteFile(m_file_handle, buffer, length, &bytes_written, NULL);
+    if (!succeedded)
+    {
+        // TODO: more informative error
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
+    }
+}
+
+void BinaryFile::write(const char* buffer, size_t pos, size_t length, Error& error)
+{
+    DWORD bytes_written;
+    OVERLAPPED overlapped;
+    memset(&overlapped, 0, sizeof(overlapped));
+    overlapped.Offset = pos;
+    BOOL succeedded = WriteFile(m_file_handle, buffer, length, &bytes_written, &overlapped);
     if (!succeedded)
     {
         // TODO: more informative error
