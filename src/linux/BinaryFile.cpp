@@ -63,8 +63,7 @@ BinaryFile BinaryFile::Open(const std::string& path, Error& error)
     result.m_file_descriptor = open(path.c_str(), O_RDWR);
     if (result.m_file_descriptor == -1)
     {
-        // TODO: error code can't be represented exactly on Linux so I may have to give up
-        if (errno == EACCES)
+        if (errno == ENOENT)
         {
             Fail(FileSystemErrorCategory::Value::not_found, std::string("path \'") + path + "\' not found", __FILE__,
                  __LINE__, error);
