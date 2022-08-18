@@ -60,10 +60,25 @@ void BinaryFile::close()
     }
 }
 
+size_t BinaryFile::getFilePointer()
+{
+    return lseek(m_file_descriptor, 0, SEEK_CUR);
+}
+
+void BinaryFile::setFilePointer(size_t pos)
+{
+    lseek(m_file_descriptor, pos, SEEK_SET);
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     // TODO: error handling
     ::write(m_file_descriptor, buffer, length);
+}
+
+void BinaryFile::resize(size_t new_size)
+{
+    ftruncate(m_file_descriptor, new_size);
 }
 
 void BinaryFile::flush()

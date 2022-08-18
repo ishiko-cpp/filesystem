@@ -28,7 +28,11 @@ public:
     static BinaryFile Create(const std::string& path, Error& error);
     void close();
 
+    size_t getFilePointer();
+    void setFilePointer(size_t pos);
+
     void write(const char* buffer, size_t length, Error& error);
+    void resize(size_t new_size);
     void flush();
 
 private:
