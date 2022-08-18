@@ -19,6 +19,7 @@ private:
     static void CreateTest1(Ishiko::Test& test);
     static void CreateTest2(Ishiko::Test& test);
     static void WriteTest1(Ishiko::Test& test);
+    static void ResizeTest1(Ishiko::Test& test);
 };
 
 #endif
