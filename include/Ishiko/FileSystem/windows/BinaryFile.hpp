@@ -27,13 +27,17 @@ public:
 
     static BinaryFile Create(const boost::filesystem::path& path, Error& error);
     static BinaryFile Create(const std::string& path, Error& error);
+    static BinaryFile Open(const boost::filesystem::path& path, Error& error);
+    static BinaryFile Open(const std::string& path, Error& error);
     void close();
+
+    size_t size();
+    void resize(size_t new_size);
 
     size_t getFilePointer();
     void setFilePointer(size_t pos);
 
     void write(const char* buffer, size_t length, Error& error);
-    void resize(size_t new_size);
     void flush();
 
 private:
