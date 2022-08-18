@@ -51,6 +51,34 @@ BinaryFile BinaryFile::Create(const std::string& path, Error& error)
     return result;
 }
 
+BinaryFile BinaryFile::Open(const boost::filesystem::path& path, Error& error)
+{
+    return Open(path.string(), error);
+}
+
+BinaryFile BinaryFile::Open(const std::string& path, Error& error)
+{
+    BinaryFile result;
+
+    result.m_file_descriptor = open(path.c_str(), O_RDWR);
+    if (result.m_file_descriptor == -1)
+    {
+        // TODO: error code can't be represented exactly on Linux so I may have to give up
+        if (errno == EACCES)
+        {
+            Fail(FileSystemErrorCategory::Value::not_found, std::string("path \'") + path + "\' not found", __FILE__,
+                 __LINE__, error);
+        }
+        else
+        {
+            Fail(FileSystemErrorCategory::Value::generic_error, std::string("path \'") + path + "\' not found",
+                 __FILE__, __LINE__, error);
+        }
+    }
+
+    return result;
+}
+
 void BinaryFile::close()
 {
     if (m_file_descriptor != -1)
@@ -58,6 +86,16 @@ void BinaryFile::close()
         ::close(m_file_descriptor);
         m_file_descriptor = -1;
     }
+}
+
+size_t BinaryFile::size()
+{
+    return lseek(m_file_descriptor, 0, SEEK_END);
+}
+
+void BinaryFile::resize(size_t new_size)
+{
+    ftruncate(m_file_descriptor, new_size);
 }
 
 size_t BinaryFile::getFilePointer()
@@ -74,11 +112,6 @@ void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     // TODO: error handling
     ::write(m_file_descriptor, buffer, length);
-}
-
-void BinaryFile::resize(size_t new_size)
-{
-    ftruncate(m_file_descriptor, new_size);
 }
 
 void BinaryFile::flush()
