@@ -66,6 +66,22 @@ void BinaryFile::close()
     }
 }
 
+size_t BinaryFile::getFilePointer()
+{
+    LARGE_INTEGER offset;
+    offset.QuadPart = 0;
+    LARGE_INTEGER result;
+    SetFilePointerEx(m_file_handle, offset, &result, FILE_CURRENT);
+    return result.QuadPart;
+}
+
+void BinaryFile::setFilePointer(size_t pos)
+{
+    LARGE_INTEGER offset;
+    offset.QuadPart = pos;
+    SetFilePointerEx(m_file_handle, offset, NULL, FILE_BEGIN);
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     DWORD bytes_written;
@@ -75,6 +91,16 @@ void BinaryFile::write(const char* buffer, size_t length, Error& error)
         // TODO: more informative error
         Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
     }
+}
+
+void BinaryFile::resize(size_t new_size)
+{
+    size_t previous_file_pointer = getFilePointer();
+    LARGE_INTEGER offset;
+    offset.QuadPart = new_size;
+    SetFilePointerEx(m_file_handle, offset, NULL, FILE_END);
+    SetEndOfFile(m_file_handle);
+    setFilePointer(previous_file_pointer);
 }
 
 void BinaryFile::flush()
