@@ -21,7 +21,9 @@ private:
     static void OpenTest1(Ishiko::Test& test);
     static void OpenTest2(Ishiko::Test& test);
     static void ReadTest1(Ishiko::Test& test);
+    static void ReadTest2(Ishiko::Test& test);
     static void WriteTest1(Ishiko::Test& test);
+    static void WriteTest2(Ishiko::Test& test);
     static void ResizeTest1(Ishiko::Test& test);
 };
 
