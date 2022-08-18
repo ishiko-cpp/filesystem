@@ -33,7 +33,7 @@ BinaryFile BinaryFile::Create(const std::string& path, Error& error)
     BinaryFile result;
 
     // TODO: allow user to configure mask
-    result.m_file_descriptor = open(path.c_str(), O_CREAT | O_EXCL, S_IRUSR | S_IWUSR);
+    result.m_file_descriptor = open(path.c_str(), O_CREAT | O_EXCL | O_RDWR, S_IRUSR | S_IWUSR);
     if (result.m_file_descriptor == -1)
     {
         if (errno == EEXIST)
