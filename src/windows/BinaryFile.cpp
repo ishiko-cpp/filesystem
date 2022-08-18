@@ -28,12 +28,12 @@ BinaryFile& BinaryFile::operator=(BinaryFile&& other)
     return *this;
 }
 
-BinaryFile BinaryFile::Create(const boost::filesystem::path& path, Ishiko::Error& error)
+BinaryFile BinaryFile::Create(const boost::filesystem::path& path, Error& error)
 {
     return Create(path.string(), error);
 }
 
-BinaryFile BinaryFile::Create(const std::string& path, Ishiko::Error& error)
+BinaryFile BinaryFile::Create(const std::string& path, Error& error)
 {
     BinaryFile result;
 
@@ -57,6 +57,35 @@ BinaryFile BinaryFile::Create(const std::string& path, Ishiko::Error& error)
     return result;
 }
 
+BinaryFile BinaryFile::Open(const boost::filesystem::path& path, Error& error)
+{
+    return Open(path.string(), error);
+}
+
+BinaryFile BinaryFile::Open(const std::string& path, Error& error)
+{
+    BinaryFile result;
+
+    result.m_file_handle = CreateFileA(path.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0,
+        NULL);
+    if (result.m_file_handle == INVALID_HANDLE_VALUE)
+    {
+        DWORD last_error = GetLastError();
+        if (last_error == ERROR_FILE_NOT_FOUND)
+        {
+            Fail(FileSystemErrorCategory::Value::not_found, std::string("path \'") + path + "\' not found", __FILE__,
+                __LINE__, error);
+        }
+        else
+        {
+            Fail(FileSystemErrorCategory::Value::generic_error, std::string("path \'") + path + "\' not found", __FILE__,
+                __LINE__, error);
+        }
+    }
+
+    return result;
+}
+
 void BinaryFile::close()
 {
     if (m_file_handle != INVALID_HANDLE_VALUE)
@@ -64,6 +93,23 @@ void BinaryFile::close()
         CloseHandle(m_file_handle);
         m_file_handle = INVALID_HANDLE_VALUE;
     }
+}
+
+size_t BinaryFile::size()
+{
+    LARGE_INTEGER result;
+    GetFileSizeEx(m_file_handle, &result);
+    return result.QuadPart;
+}
+
+void BinaryFile::resize(size_t new_size)
+{
+    size_t previous_file_pointer = getFilePointer();
+    LARGE_INTEGER offset;
+    offset.QuadPart = new_size;
+    SetFilePointerEx(m_file_handle, offset, NULL, FILE_END);
+    SetEndOfFile(m_file_handle);
+    setFilePointer(previous_file_pointer);
 }
 
 size_t BinaryFile::getFilePointer()
@@ -82,6 +128,19 @@ void BinaryFile::setFilePointer(size_t pos)
     SetFilePointerEx(m_file_handle, offset, NULL, FILE_BEGIN);
 }
 
+size_t BinaryFile::read(size_t length, char* buffer, Error& error)
+{
+    DWORD result;
+    // TODO: check return value
+    BOOL succeeded = ReadFile(m_file_handle, buffer, length, &result, NULL);
+    if (!succeeded)
+    {
+        // TODO: more informative error
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
+    }
+    return result;
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     DWORD bytes_written;
@@ -91,16 +150,6 @@ void BinaryFile::write(const char* buffer, size_t length, Error& error)
         // TODO: more informative error
         Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
     }
-}
-
-void BinaryFile::resize(size_t new_size)
-{
-    size_t previous_file_pointer = getFilePointer();
-    LARGE_INTEGER offset;
-    offset.QuadPart = new_size;
-    SetFilePointerEx(m_file_handle, offset, NULL, FILE_END);
-    SetEndOfFile(m_file_handle);
-    setFilePointer(previous_file_pointer);
 }
 
 void BinaryFile::flush()

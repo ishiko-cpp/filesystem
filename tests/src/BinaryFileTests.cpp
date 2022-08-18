@@ -16,6 +16,9 @@ BinaryFileTests::BinaryFileTests(const TestNumber& number, const TestContext& co
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Create test 1", CreateTest1);
     append<HeapAllocationErrorsTest>("Create test 2", CreateTest2);
+    append<HeapAllocationErrorsTest>("Open test 1", OpenTest1);
+    append<HeapAllocationErrorsTest>("Open test 2", OpenTest2);
+    append<HeapAllocationErrorsTest>("read test 1", ReadTest1);
     append<HeapAllocationErrorsTest>("write test 1", WriteTest1);
     append<HeapAllocationErrorsTest>("resize test 1", ResizeTest1);
 }
@@ -58,6 +61,47 @@ void BinaryFileTests::CreateTest2(Test& test)
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_CreateTest2.bin");
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::OpenTest1(Test& test)
+{
+    Error error;
+    BinaryFile file = BinaryFile::Open(test.context().getDataPath("BinaryFileTests_OpenTest1.bin"), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(file.size(), 0);
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::OpenTest2(Test& test)
+{
+    Error error;
+    BinaryFile file = BinaryFile::Open(test.context().getDataPath("does_not_exist"), error);
+
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::not_found);
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::ReadTest1(Test& test)
+{
+    Error error;
+    BinaryFile file = BinaryFile::Open(test.context().getDataPath("BinaryFileTests_ReadTest1.bin"), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    char buffer[4];
+    size_t read_count = file.read(6, buffer, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(read_count, 4);
+    ISHIKO_TEST_FAIL_IF_NEQ(std::string(buffer, 4), "data");
+
+    read_count = file.read(6, buffer, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(read_count, 0);
     ISHIKO_TEST_PASS();
 }
 
