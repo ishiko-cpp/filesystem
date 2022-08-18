@@ -19,6 +19,7 @@ BinaryFileTests::BinaryFileTests(const TestNumber& number, const TestContext& co
     append<HeapAllocationErrorsTest>("Open test 1", OpenTest1);
     append<HeapAllocationErrorsTest>("Open test 2", OpenTest2);
     append<HeapAllocationErrorsTest>("read test 1", ReadTest1);
+    append<HeapAllocationErrorsTest>("read test 2", ReadTest2);
     append<HeapAllocationErrorsTest>("write test 1", WriteTest1);
     append<HeapAllocationErrorsTest>("resize test 1", ResizeTest1);
 }
@@ -91,7 +92,7 @@ void BinaryFileTests::ReadTest1(Test& test)
 
     ISHIKO_TEST_FAIL_IF(error);
 
-    char buffer[4];
+    char buffer[6];
     size_t read_count = file.read(6, buffer, error);
 
     ISHIKO_TEST_FAIL_IF(error);
@@ -99,6 +100,27 @@ void BinaryFileTests::ReadTest1(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::string(buffer, 4), "data");
 
     read_count = file.read(6, buffer, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(read_count, 0);
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::ReadTest2(Test& test)
+{
+    Error error;
+    BinaryFile file = BinaryFile::Open(test.context().getDataPath("BinaryFileTests_ReadTest1.bin"), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    char buffer[6];
+    size_t read_count = file.read(1, 6, buffer, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(read_count, 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(std::string(buffer, 3), "ata");
+
+    read_count = file.read(4, 6, buffer, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_FAIL_IF_NEQ(read_count, 0);

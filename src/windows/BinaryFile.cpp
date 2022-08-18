@@ -141,6 +141,16 @@ size_t BinaryFile::read(size_t length, char* buffer, Error& error)
     return result;
 }
 
+size_t BinaryFile::read(size_t pos, size_t length, char* buffer, Error& error)
+{
+    DWORD result;
+    OVERLAPPED overlapped;
+    memset(&overlapped, 0, sizeof(overlapped));
+    overlapped.Offset = pos;
+    BOOL succeeded = ReadFile(m_file_handle, buffer, length, &result, &overlapped);
+    return result;
+}
+
 void BinaryFile::write(const char* buffer, size_t length, Error& error)
 {
     DWORD bytes_written;
