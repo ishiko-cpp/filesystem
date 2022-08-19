@@ -14,10 +14,14 @@ BinaryFileTests::BinaryFileTests(const TestNumber& number, const TestContext& co
     : TestSequence(number, "BinaryFile tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
-    append<HeapAllocationErrorsTest>("Create test 1", CreateTest1);
-    append<HeapAllocationErrorsTest>("Create test 2", CreateTest2);
-    append<HeapAllocationErrorsTest>("Open test 1", OpenTest1);
-    append<HeapAllocationErrorsTest>("Open test 2", OpenTest2);
+    append<HeapAllocationErrorsTest>("create test 1", CreateTest1);
+    append<HeapAllocationErrorsTest>("create test 2", CreateTest2);
+    append<HeapAllocationErrorsTest>("Create test 1", StaticCreateTest1);
+    append<HeapAllocationErrorsTest>("Create test 2", StaticCreateTest2);
+    append<HeapAllocationErrorsTest>("open test 1", OpenTest1);
+    append<HeapAllocationErrorsTest>("open test 2", OpenTest2);
+    append<HeapAllocationErrorsTest>("Open test 1", StaticOpenTest1);
+    append<HeapAllocationErrorsTest>("Open test 2", StaticOpenTest2);
     append<HeapAllocationErrorsTest>("read test 1", ReadTest1);
     append<HeapAllocationErrorsTest>("read test 2", ReadTest2);
     append<HeapAllocationErrorsTest>("write test 1", WriteTest1);
@@ -37,7 +41,8 @@ void BinaryFileTests::CreateTest1(Test& test)
     boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_CreateTest1.bin"));
 
     Error error;
-    BinaryFile file = BinaryFile::Create(outputPath.string(), error);
+    BinaryFile file;
+    file.create(outputPath.string(), error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
@@ -52,6 +57,43 @@ void BinaryFileTests::CreateTest2(Test& test)
     boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_CreateTest2.bin"));
 
     Error error;
+    BinaryFile file1;
+    file1.create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file1.close();
+
+    BinaryFile file2;
+    file2.create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_CreateTest2.bin");
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::StaticCreateTest1(Test& test)
+{
+    boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_StaticCreateTest1.bin"));
+
+    Error error;
+    BinaryFile file = BinaryFile::Create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file.close();
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_StaticCreateTest1.bin",
+        "BinaryFileTests_CreateTest1.bin");
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::StaticCreateTest2(Test& test)
+{
+    boost::filesystem::path outputPath(test.context().getOutputPath("BinaryFileTests_StaticCreateTest2.bin"));
+
+    Error error;
     BinaryFile file1 = BinaryFile::Create(outputPath.string(), error);
 
     ISHIKO_TEST_FAIL_IF(error);
@@ -62,11 +104,34 @@ void BinaryFileTests::CreateTest2(Test& test)
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
-    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_CreateTest2.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_StaticCreateTest2.bin",
+        "BinaryFileTests_CreateTest2.bin");
     ISHIKO_TEST_PASS();
 }
 
 void BinaryFileTests::OpenTest1(Test& test)
+{
+    Error error;
+    BinaryFile file;
+    file.open(test.context().getDataPath("BinaryFileTests_OpenTest1.bin"), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(file.size(), 0);
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::OpenTest2(Test& test)
+{
+    Error error;
+    BinaryFile file;
+    file.open(test.context().getDataPath("does_not_exist"), error);
+
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::not_found);
+    ISHIKO_TEST_PASS();
+}
+
+void BinaryFileTests::StaticOpenTest1(Test& test)
 {
     Error error;
     BinaryFile file = BinaryFile::Open(test.context().getDataPath("BinaryFileTests_OpenTest1.bin"), error);
@@ -76,7 +141,7 @@ void BinaryFileTests::OpenTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void BinaryFileTests::OpenTest2(Test& test)
+void BinaryFileTests::StaticOpenTest2(Test& test)
 {
     Error error;
     BinaryFile file = BinaryFile::Open(test.context().getDataPath("does_not_exist"), error);

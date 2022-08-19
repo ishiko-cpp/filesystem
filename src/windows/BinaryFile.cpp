@@ -36,10 +36,31 @@ BinaryFile BinaryFile::Create(const boost::filesystem::path& path, Error& error)
 BinaryFile BinaryFile::Create(const std::string& path, Error& error)
 {
     BinaryFile result;
+    result.create(path.c_str(), error);
+    return result;
+}
 
-    result.m_file_handle = CreateFileA(path.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_NEW,
-        FILE_ATTRIBUTE_NORMAL, NULL);
-    if (result.m_file_handle == INVALID_HANDLE_VALUE)
+BinaryFile BinaryFile::Open(const boost::filesystem::path& path, Error& error)
+{
+    return Open(path.string(), error);
+}
+
+BinaryFile BinaryFile::Open(const std::string& path, Error& error)
+{
+    BinaryFile result;
+    result.open(path.c_str(), error);
+    return result;
+}
+
+void BinaryFile::create(const boost::filesystem::path& path, Error& error)
+{
+    create(path.c_str(), error);
+}
+
+void BinaryFile::create(const char* path, Error& error)
+{
+    m_file_handle = CreateFileA(path, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
+    if (m_file_handle == INVALID_HANDLE_VALUE)
     {
         DWORD last_error = GetLastError();
         if (last_error == ERROR_FILE_EXISTS)
@@ -53,22 +74,36 @@ BinaryFile BinaryFile::Create(const std::string& path, Error& error)
                 __FILE__, __LINE__, error);
         }
     }
-
-    return result;
 }
 
-BinaryFile BinaryFile::Open(const boost::filesystem::path& path, Error& error)
+void BinaryFile::create(const wchar_t* path, Error& error)
 {
-    return Open(path.string(), error);
+    m_file_handle = CreateFileW(path, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
+    if (m_file_handle == INVALID_HANDLE_VALUE)
+    {
+        DWORD last_error = GetLastError();
+        if (last_error == ERROR_FILE_EXISTS)
+        {
+            Fail(FileSystemErrorCategory::Value::already_exists,
+                std::wstring(L"path \'") + path + L"\' already exists", __FILE__, __LINE__, error);
+        }
+        else
+        {
+            Fail(FileSystemErrorCategory::Value::generic_error, std::wstring(L"path \'") + path + L"\' already exists",
+                __FILE__, __LINE__, error);
+        }
+    }
 }
 
-BinaryFile BinaryFile::Open(const std::string& path, Error& error)
+void BinaryFile::open(const boost::filesystem::path& path, Error& error)
 {
-    BinaryFile result;
+    open(path.c_str(), error);
+}
 
-    result.m_file_handle = CreateFileA(path.c_str(), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0,
-        NULL);
-    if (result.m_file_handle == INVALID_HANDLE_VALUE)
+void BinaryFile::open(const char* path, Error& error)
+{
+    m_file_handle = CreateFileA(path, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
+    if (m_file_handle == INVALID_HANDLE_VALUE)
     {
         DWORD last_error = GetLastError();
         if (last_error == ERROR_FILE_NOT_FOUND)
@@ -78,12 +113,29 @@ BinaryFile BinaryFile::Open(const std::string& path, Error& error)
         }
         else
         {
-            Fail(FileSystemErrorCategory::Value::generic_error, std::string("path \'") + path + "\' not found", __FILE__,
-                __LINE__, error);
+            Fail(FileSystemErrorCategory::Value::generic_error, std::string("path \'") + path + "\' not found",
+                __FILE__, __LINE__, error);
         }
     }
+}
 
-    return result;
+void BinaryFile::open(const wchar_t* path, Error& error)
+{
+    m_file_handle = CreateFileW(path, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
+    if (m_file_handle == INVALID_HANDLE_VALUE)
+    {
+        DWORD last_error = GetLastError();
+        if (last_error == ERROR_FILE_NOT_FOUND)
+        {
+            Fail(FileSystemErrorCategory::Value::not_found, std::wstring(L"path \'") + path + L"\' not found",
+                __FILE__, __LINE__, error);
+        }
+        else
+        {
+            Fail(FileSystemErrorCategory::Value::generic_error, std::wstring(L"path \'") + path + L"\' not found",
+                __FILE__, __LINE__, error);
+        }
+    }
 }
 
 void BinaryFile::close()

@@ -29,6 +29,13 @@ public:
     static BinaryFile Create(const std::string& path, Error& error);
     static BinaryFile Open(const boost::filesystem::path& path, Error& error);
     static BinaryFile Open(const std::string& path, Error& error);
+
+    void create(const boost::filesystem::path& path, Error& error);
+    void create(const char* path, Error& error);
+    void create(const wchar_t* path, Error& error);
+    void open(const boost::filesystem::path& path, Error& error);
+    void open(const char* path, Error& error);
+    void open(const wchar_t* path, Error& error);
     void close();
 
     size_t size();
