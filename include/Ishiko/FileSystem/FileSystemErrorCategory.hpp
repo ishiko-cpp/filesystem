@@ -38,6 +38,8 @@ void Throw(FileSystemErrorCategory::Value value, const char* file, int line);
 void Fail(FileSystemErrorCategory::Value value, Error& error) noexcept;
 void Fail(FileSystemErrorCategory::Value value, const std::string& message, const char* file, int line,
     Error& error) noexcept;
+void Fail(FileSystemErrorCategory::Value value, const std::wstring& message, const char* file, int line,
+    Error& error) noexcept;
 bool operator==(const ErrorCondition& error, FileSystemErrorCategory::Value value);
 bool operator!=(const ErrorCondition& error, FileSystemErrorCategory::Value value);
 
