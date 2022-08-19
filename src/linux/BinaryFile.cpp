@@ -31,10 +31,32 @@ BinaryFile BinaryFile::Create(const boost::filesystem::path& path, Error& error)
 BinaryFile BinaryFile::Create(const std::string& path, Error& error)
 {
     BinaryFile result;
+    result.create(path.c_str(), error);
+    return result;
+}
 
+BinaryFile BinaryFile::Open(const boost::filesystem::path& path, Error& error)
+{
+    return Open(path.string(), error);
+}
+
+BinaryFile BinaryFile::Open(const std::string& path, Error& error)
+{
+    BinaryFile result;
+    result.open(path.c_str(), error);
+    return result;
+}
+
+void BinaryFile::create(const boost::filesystem::path& path, Error& error)
+{
+    create(path.c_str(), error);
+}
+
+void BinaryFile::create(const char* path, Error& error)
+{
     // TODO: allow user to configure mask
-    result.m_file_descriptor = open(path.c_str(), O_CREAT | O_EXCL | O_RDWR, S_IRUSR | S_IWUSR);
-    if (result.m_file_descriptor == -1)
+    m_file_descriptor = ::open(path, O_CREAT | O_EXCL | O_RDWR, S_IRUSR | S_IWUSR);
+    if (m_file_descriptor == -1)
     {
         if (errno == EEXIST)
         {
@@ -47,21 +69,22 @@ BinaryFile BinaryFile::Create(const std::string& path, Error& error)
                  __FILE__, __LINE__, error);
         }
     }
-
-    return result;
 }
 
-BinaryFile BinaryFile::Open(const boost::filesystem::path& path, Error& error)
+void BinaryFile::create(const wchar_t* path, Error& error)
 {
-    return Open(path.string(), error);
+    // TODO
 }
 
-BinaryFile BinaryFile::Open(const std::string& path, Error& error)
+void BinaryFile::open(const boost::filesystem::path& path, Error& error)
 {
-    BinaryFile result;
+    open(path.c_str(), error);
+}
 
-    result.m_file_descriptor = open(path.c_str(), O_RDWR);
-    if (result.m_file_descriptor == -1)
+void BinaryFile::open(const char* path, Error& error)
+{
+    m_file_descriptor = ::open(path, O_RDWR);
+    if (m_file_descriptor == -1)
     {
         if (errno == ENOENT)
         {
@@ -74,8 +97,11 @@ BinaryFile BinaryFile::Open(const std::string& path, Error& error)
                  __FILE__, __LINE__, error);
         }
     }
+}
 
-    return result;
+void BinaryFile::open(const wchar_t* path, Error& error)
+{
+    // TODO
 }
 
 void BinaryFile::close()

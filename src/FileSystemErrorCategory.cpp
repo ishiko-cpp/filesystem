@@ -70,6 +70,12 @@ void Ishiko::Fail(FileSystemErrorCategory::Value value, const std::string& messa
     error.fail(FileSystemErrorCategory::Get(), static_cast<int>(value), message, file, line);
 }
 
+void Ishiko::Fail(FileSystemErrorCategory::Value value, const std::wstring& message, const char* file, int line,
+    Error& error) noexcept
+{
+    error.fail(FileSystemErrorCategory::Get(), static_cast<int>(value), message, file, line);
+}
+
 bool Ishiko::operator==(const ErrorCondition& error, FileSystemErrorCategory::Value value)
 {
     return ((&error.category() == &FileSystemErrorCategory::Get()) && (error.value() == static_cast<int>(value)));
