@@ -159,7 +159,7 @@ void BinaryFile::resize(size_t new_size)
     size_t previous_file_pointer = getFilePointer();
     LARGE_INTEGER offset;
     offset.QuadPart = new_size;
-    SetFilePointerEx(m_file_handle, offset, NULL, FILE_END);
+    SetFilePointerEx(m_file_handle, offset, NULL, FILE_BEGIN);
     SetEndOfFile(m_file_handle);
     setFilePointer(previous_file_pointer);
 }
