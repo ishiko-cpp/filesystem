@@ -214,7 +214,7 @@ void BinaryFile::write(const char* buffer, size_t length, Error& error)
     }
 }
 
-void BinaryFile::write(const char* buffer, size_t pos, size_t length, Error& error)
+void BinaryFile::write(size_t pos, const char* buffer, size_t length, Error& error)
 {
     DWORD bytes_written;
     OVERLAPPED overlapped;
