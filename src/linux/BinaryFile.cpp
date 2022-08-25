@@ -161,7 +161,7 @@ void BinaryFile::write(const char* buffer, size_t length, Error& error)
     ::write(m_file_descriptor, buffer, length);
 }
 
-void BinaryFile::write(const char* buffer, size_t pos, size_t length, Error& error)
+void BinaryFile::write(size_t pos, const char* buffer, size_t length, Error& error)
 {
     // TODO: error handling
     pwrite(m_file_descriptor, buffer, length, pos);
