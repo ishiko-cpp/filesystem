@@ -30,7 +30,12 @@ void ToAbsolutePath(const char* path, std::string& absolutePath);
 void ToAbsolutePath(const std::string& path, std::string& absolutePath);
 void CreateEmptyFile(const std::string& path, Error& error) noexcept;
 void CreateEmptyFile(const boost::filesystem::path& path, Error& error) noexcept;
-void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error) noexcept;
+
+// This function should simply be called CopyFile. Unfortunately the Windows system header define a macro named
+// CopyFile that interferes. Since it is a macro namespacing doesn't solve the issue. The issue it creates is also
+// obscure to diagnose so it was simpler to avoid the clash entirely.
+void CopySingleFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath,
+    Error& error) noexcept;
 size_t ReadFile(const char* filename, char* buffer, size_t bufferSize, Error& error) noexcept;
 std::string ReadFile(const char* filename);
 std::string ReadFile(const char* filename, Error& error) noexcept;
