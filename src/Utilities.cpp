@@ -120,12 +120,7 @@ void CreateEmptyFile(const boost::filesystem::path& path, Error& error) noexcept
     CreateEmptyFile(path.string(), error);
 }
 
-// Windows defines a macro that clashes with the name of the function
-#if ISHIKO_OS == ISHIKO_OS_WINDOWS
-#undef CopyFile
-#endif
-
-void CopyFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error) noexcept
+void CopySingleFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath, Error& error) noexcept
 {
     boost::system::error_code ec;
     boost::filesystem::copy_file(sourcePath, targetPath, ec);

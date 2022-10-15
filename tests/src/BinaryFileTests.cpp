@@ -222,7 +222,7 @@ void BinaryFileTests::WriteTest2(Test& test)
 
     ISHIKO_TEST_FAIL_IF(error);
 
-    file.write("hello\r\n", 2, 7, error);
+    file.write(2, "hello\r\n", 7, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
