@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2022 Xavier Leclercq
+    Copyright (c) 2022-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
@@ -9,6 +9,7 @@
 
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>    // TODO: provide fwd declares instead
 
 namespace Ishiko
