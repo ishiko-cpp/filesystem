@@ -1,4 +1,4 @@
-ishikopath = envvar("ISHIKO_CPP");
+ishikopath = envvar("ISHIKO_CPP_ROOT");
 import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
 import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
 import $(ishikopath)/io/include/Ishiko/IO.bkl;
@@ -6,8 +6,8 @@ import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
 
 setting ISHIKO_CPP_FILESYSTEM_ROOT
 {
-    help = "Path to the Ishiko FileSystem installation";
-    default = '$(ISHIKO_CPP)/filesystem';
+    help = "Path to the Ishiko/C++ FileSystem installation";
+    default = '$(ISHIKO_CPP_ROOT)/filesystem';
 }
 
 template IshikoFileSystem : IshikoIO, IshikoErrors, IshikoBasePlatform, Boost
