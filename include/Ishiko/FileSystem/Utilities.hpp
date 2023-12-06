@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2017-2021 Xavier Leclercq
+    Copyright (c) 2017-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
@@ -8,7 +8,7 @@
 #define _ISHIKO_CPP_FILESYSTEM_UTILITIES_HPP_
 
 #include <boost/filesystem/path.hpp>
-#include <Ishiko/BasePlatform.h>
+#include <Ishiko/BasePlatform.hpp>
 #include <Ishiko/Errors.hpp>
 #include <cstddef>
 #include <string>
