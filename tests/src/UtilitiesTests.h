@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2022 Xavier Leclercq
+    Copyright (c) 2020-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_CPP_FILESYSTEM_TESTS_UTILITIESTESTS_H_
 #define _ISHIKO_CPP_FILESYSTEM_TESTS_UTILITIESTESTS_H_
 
-#include <Ishiko/BasePlatform.h>
+#include <Ishiko/BasePlatform.hpp>
 #include <Ishiko/TestFramework/Core.hpp>
 
 class UtilitiesTests : public Ishiko::TestSequence
