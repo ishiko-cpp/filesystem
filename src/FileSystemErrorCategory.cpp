@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2022 Xavier Leclercq
+    Copyright (c) 2020-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
@@ -19,39 +19,31 @@ const char* FileSystemErrorCategory::name() const noexcept
     return "Ishiko::FileSystemErrorCategory";
 }
 
-std::ostream& FileSystemErrorCategory::streamOut(int value, std::ostream& os) const
+const char* FileSystemErrorCategory::message(int ev, char* buffer, size_t len) const noexcept
 {
-    switch (static_cast<Value>(value))
+    switch (static_cast<Value>(ev))
     {
     case Value::generic_error:
-        os << "generic error";
-        break;
+        return "generic error";
 
     case Value::buffer_overflow:
-        os << "buffer overflow";
-        break;
+        return "buffer overflow";
 
     case Value::not_found:
-        os << "not found";
-        break;
+        return "not found";
 
     case Value::already_exists:
-        os << "already exists";
-        break;
+        return "already exists";
 
     case Value::end_of_file:
-        os << "end of file";
-        break;
+        return "end of file";
 
     case Value::read_error:
-        os << "read error";
-        break;
+        return "read error";
 
     default:
-        os << "unknown value";
-        break;
+        return "unknown value";
     }
-    return os;
 }
 
 void Ishiko::Throw(FileSystemErrorCategory::Value value, const char* file, int line)
