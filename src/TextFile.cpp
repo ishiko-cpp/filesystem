@@ -82,7 +82,7 @@ std::vector<std::string> TextFile::readAllLines(Error& error)
         std::string line = readLine(readError);
         if (readError)
         {
-            if (readError.condition() != FileSystemErrorCategory::Value::end_of_file)
+            if (readError.code() != FileSystemErrorCategory::Value::end_of_file)
             {
                 error.fail(readError);
             }
