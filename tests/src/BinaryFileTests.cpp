@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2022 Xavier Leclercq
+    Copyright (c) 2022-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
@@ -69,7 +69,7 @@ void BinaryFileTests::CreateTest2(Test& test)
     file2.create(outputPath.string(), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code(), FileSystemErrorCategory::Value::already_exists);
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_CreateTest2.bin");
     ISHIKO_TEST_PASS();
 }
@@ -104,7 +104,7 @@ void BinaryFileTests::StaticCreateTest2(Test& test)
     BinaryFile file2 = BinaryFile::Create(outputPath.string(), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::already_exists);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code(), FileSystemErrorCategory::Value::already_exists);
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("BinaryFileTests_StaticCreateTest2.bin",
         "BinaryFileTests_CreateTest2.bin");
     ISHIKO_TEST_PASS();
@@ -128,7 +128,7 @@ void BinaryFileTests::OpenTest2(Test& test)
     file.open(test.context().getDataPath("does_not_exist"), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::not_found);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code(), FileSystemErrorCategory::Value::not_found);
     ISHIKO_TEST_PASS();
 }
 
@@ -148,7 +148,7 @@ void BinaryFileTests::StaticOpenTest2(Test& test)
     BinaryFile file = BinaryFile::Open(test.context().getDataPath("does_not_exist"), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(error.condition(), FileSystemErrorCategory::Value::not_found);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code(), FileSystemErrorCategory::Value::not_found);
     ISHIKO_TEST_PASS();
 }
 
