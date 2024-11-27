@@ -46,6 +46,9 @@ private:
     static void ReadFileTest9(Ishiko::Test& test);
     static void ReadFileTest10(Ishiko::Test& test);
     static void ReadFileTest11(Ishiko::Test& test);
+    static void CopySingleFileTest1(Ishiko::Test& test);
+    static void CopySingleFileTest2(Ishiko::Test& test);
+    static void CopySingleFileTest3(Ishiko::Test& test);
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
     static void GetVolumeListTest1(Ishiko::Test& test);
 #endif
