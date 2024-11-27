@@ -48,6 +48,7 @@ private:
     static void CopyTest3(Ishiko::Test& test);
     static void CopyTest4(Ishiko::Test& test);
     static void CopyTest5(Ishiko::Test& test);
+    static void CopyTest6(Ishiko::Test& test);
     static void CopySingleFileTest1(Ishiko::Test& test);
     static void CopySingleFileTest2(Ishiko::Test& test);
     static void CopySingleFileTest3(Ishiko::Test& test);

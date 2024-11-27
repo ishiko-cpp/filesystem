@@ -47,6 +47,7 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestContext& cont
     append<HeapAllocationErrorsTest>("Copy test 3", CopyTest3);
     append<HeapAllocationErrorsTest>("Copy test 4", CopyTest4);
     append<HeapAllocationErrorsTest>("Copy test 5", CopyTest5);
+    append<HeapAllocationErrorsTest>("Copy test 6", CopyTest6);
     append<HeapAllocationErrorsTest>("CopySingleFile test 1", CopySingleFileTest1);
     append<HeapAllocationErrorsTest>("CopySingleFile test 2", CopySingleFileTest2);
     append<HeapAllocationErrorsTest>("CopySingleFile test 3", CopySingleFileTest3);
@@ -530,6 +531,19 @@ void UtilitiesTests::CopyTest5(Test& test)
         ISHIKO_TEST_FAIL_IF(FileSystem::Exists(destination_path));
         ISHIKO_TEST_PASS();
     }
+}
+
+void UtilitiesTests::CopyTest6(Test& test)
+{
+    const char* output_subpath = "subdir-CopyTest6/UtilitiesTests_CopyTest6";
+    boost::filesystem::path source_path(test.context().getDataPath("Directory2"));
+    boost::filesystem::path destination_path(test.context().getOutputPath(output_subpath));
+
+    FileSystem::Copy(source_path, destination_path, CopyOption::create_directories);
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("subdir-CopyTest6/UtilitiesTests_CopyTest6/file1.txt");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("subdir-CopyTest6/UtilitiesTests_CopyTest6/file2.txt");
+    ISHIKO_TEST_PASS();
 }
 
 void UtilitiesTests::CopySingleFileTest1(Test& test)
