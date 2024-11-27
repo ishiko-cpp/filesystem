@@ -1,11 +1,8 @@
-/*
-    Copyright (c) 2021-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#ifndef _ISHIKO_CPP_FILESYSTEM_TESTS_TEXTFILETESTS_H_
-#define _ISHIKO_CPP_FILESYSTEM_TESTS_TEXTFILETESTS_H_
+#ifndef GUARD_ISHIKO_CPP_FILESYSTEM_TESTS_TEXTFILETESTS_HPP
+#define GUARD_ISHIKO_CPP_FILESYSTEM_TESTS_TEXTFILETESTS_HPP
 
 #include <Ishiko/TestFramework/Core.hpp>
 

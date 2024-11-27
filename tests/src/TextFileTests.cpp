@@ -1,10 +1,7 @@
-/*
-    Copyright (c) 2021-2024 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#include "TextFileTests.h"
+#include "TextFileTests.hpp"
 #include <Ishiko/FileSystem/FileSystemErrorCategory.hpp>
 #include <Ishiko/FileSystem/TextFile.hpp>
 
