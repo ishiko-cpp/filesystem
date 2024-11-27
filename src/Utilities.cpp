@@ -119,6 +119,13 @@ void CreateEmptyFile(const boost::filesystem::path& path, Error& error) noexcept
 
 void Copy(const boost::filesystem::path& source_path, const boost::filesystem::path& target_path, unsigned int options)
 {
+    if (options & static_cast<unsigned int>(CopyOption::create_directories))
+    {
+        boost::system::error_code ec;
+        boost::filesystem::create_directories(target_path.parent_path(), ec);
+        options &= ~static_cast<unsigned int>(CopyOption::create_directories);
+    }
+
     boost::filesystem::copy(source_path, target_path, static_cast<boost::filesystem::copy_options>(options));
 }
 

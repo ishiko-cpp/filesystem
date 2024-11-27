@@ -42,6 +42,12 @@ UtilitiesTests::UtilitiesTests(const TestNumber& number, const TestContext& cont
     append<HeapAllocationErrorsTest>("ReadFile test 9", ReadFileTest9);
     append<HeapAllocationErrorsTest>("ReadFile test 10", ReadFileTest10);
     append<HeapAllocationErrorsTest>("ReadFile test 11", ReadFileTest11);
+    append<HeapAllocationErrorsTest>("Copy test 1", CopyTest1);
+    append<HeapAllocationErrorsTest>("Copy test 2", CopyTest2);
+    append<HeapAllocationErrorsTest>("Copy test 3", CopyTest3);
+    append<HeapAllocationErrorsTest>("Copy test 4", CopyTest4);
+    append<HeapAllocationErrorsTest>("Copy test 5", CopyTest5);
+    append<HeapAllocationErrorsTest>("Copy test 6", CopyTest6);
     append<HeapAllocationErrorsTest>("CopySingleFile test 1", CopySingleFileTest1);
     append<HeapAllocationErrorsTest>("CopySingleFile test 2", CopySingleFileTest2);
     append<HeapAllocationErrorsTest>("CopySingleFile test 3", CopySingleFileTest3);
@@ -449,6 +455,97 @@ void UtilitiesTests::ReadFileTest11(Test& test)
     ISHIKO_TEST_PASS();
 }
 
+void UtilitiesTests::CopyTest1(Test& test)
+{
+    const char* output_filename = "UtilitiesTests_CopyTest1.txt";
+    boost::filesystem::path source_path(test.context().getDataPath("file1.txt"));
+    boost::filesystem::path destination_path(test.context().getOutputPath(output_filename));
+
+    FileSystem::Copy(source_path, destination_path);
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ(output_filename);
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::CopyTest2(Test& test)
+{
+    const char* output_filename = "UtilitiesTests_CopyTest2.txt";
+    boost::filesystem::path source_path(test.context().getDataPath("file1.txt"));
+    boost::filesystem::path destination_path(test.context().getOutputPath(
+        std::string("subdir-CopyTest2/") + output_filename));
+
+    try
+    {
+        FileSystem::Copy(source_path, destination_path);
+
+        ISHIKO_TEST_FAIL();
+    }
+    catch (...)
+    {
+        ISHIKO_TEST_FAIL_IF(FileSystem::Exists(destination_path.parent_path()));
+        ISHIKO_TEST_FAIL_IF(FileSystem::Exists(destination_path));
+        ISHIKO_TEST_PASS();
+    }
+}
+
+void UtilitiesTests::CopyTest3(Test& test)
+{
+    const char* output_subpath = "UtilitiesTests_CopyTest3";
+    boost::filesystem::path source_path(test.context().getDataPath("Directory1"));
+    boost::filesystem::path destination_path(test.context().getOutputPath(output_subpath));
+
+    FileSystem::Copy(source_path, destination_path);
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("UtilitiesTests_CopyTest3/file1.txt");
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::CopyTest4(Test& test)
+{
+    const char* output_subpath = "UtilitiesTests_CopyTest4";
+    boost::filesystem::path source_path(test.context().getDataPath("Directory2"));
+    boost::filesystem::path destination_path(test.context().getOutputPath(output_subpath));
+
+    FileSystem::Copy(source_path, destination_path);
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("UtilitiesTests_CopyTest4/file1.txt");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("UtilitiesTests_CopyTest4/file2.txt");
+    ISHIKO_TEST_PASS();
+}
+
+void UtilitiesTests::CopyTest5(Test& test)
+{
+    const char* output_subpath = "subdir-CopyTest5/UtilitiesTests_CopyTest5";
+    boost::filesystem::path source_path(test.context().getDataPath("Directory2"));
+    boost::filesystem::path destination_path(test.context().getOutputPath(output_subpath));
+
+    try
+    {
+        FileSystem::Copy(source_path, destination_path);
+
+        ISHIKO_TEST_FAIL();
+    }
+    catch (...)
+    {
+        ISHIKO_TEST_FAIL_IF(FileSystem::Exists(destination_path.parent_path()));
+        ISHIKO_TEST_FAIL_IF(FileSystem::Exists(destination_path));
+        ISHIKO_TEST_PASS();
+    }
+}
+
+void UtilitiesTests::CopyTest6(Test& test)
+{
+    const char* output_subpath = "subdir-CopyTest6/UtilitiesTests_CopyTest6";
+    boost::filesystem::path source_path(test.context().getDataPath("Directory2"));
+    boost::filesystem::path destination_path(test.context().getOutputPath(output_subpath));
+
+    FileSystem::Copy(source_path, destination_path, CopyOption::create_directories);
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("subdir-CopyTest6/UtilitiesTests_CopyTest6/file1.txt");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("subdir-CopyTest6/UtilitiesTests_CopyTest6/file2.txt");
+    ISHIKO_TEST_PASS();
+}
+
 void UtilitiesTests::CopySingleFileTest1(Test& test)
 {
     const char* output_filename = "UtilitiesTests_CopySingleFileTest1.txt";
@@ -479,7 +576,7 @@ void UtilitiesTests::CopySingleFileTest2(Test& test)
         ISHIKO_TEST_FAIL_IF(FileSystem::Exists(destination_path.parent_path()));
         ISHIKO_TEST_FAIL_IF(FileSystem::Exists(destination_path));
         ISHIKO_TEST_PASS();
-    }   
+    }
 }
 
 void UtilitiesTests::CopySingleFileTest3(Test& test)
