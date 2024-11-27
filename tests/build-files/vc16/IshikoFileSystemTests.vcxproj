@@ -164,9 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\BinaryFileTests.hpp" />
-    <ClInclude Include="..\..\src\DirectoryTests.h" />
-    <ClInclude Include="..\..\src\TextFileTests.h" />
-    <ClInclude Include="..\..\src\UtilitiesTests.h" />
+    <ClInclude Include="..\..\src\DirectoryTests.hpp" />
+    <ClInclude Include="..\..\src\TextFileTests.hpp" />
+    <ClInclude Include="..\..\src\UtilitiesTests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
