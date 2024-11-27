@@ -24,9 +24,9 @@ program IshikoFileSystemTests : IshikoFileSystem, IshikoTestFrameworkCore
     headers
     {
         ../../src/BinaryFileTests.hpp
-        ../../src/DirectoryTests.h
-        ../../src/TextFileTests.h
-        ../../src/UtilitiesTests.h
+        ../../src/DirectoryTests.hpp
+        ../../src/TextFileTests.hpp
+        ../../src/UtilitiesTests.hpp
     }
 
     sources

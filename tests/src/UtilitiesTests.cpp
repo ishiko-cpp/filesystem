@@ -1,10 +1,7 @@
-/*
-    Copyright (c) 2020-2024 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#include "UtilitiesTests.h"
+#include "UtilitiesTests.hpp"
 #include <Ishiko/FileSystem/FileSystemErrorCategory.hpp>
 #include <Ishiko/FileSystem/Utilities.hpp>
 #include <boost/filesystem/operations.hpp>

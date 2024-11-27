@@ -1,17 +1,11 @@
-/*
-    Copyright (c) 2021-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "TextFile.hpp"
 #include "Utilities.hpp"
 #include <Ishiko/IO.hpp>
 
-using namespace boost::filesystem;
-
-namespace Ishiko
-{
+using namespace Ishiko;
 
 void TextFile::create(const boost::filesystem::path& path, Error& error)
 {
@@ -138,6 +132,4 @@ void TextFile::writeLine(const std::string& str)
 void TextFile::flush()
 {
     m_file.flush();
-}
-
 }
