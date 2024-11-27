@@ -5,9 +5,9 @@
 */
 
 #include "BinaryFileTests.hpp"
-#include "TextFileTests.h"
-#include "DirectoryTests.h"
-#include "UtilitiesTests.h"
+#include "TextFileTests.hpp"
+#include "DirectoryTests.hpp"
+#include "UtilitiesTests.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 #include <exception>
 

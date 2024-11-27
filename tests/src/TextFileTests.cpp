@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#include "TextFileTests.h"
+#include "TextFileTests.hpp"
 #include <Ishiko/FileSystem/FileSystemErrorCategory.hpp>
 #include <Ishiko/FileSystem/TextFile.hpp>
 

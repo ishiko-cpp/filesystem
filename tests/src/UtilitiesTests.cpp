@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#include "UtilitiesTests.h"
+#include "UtilitiesTests.hpp"
 #include <Ishiko/FileSystem/FileSystemErrorCategory.hpp>
 #include <Ishiko/FileSystem/Utilities.hpp>
 #include <boost/filesystem/operations.hpp>

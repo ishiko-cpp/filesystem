@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
 */
 
-#include "DirectoryTests.h"
+#include "DirectoryTests.hpp"
 #include <Ishiko/FileSystem/Directory.hpp>
 #include <algorithm>
 
