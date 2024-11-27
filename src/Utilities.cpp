@@ -117,8 +117,12 @@ void CreateEmptyFile(const boost::filesystem::path& path, Error& error) noexcept
     CreateEmptyFile(path.string(), error);
 }
 
+void Copy(const boost::filesystem::path& source_path, const boost::filesystem::path& target_path, unsigned int options)
+{
+    boost::filesystem::copy(source_path, target_path, static_cast<boost::filesystem::copy_options>(options));
+}
 
-void CopySingleFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath) noexcept
+void CopySingleFile(const boost::filesystem::path& sourcePath, const boost::filesystem::path& targetPath)
 {
     boost::system::error_code ec;
     boost::filesystem::copy_file(sourcePath, targetPath, ec);
@@ -133,6 +137,44 @@ void CopySingleFile(const boost::filesystem::path& sourcePath, const boost::file
 {
     boost::system::error_code ec;
     boost::filesystem::copy_file(sourcePath, targetPath, ec);
+    if (ec.failed())
+    {
+        // TODO: interpret error properly
+        Fail(FileSystemErrorCategory::Value::generic_error, "", __FILE__, __LINE__, error);
+    }
+}
+
+void CopySingleFile(const boost::filesystem::path& source_path, const boost::filesystem::path& target_path,
+    unsigned int options)
+{
+    boost::system::error_code ec;
+
+    if (options & static_cast<unsigned int>(CopyOption::create_directories))
+    {
+        boost::filesystem::create_directories(target_path.parent_path(), ec);
+        options &= ~static_cast<unsigned int>(CopyOption::create_directories);
+    }
+
+    boost::filesystem::copy_file(source_path, target_path, static_cast<boost::filesystem::copy_options>(options), ec);
+    if (ec.failed())
+    {
+        // TODO: interpret error properly
+        Throw(FileSystemErrorCategory::Value::generic_error, __FILE__, __LINE__);
+    }
+}
+
+void CopySingleFile(const boost::filesystem::path& source_path, const boost::filesystem::path& target_path,
+    unsigned int options, Error& error) noexcept
+{
+    boost::system::error_code ec;
+
+    if (static_cast<unsigned int>(options) & static_cast<unsigned int>(CopyOption::create_directories))
+    {
+        boost::filesystem::create_directories(target_path.parent_path(), ec);
+        options &= ~static_cast<unsigned int>(CopyOption::create_directories);
+    }
+
+    boost::filesystem::copy_file(source_path, target_path, static_cast<boost::filesystem::copy_options>(options), ec);
     if (ec.failed())
     {
         // TODO: interpret error properly
