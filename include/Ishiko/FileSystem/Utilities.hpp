@@ -20,9 +20,9 @@ namespace Ishiko
         public:
             enum Value
             {
-                none = boost::filesystem::copy_options::none,
+                none = static_cast<unsigned int>(boost::filesystem::copy_options::none),
                 create_directories = (1u << 3),
-                recursive = boost::filesystem::copy_options::recursive
+                recursive = static_cast<unsigned int>(boost::filesystem::copy_options::recursive)
             };
         };
 
