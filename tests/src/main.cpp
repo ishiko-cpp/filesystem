@@ -1,8 +1,5 @@
-/*
-    Copyright (c) 2020-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/filesystem/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "BinaryFileTests.hpp"
 #include "TextFileTests.hpp"
