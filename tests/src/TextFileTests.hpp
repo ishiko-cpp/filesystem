@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2000-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
 #ifndef GUARD_ISHIKO_CPP_FILESYSTEM_TESTS_TEXTFILETESTS_HPP
@@ -15,6 +15,8 @@ private:
     static void ConstructorTest1(Ishiko::Test& test);
     static void CreateTest1(Ishiko::Test& test);
     static void CreateTest2(Ishiko::Test& test);
+    static void StaticCreateTest1(Ishiko::Test& test);
+    static void StaticCreateTest2(Ishiko::Test& test);
     static void OpenTest1(Ishiko::Test& test);
     static void OpenTest2(Ishiko::Test& test);
     static void ReadLineTest1(Ishiko::Test& test);
