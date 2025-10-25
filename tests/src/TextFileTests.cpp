@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2000-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
 #include "TextFileTests.hpp"
@@ -13,6 +13,8 @@ TextFileTests::TextFileTests(const TestNumber& number, const TestContext& contex
     append<HeapAllocationErrorsTest>("constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("create test 1", CreateTest1);
     append<HeapAllocationErrorsTest>("create test 2", CreateTest2);
+    append<HeapAllocationErrorsTest>("Create test 1", StaticCreateTest1);
+    append<HeapAllocationErrorsTest>("Create test 2", StaticCreateTest2);
     append<HeapAllocationErrorsTest>("open test 1", OpenTest1);
     append<HeapAllocationErrorsTest>("open test 2", OpenTest2);
     append<HeapAllocationErrorsTest>("readLine test 1", ReadLineTest1);
@@ -54,15 +56,59 @@ void TextFileTests::CreateTest1(Test& test)
 
 void TextFileTests::CreateTest2(Test& test)
 {
-    boost::filesystem::path outputPath(test.context().getDataPath("file1.txt"));
-
-    TextFile file;
+    boost::filesystem::path outputPath(test.context().getOutputPath("TextFileTests_CreateTest2.txt"));
 
     Error error;
-    file.create(outputPath.string(), error);
+    TextFile file1;
+    file1.create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file1.close();
+
+    TextFile file2;
+    file2.create(outputPath.string(), error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
     ISHIKO_TEST_FAIL_IF_NEQ(error.code(), FileSystemErrorCategory::Value::already_exists);
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("TextFileTests_CreateTest2.txt");
+    ISHIKO_TEST_PASS();
+}
+
+
+void TextFileTests::StaticCreateTest1(Test& test)
+{
+    boost::filesystem::path outputPath(test.context().getOutputPath("TextFileTests_StaticCreateTest1.txt"));
+
+    Error error;
+    TextFile file = TextFile::Create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file.close();
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("TextFileTests_StaticCreateTest1.txt",
+        "TextFileTests_CreateTest1.txt");
+    ISHIKO_TEST_PASS();
+}
+
+void TextFileTests::StaticCreateTest2(Test& test)
+{
+    boost::filesystem::path outputPath(test.context().getOutputPath("TextFileTests_StaticCreateTest2.txt"));
+
+    Error error;
+    TextFile file1 = TextFile::Create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    file1.close();
+
+    TextFile file2 = TextFile::Create(outputPath.string(), error);
+
+    ISHIKO_TEST_FAIL_IF_NOT(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(error.code(), FileSystemErrorCategory::Value::already_exists);
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("TextFileTests_StaticCreateTest2.txt",
+        "TextFileTests_CreateTest2.txt");
     ISHIKO_TEST_PASS();
 }
 

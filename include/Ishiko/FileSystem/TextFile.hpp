@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2000-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
 #ifndef GUARD_ISHIKO_CPP_FILESYSTEM_TEXTFILE_HPP
@@ -17,8 +17,13 @@ class TextFile
 {
 public:
     TextFile() = default;
+
+    static TextFile Create(const boost::filesystem::path& path, Error& error);
+    static TextFile Create(const std::string& path, Error& error);
+
     void create(const boost::filesystem::path& path, Error& error);
     void create(const std::string& path, Error& error);
+    void create(const char* path, Error& error);
     void open(const boost::filesystem::path& path, Error& error);
     void open(const std::string& path, Error& error);
     void close();

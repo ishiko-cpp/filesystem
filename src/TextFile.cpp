@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-FileCopyrightText: 2000-2025 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
 #include "TextFile.hpp"
@@ -7,12 +7,29 @@
 
 using namespace Ishiko;
 
+TextFile TextFile::Create(const boost::filesystem::path& path, Error& error)
+{
+    return Create(path.string(), error);
+}
+
+TextFile TextFile::Create(const std::string& path, Error& error)
+{
+    TextFile result;
+    result.create(path.c_str(), error);
+    return result;
+}
+
 void TextFile::create(const boost::filesystem::path& path, Error& error)
 {
     create(path.string(), error);
 }
 
 void TextFile::create(const std::string& path, Error& error)
+{
+    create(path.c_str(), error);
+}
+
+void TextFile::create(const char* path, Error& error)
 {
     // TODO: use lower level file functions to make this more robust
     if (!FileSystem::Exists(path))

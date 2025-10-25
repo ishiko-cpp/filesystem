@@ -99,7 +99,7 @@ void UtilitiesTests::GetFileSizeTest2(Test& test)
     {
         size_t fileSize = GetFileSize(inputPath.string().c_str());
     }
-    catch (const std::exception& e)
+    catch (const std::exception& /*e*/)
     {
         canary = true;
     }
@@ -362,7 +362,7 @@ void UtilitiesTests::ReadFileTest5(Test& test)
     {
         std::string bytes = ReadFile(inputPath.string().c_str());
     }
-    catch (const std::exception& e)
+    catch (const std::exception& /*e*/)
     {
         canary = true;
     }
@@ -418,7 +418,7 @@ void UtilitiesTests::ReadFileTest9(Test& test)
     {
         std::string bytes = ReadFile(inputPath);
     }
-    catch (const std::exception& e)
+    catch (const std::exception& /*e*/)
     {
         canary = true;
     }
