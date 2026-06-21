@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="https://nuime.org/schema/core/1">
-  <name>filesystem</name>
+  <name>IshikoFileSystem</name>
   <targets>
     <target>
-      <name>filesystem-lib</name>
+      <name>lib</name>
       <labels>
         <label>nuime:product</label>
       </labels>
       <build-dependencies>
         <dependency>
-          <name>io</name>
+          <name>IshikoIO</name>
           <target-refs>
             <target-ref>
               <location>
-                <url>https://github.com/ishiko-cpp/io/build-files/nuime/io.nuime</url>
+                <url>https://github.com/ishiko-cpp/io/build-files/nuime/IshikoIO.nuime</url>
               </location>
-              <name>io-lib</name>
+              <name>lib</name>
             </target-ref>
           </target-refs>
         </dependency>
         <dependency>
-          <name>errors</name>
+          <name>IshikoErrors</name>
           <target-refs>
             <target-ref>
               <location>
-                <url>https://github.com/ishiko-cpp/errors/build-files/nuime/errors.nuime</url>
+                <url>https://github.com/ishiko-cpp/errors/build-files/nuime/IshikoErrors.nuime</url>
               </location>
-              <name>errors-lib</name>
+              <name>lib</name>
             </target-ref>
           </target-refs>
         </dependency>
         <dependency>
-          <name>base-platform</name>
+          <name>IshikoBasePlatform</name>
           <target-refs>
             <target-ref>
               <location>
-                <url>https://github.com/ishiko-cpp/base-platform/build-files/nuime/base-platform.nuime</url>
+                <url>https://github.com/ishiko-cpp/base-platform/build-files/nuime/IshikoBasePlatform.nuime</url>
               </location>
-              <name>base-platform-lib</name>
+              <name>lib</name>
             </target-ref>
           </target-refs>
         </dependency>
@@ -46,9 +46,9 @@
         <property name="nuime:test-suite">
           <target-ref>
             <location>
-              <url>https://github.com/ishiko-cpp/filesystem/tests/build-files/nuime/filesystem-tests.nuime</url>
+              <url>https://github.com/ishiko-cpp/filesystem/tests/build-files/nuime/IshikoFileSystemTests.nuime</url>
             </location>
-            <name>filesystem-tests</name>
+            <name>tests</name>
           </target-ref>
         </property>
       </properties>
@@ -56,12 +56,12 @@
   </targets>
   <subprojects>
     <subproject>
-      <name>filesystem-tests</name>
+      <name>IshikoFileSystemTests</name>
       <labels>
         <label>nuime:tests</label>
       </labels>
       <location>
-        <url>https://github.com/ishiko-cpp/filesystem/tests/build-files/nuime/filesystem-tests.nuime</url>
+        <url>https://github.com/ishiko-cpp/filesystem/tests/build-files/nuime/IshikoFileSystemTests.nuime</url>
       </location>
     </subproject>
   </subprojects>
