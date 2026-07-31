@@ -5,6 +5,11 @@
 
 using namespace Ishiko;
 
+FileSystemErrorCategory::FileSystemErrorCategory() noexcept
+    : ErrorCategory(ID(0x33f828093da44a91ULL, 0x817679c1968cda91ULL)) // 33f82809-3da4-4a91-8176-79c1968cda91
+{
+}
+
 const FileSystemErrorCategory& FileSystemErrorCategory::Get() noexcept
 {
     static FileSystemErrorCategory theCategory;
@@ -67,7 +72,7 @@ void Ishiko::Fail(FileSystemErrorCategory::Value value, const std::wstring& mess
 
 bool Ishiko::operator==(const ErrorCode& error, FileSystemErrorCategory::Value value)
 {
-    return ((&error.category() == &FileSystemErrorCategory::Get()) && (error.value() == static_cast<int>(value)));
+    return ((error.category().id() == FileSystemErrorCategory::Get().id()) && (error.value() == static_cast<int>(value)));
 }
 
 bool Ishiko::operator!=(const ErrorCode& error, FileSystemErrorCategory::Value value)
